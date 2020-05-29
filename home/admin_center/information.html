@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+  <!-- //公共头部 -->
+  <script src="./head.js"></script>
+
+  <script type="text/javascript" src="js/jquery18.js"></script>
+  <script src="js/unveil-effects.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      //查询模块-START
+      var tabOpts = {};
+      tabOpts.curIndex;
+      tabOpts.tabs = $(".aside-lf-content");//焦点层	
+      tabOpts.contents = $(".content");//显示内容
+
+      tabOpts.show = function (index) {
+        //当前，return
+        if (tabOpts.curIndex == index) return;
+        //隐藏上一个index
+        if (tabOpts.curIndex >= 0) {
+          $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+          $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+        }
+
+        $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+        $(tabOpts.contents.get(index)).show();
+        //改变当前index
+        tabOpts.curIndex = index;
+      }
+      //数字单击事件
+      tabOpts.tabs.click(function () {
+        tabOpts.show(tabOpts.tabs.index(this));
+      });
+      //开始显示
+      tabOpts.show(0);
+      //查询模块-END
+    })
+  </script>
+
+
+  <section class="main" style="background:#f7f8fa;padding:33px 0">
+    <div class="container">
+      <!--left------------------------------------------------------------>
+      <!-- //公共左侧栏 -->
+      <script src="./left.js"></script>
+      <!--right           =                             -->
+      <div class="cplLR" data-effect="slide-right">
+        <div class="information">
+          <h2>站内信息</h2>
+          <div class="inforCon">
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率&极低的打开率<b class="current"></b> </li>
+                <li>2020-02-03 16：44：52<span class="current"></span></li>
+              </ul>
+            </div>
+            <p>
+              京东的版本更新提示，饿了么每天首次打开时的红包，Uber
+              的活动推广……都会采用应用内弹窗。应用内弹窗的曝光率极高，但破坏性也极强，因为它打断了用户的正常使用流程，并且必须按关闭/确认才能关掉弹窗（更优雅的交互方式是点击屏幕空白处）。
+              <br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用应用内弹窗。应用内弹窗的曝光率极高，但破坏性也极强，因为它打断了用户的正常使
+            </p>
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率<b></b></li>
+                <li>2020-02-03 16：44：52<span></span></li>
+              </ul>
+            </div>
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率&极低的高的曝光率极低的打开率<b></b></li>
+                <li>2020-02-03 16：44：52<span></span></li>
+              </ul>
+            </div>
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率&极低的打开率<b></b></li>
+                <li>2020-02-03 16：44：52<span></span></li>
+              </ul>
+            </div>
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率&极高的曝光率极低的低的打开率<b></b></li>
+                <li>2020-02-03 16：44：52<span></span></li>
+              </ul>
+            </div>
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率极低的高的曝光率极低的高的曝光率极低的打开率<b></b></li>
+                <li>2020-02-03 16：44：52<span></span></li>
+              </ul>
+            </div>
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率&极低高的曝光率极低的高的曝光率极低的的打开率<b></b> </li>
+                <li>2020-02-03 16：44：52<span></span></li>
+              </ul>
+            </div>
+            <div class="inforTop">
+              <ul>
+                <li class="current">极高的曝光率&极低的打开率<b></b> </li>
+                <li>2020-02-03 16：44：52<span></span></li>
+              </ul>
+            </div>
+          </div>
+          <div class="scatter">
+            <div class="scatterL">共<span>0</span>条记录，第页<span>30</span>条，共<span>4</span>页</div>
+            <div class="scatterR">
+              <span></span><a href=" ">1</a><span class="current"></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .lj {
+      background: #222;
+      color: #fff;
+      padding-top: 2%
+    }
+
+    .lj ul li {
+      width: 16%;
+      float: left;
+      font-size: 12px;
+      color: #fff;
+      list-style: none;
+    }
+
+    .lj ul li h4 {
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .lj ul li a {
+      display: block;
+      color: rgba(255, 255, 255, .8);
+      margin: 3% 0;
+      text-decoration: none;
+    }
+  </style>
+
+  <!-- //公共底部 -->
+  <script src="./foot.js"></script>
+  <script src="layui/layui.js"></script>
+  <script>
+    // current
+    $('li').each(function () {
+      var text = $(this).children().text();
+      if (text == '站内信息') {
+        $(this).addClass('current');
+      }
+    }) 
+  </script>
+</body>
+
+</html>

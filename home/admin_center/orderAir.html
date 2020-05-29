@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>海运拼箱</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        input[type=file] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <!-- //公共头部 -->
+    <script src="./head.js"></script>
+
+    <script type="text/javascript" src="js/jquery18.js"></script>
+    <script src="js/unveil-effects.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //查询模块-START
+            var tabOpts = {};
+            tabOpts.curIndex;
+            tabOpts.tabs = $(".aside-lf-content");//焦点层	
+            tabOpts.contents = $(".content");//显示内容
+
+            tabOpts.show = function (index) {
+                //当前，return
+                if (tabOpts.curIndex == index) return;
+                //隐藏上一个index
+                if (tabOpts.curIndex >= 0) {
+                    $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+                    $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+                }
+
+                $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+                $(tabOpts.contents.get(index)).show();
+                //改变当前index
+                tabOpts.curIndex = index;
+            }
+            //数字单击事件
+            tabOpts.tabs.click(function () {
+                tabOpts.show(tabOpts.tabs.index(this));
+            });
+            //开始显示
+            tabOpts.show(0);
+            //查询模块-END
+        })
+    </script>
+
+    <section class="main" style="background:#f7f8fa;padding:33px 0">
+        <div class="container">
+            <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right           =                             -->
+            <div class="cp1_lr cplLR" data-effect="slide-right">
+                <div class="orderCon">
+                    <h2>创建订单</h2>
+                    <!--创建订单           <input type="radio" name="radioyes" value=" "><label class="chooseO">其他</label><label class="chooseO">礼品</label><input type="radio" name="radioyes" value=" "><label class="chooseO">文件</label><input type="radio" name="radioyes" value=" ">=                             -->
+                    <div class="order_content">
+                        <div>
+                            <h4>1、基本信息</h4>
+                            <form action="#" method="post">
+                                <ul class="inforL">
+                                    <li><label><b>*</b>目的国家/地区</label><select class="order_nation_end">
+                                            <option>新西兰</option>
+                                            <option>越南</option>
+                                        </select></li>
+                                    <li><label>备注</label><input type="text" value="易碎物品轻拿轻放" class="order_remark" />
+                                    </li>
+                                    <li class="radi"><label>是否带电池</label><input type="radio" name="order_whether_electrify" value="0"checked
+                                            class="order_whether_electrify_yes"><label
+                                            class="choose">否</label>
+                                        <input type="radio" name="order_whether_electrify" value="1" 
+                                            class="order_whether_electrify_no"><label class="choose">是</label></li>
+                                </ul>
+                                <ul class="inforR">
+                                    <li><label><b>*</b>发货类型</label><input type="text" value="空运" class="order_freight_type" readonly/>
+                                    </li>
+                                    <li class="radi">
+                                        <label>货物类型</label><input type="radio" name="radioyes" value=" "
+                                            checked=" "><label class="chooseO chooseT">商品货样</label>
+                                    </li>
+                                </ul>
+                            </form>
+                        </div>
+                        <div style="clear:both;width:0;height:0;"></div>
+                        <div class="personCon">
+                            <div class="person">
+                                <h4 id="inf">2、收件人信息<b class="ov">（带<b style="color:#F00">*</b>号信息必须填写）</b></h4>
+                                <form action="#" method="post">
+                                    <ul>
+                                        <li><label>请选择地址</label><select class="linkman_address_get">
+                                                
+                                            </select></li>
+                                        <li><label><b>*</b>姓名</label><input type="text" placeholder="请输入收件人姓名，100个字符以内"
+                                                class="linkman_name_get"></li>
+                                        <li class="current">
+                                            <label><b>*</b>详细地址</label><textarea
+                                                class="linkman_address_details_get">请输入街道、门牌号，1-120个字符</textarea></li>
+                                        <li><label><b>*</b>城市</label><input type="text" placeholder="40个字符以内"
+                                                class="linkman_city_get"></li>
+                                        <li><label><b>*</b>省/州</label><input type="text" placeholder="40个字符以内"
+                                                class="linkman_province_get"></li>
+                                        <li><label><b>*</b>航空公司</label><input type="text" placeholder=""
+                                                class="linkman_postcode_get"></li>
+                                        <li><label>电话</label><input type="text" placeholder="086-"
+                                                class="linkman_phone_get"></li>
+                                        <li><label>身份证</label><input type="text" placeholder="请与证件号码一致"
+                                                class="linkman_idCard_num_get"></li>
+                                        <li><label>上传证件</label>
+                                            <!-- <input class="tu" type="text" placeholder="图片大小不超过45KM"> -->
+                                            <div class="pic02" data_src=""
+                                                style="display: inline-block;margin-left:-5px;width:220px;height:100px !important;">
+                                                <button type="button" class="layui-btn" id="test2"
+                                                    style="width:220px;height:100px;background: #f7f8fa !important;border: 1px solid #c5c5c5;border-radius: 4px;">
+                                                    <p style="color: #141414;text-align: center;font-size: 14px;width:auto;z-index: 100;"
+                                                        class="pic_p02">图片大小不超过45KM</p>
+                                                </button></div>
+                                        </li>
+
+                                    </ul>
+                                </form>
+                            </div>
+                            <div class="personR">
+                                <h4 id="inf">发件人信息<b class="ov">（带<b style="color:#F00">*</b>号信息必须填写）</b></h4>
+                                <form action="#" method="post">
+                                    <ul>
+                                        <li><label>请选择地址</label><select class="linkman_address_send">
+                                                <option>香川县高松市栗林町3丁目3-32-305号</option>
+                                                <option>香川县高松市栗林町3丁目3-32-305号</option>
+                                            </select></li>
+                                        <li><label><b>*</b>姓名</label><input type="text" placeholder="请输入收件人姓名，100个字符以内"
+                                                class="linkman_name_send"></li>
+                                        <li class="current">
+                                            <label><b>*</b>详细地址</label><textarea
+                                                class="linkman_address_details_send">请输入街道、门牌号，1-120个字符</textarea></li>
+                                        <li><label><b>*</b>城市</label><input type="text" placeholder="40个字符以内"
+                                                class="linkman_city_send"></li>
+                                        <li><label><b>*</b>省/州</label><input type="text" placeholder="40个字符以内"
+                                                class="linkman_province_send"></li>
+                                        <li><label><b>*</b>航空公司</label><input type="text" placeholder=""
+                                                class="linkman_postcode_send"></li>
+                                        <li><label>电话</label><input type="text" placeholder="086-"
+                                                class="linkman_phone_send"></li>
+                                        <li><label>身份证</label><input type="text" placeholder="请与证件号码一致"
+                                                class="linkman_idCard_num_send"></li>
+                                        <li><label>上传证件</label>
+                                            <!-- <input class="tu" type="text" placeholder="图片大小不超过45KM"> -->
+                                            <div class="pic03" data_src=""
+                                                style="display: inline-block;margin-left:-5px;width:220px;height:100px !important;">
+                                                <button type="button" class="layui-btn" id="test3"
+                                                    style="width:220px;height:100px;background: #f7f8fa !important;border: 1px solid #c5c5c5;border-radius: 4px;">
+                                                    <p style="color: #141414;text-align: center;font-size: 14px;width:auto;z-index: 100;"
+                                                        class="pic_p03">图片大小不超过45KM</p>
+                                                </button></div>
+                                        </li>
+                                    </ul>
+                                </form>
+                            </div>
+                        </div>
+                        <div style="clear:both;width:0;height:0;"></div>
+                        <h4 id="inf" class="box">3、海关申报品</h4>
+
+                        <h4 id="inf">4、增值服务</h4>
+                        <div class="valueSer">
+                            <ul>
+                                <li>增值服务：&nbsp;&nbsp;&nbsp;<input type="checkbox" class="fill" data_name="包裹拆包"  data_price="10.00"/>包裹拆包（￥10.00）&nbsp;&nbsp;&nbsp;<input
+                                        type="checkbox" class="fill" data_name="拍照核验"  data_price="8.00"/>拍照核验（￥8.00）&nbsp;&nbsp;&nbsp;<input
+                                        type="checkbox" class="fill" data_name="危险品检查"  data_price="8.00"/>危险品检查（￥8.00）</li>
+                                <li>运费保险：&nbsp;&nbsp;&nbsp;<input type="checkbox" class="insurance fill" data_name="保险费用" data_price="" onchange="check_insurance(this)"/>(保费为申报价值的1.00%)
+                                    &nbsp;&nbsp;&nbsp;保险费用：￥<input class="current insurance_money" type="text"/><b>自动计算，请勿输入（保额范围￥1-￥5）</b></li>
+                                <!-- <li>验证码：<input class="current01" type="text" value="验证码" /><i></i></li> -->
+                            </ul>
+                        </div>
+                        <div class="books" onclick="submitDan()">下单</div>
+                    </div>
+                    <!--right           =                             -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- //公共底部 -->
+    <script src="./foot.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.use(['layer', 'upload', 'form', 'laydate'], function () {
+            var layer = layui.layer;
+            var form = layui.form;
+            var upload = layui.upload;
+            var laydate = layui.laydate;
+
+            //获取跳转传的值
+            var url = decodeURI(location.search); //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+                var strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+                // console.log(theRequest); //此时的theRequest就是我们需要的参数；   
+            }
+
+            //客户
+            $.ajax({
+                url: "/index/warehouse/queryNation",
+                data: {},
+                dataType: "json",
+                success: function (resultData) {
+                    // console.log(resultData);
+                    if (resultData.code == 0) {
+                        //清空赋值
+                        $('.order_nation_end').empty();
+                        $('.order_nation_end').append(new Option("请选择国家/地区", ""));
+                        $.each(resultData.data, function (index, item) {
+                            var str = item.nation_name+""+item.nation_city;
+                            //赋值
+                            $('.order_nation_end').append(new Option(str, item.nation_id));
+                        });
+                    } else {
+                        $('.order_nation_end').append(new Option("暂无数据", ""));
+                    }
+                    layui.form.render("select");
+                }
+            })
+
+            //联系人地址
+            $.ajax({
+                url: "/index/Vipcenterorder/queryLinkmanAddress",
+                data: {},
+                dataType: "json",
+                success: function (resultData) {
+                    // console.log(resultData);
+                    if (resultData.code == 0) {
+                        //清空赋值
+                        $('.linkman_address_get').empty();
+                        // $('.linkman_address_get').append(new Option("请选择国家/地区", ""));
+                        $.each(resultData.data, function (index, item) {
+                            var str = item.linkman_province+"省"+item.linkman_city+"市"+item.linkman_address;
+                            //赋值
+                            $('.linkman_address_get').append(new Option(str, item.linkman_id));
+                        });
+                    } else {
+                        $('.linkman_address_get').append(new Option("暂无数据", ""));
+                    }
+                    layui.form.render("select");
+                    var address = $('.linkman_address_get').find("option:selected").text();
+                    var arr = address.split('省');
+                    $('.linkman_province_get').val(arr[0]+'省');
+                    var crr = arr[1].split('市');
+                    $('.linkman_city_get').val(crr[0]+'市');
+                    $('.linkman_address_details_get').val(crr[1]);
+                }
+            })
+
+            $('.linkman_address_get').change(function(){
+                var address = $(this).find("option:selected").text();
+                var arr = address.split('省');
+                $('.linkman_province_get').val(arr[0]+'省');
+                var crr = arr[1].split('市');
+                $('.linkman_city_get').val(crr[0]+'市');
+                $('.linkman_address_details_get').val(crr[1]);
+            });
+
+            //发件人地址
+            $.ajax({
+                url: "/index/Vipcenterorder/queryLinkmanAddress",
+                data: {},
+                dataType: "json",
+                success: function (resultData) {
+                    // console.log(resultData);
+                    if (resultData.code == 0) {
+                        //清空赋值
+                        $('.linkman_address_send').empty();
+                        // $('.linkman_address_send').append(new Option("请选择国家/地区", ""));
+                        $.each(resultData.data, function (index, item) {
+                            var str = item.linkman_province+"省"+item.linkman_city+"市"+item.linkman_address;
+                            //赋值
+                            $('.linkman_address_send').append(new Option(str, item.linkman_id));
+                        });
+                    } else {
+                        $('.linkman_address_send').append(new Option("暂无数据", ""));
+                    }
+                    layui.form.render("select");
+                    var address = $('.linkman_address_send').find("option:selected").text();
+                    var arr = address.split('省');
+                    $('.linkman_province_send').val(arr[0]+'省');
+                    var crr = arr[1].split('市');
+                    $('.linkman_city_send').val(crr[0]+'市');
+                    $('.linkman_address_details_send').val(crr[1]);
+                }
+            })
+
+            $('.linkman_address_send').change(function(){
+                var address = $(this).find("option:selected").text();
+                var arr = address.split('省');
+                $('.linkman_province_send').val(arr[0]+'省');
+                var crr = arr[1].split('市');
+                $('.linkman_city_send').val(crr[0]+'市');
+                $('.linkman_address_details_send').val(crr[1]);
+            });
+
+            //收件人附件
+            layui.upload.render({
+                elem: '#test2'
+                , url: '/index/user/uploadCoPic' //改成您自己的上传接口
+                , size: 45 //限制文件大小，单位 KB
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        // $('#upload_img').attr('background', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                    // console.log(res)
+                    if (res.code == 0) {
+                        layer.msg(res.msg);
+                        $('#test2').css('display', 'none');
+                        $('.pic02').attr('data_src', res.data);
+                        var str = '<img src="' + res.data + '" class="img_up02" data_src="' + res.data + '" style="width:100%;height:100%;z-index:1;clear:both;"/><span class="close" style="padding:0 !important;margin-top:-99px !important;border: 1px solid black;z-index:100 !important;" onclick="closePic02(this)">X</span>'
+                        $('.pic02').append(str);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+
+            //发件人附件
+            layui.upload.render({
+                elem: '#test3'
+                , url: '/index/user/uploadCoPic' //改成您自己的上传接口
+                , size: 100 //限制文件大小，单位 KB
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        // $('#upload_img').attr('background', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                    // console.log(res)
+                    if (res.code == 0) {
+                        layer.msg(res.msg);
+                        $('#test3').css('display', 'none');
+                        $('.pic03').attr('data_src', res.data);
+                        var str = '<img src="' + res.data + '" class="img_up03" data_src="' + res.data + '" style="width:100%;height:100%;z-index:1;clear:both;"/><span class="close" style="padding:0 !important;margin-top:-99px !important;border: 1px solid black;z-index:100 !important;" onclick="closePic03(this)">X</span>'
+                        $('.pic03').append(str);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+
+            //海关申报品
+            var name = theRequest.name.split('￥');
+            var name_two = name[0].split(',');
+            var idBrr = theRequest.idArr.split(',');
+            for(var i = 0;i<idBrr.length;i++){
+                $.ajax({
+                    type: "POST",
+                    url: "/index/warehouse/queryGoodsNamePrice",
+                    data: {
+                        goodsName_goodsId: idBrr[i],
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    dataType: "JSON",
+                    success: function (msg) {
+                        // console.log(msg)
+                        if (msg.code == 0) {
+                            var str = '';
+                            for(var j = 0;j<msg.data.length;j++){
+                                str = str 
+                                    +'<div class="customs">'
+                                    +'<div class="customL">'
+                                    +'<ul>'
+                                    +'<li style="margin-left:20px;"><label>中文名:</label><span class="goodsName_name">'+name_two[j]+'</span></li>'
+                                    +'<li><label><b>*</b>单价:</label><span class="goodsName_price">'+msg.data[j].goodsName_price+'/件</span></li>'
+                                    +'<li><label><b>*</b>数量:</label><input class="customsO goodsName_num" data_price="'+msg.data[j].goodsName_price+'" type="text" value="'+msg.data[j].goodsName_num+'" onblur="change_num(this)"><label>合计:</label><input class="customsO goodsName_total_price" readonly type=" " value="'+msg.data[j].goodsName_total_price+'">'
+                                    +'</li>'
+                                    +'</ul>'
+                                    +'</div>'
+                                    +'<div class="customR">'
+                                    +'<ul>'
+                                    +'<li style="width:30%;"><label style="width:30%;">重量：</label><span class="goodsName_weight">'+msg.data[j].goodsName_weight+'</span>'
+                                    +'</li>'
+                                    +'<li style="width:30%;"><label style="width:30%;">类别：</label><span class="goodsName_type">'+msg.data[j].goods_big_classify+'</span></li>'
+                                    +'<li style="width:30%;"><label style="width:30%;">海关编码：</label><span class="goodsName_customs_code">'+msg.data[j].goodsName_customs_code+'</span></li>'
+                                    +'</ul>'
+                                    +'</div>'
+                                    +'</div>'
+                            }
+                            $('.box').after(str);
+                        } else {
+                            layer.msg(msg.msg);
+                        }
+                    }
+                    , error: function (e) {
+                        layer.msg('网络故障');
+                    }
+                });
+            }
+            
+
+        });
+
+        //海关申报数量改变时
+        function change_num(res){
+            var num = $(res).val();
+            var price = $(res).attr('data_price');
+            var sum = parseInt(price) * Number(num);
+            $(res).siblings().eq(2).val(sum);
+        }
+
+        function closePic02(res) {
+            $('#test2').show();
+            $(res).hide();
+            $('.img_up02').hide();
+        }
+
+        function closePic03(res) {
+            $('#test3').show();
+            $(res).hide();
+            $('.img_up03').hide();
+        }
+
+        //切换选择保险费用
+        function check_insurance(res){
+            var checked = $(res).prop('checked');
+            if(checked){
+                var num = 0;
+                $('.goodsName_total_price').each(function(){
+                    num += Number($(this).val());
+                })
+                $('.insurance_money').val(num*0.01);
+            }
+        }
+
+        //点击下单
+        function submitDan(){
+            var order_nation_end = $('.order_nation_end').val();
+            if (order_nation_end == '' || order_nation_end == null || order_nation_end == undefined) {
+                layer.msg('目的国家不能为空');
+                return false;
+            }
+            var linkman_name_get = $('.linkman_name_get').val();
+            if (linkman_name_get == '' || linkman_name_get == null || linkman_name_get == undefined) {
+                layer.msg('收件人姓名不能为空');
+                return false;
+            }
+            var linkman_name_send = $('.linkman_name_send').val();
+            if (linkman_name_send == '' || linkman_name_send == null || linkman_name_send == undefined) {
+                layer.msg('发件人姓名不能为空');
+                return false;
+            }
+            var linkman_postcode_get = $('.tel').val();
+            if (linkman_postcode_get == '' || linkman_postcode_get == null || linkman_postcode_get == undefined) {
+                layer.msg('收件人邮编不能为空');
+                return false;
+            }
+            var linkman_postcode_send = $('.mobile').val();
+            if (linkman_postcode_send == '' || linkman_postcode_send == null || linkman_postcode_send == undefined) {
+                layer.msg('发件人邮编不能为空');
+                return false;
+            }
+
+            //是否带电池
+            var order_whether_electrify =$('input:radio[name="order_whether_electrify"]:checked').val()
+
+            //海关申报品
+            var goodsNameArr = [];
+            var goodsPriceArr = [];
+            var goodsNumArr = [];
+            var goodsTotalArr = [];
+            var goodsWeightArr = [];
+            var goodsTypeArr = [];
+            var goodsCodeArr = [];
+            $('.goodsName_name').each(function(){
+                goodsNameArr.push($(this).text())
+            })
+            $('.goodsName_price').each(function(){
+                var arr = $(this).text().split('/')
+                goodsPriceArr.push(arr[0])
+            })
+            $('.goodsName_num').each(function(){
+                goodsNumArr.push($(this).val())
+            })
+            $('.goodsName_total_price').each(function(){
+                goodsTotalArr.push($(this).val())
+            })
+            $('.goodsName_weight').each(function(){
+                goodsWeightArr.push($(this).text())
+            })
+            $('.goodsName_type').each(function(){
+                goodsTypeArr.push($(this).text())
+            })
+            $('.goodsName_customs_code').each(function(){
+                goodsCodeArr.push($(this).text())
+            })
+
+            //增值服务
+            var fill_nameArr = [];
+            var fill_priceArr = [];
+            $('.fill').each(function(){
+                var name = $(this).attr('data_name');
+                var checked = $(this).prop('checked');
+                if(checked){
+                    if(name == '保险费用'){
+                        var insurance_money = $('.insurance_money').val();
+                        $(this).attr('data_price',insurance_money);
+                        if (insurance_money == '' || insurance_money == null || insurance_money == undefined) {
+                            layer.msg('选中则保险费用不能为空');
+                            return false;
+                        }
+                    }
+                    var price = $(this).attr('data_price');
+                    fill_nameArr.push(name);
+                    fill_priceArr.push(price);
+                }
+            })
+
+            $.ajax({
+                type: "POST",
+                url: "/index/warehouse/goosDetails",
+                data: {
+                    order_nation_end: $('.order_nation_end').val(),
+                    order_freight_type: 3,
+                    order_remark: $('.order_remark').val(),
+                    order_whether_electrify: order_whether_electrify,
+                    linkman_name_get: $('.linkman_name_get').val(),
+                    linkman_address_details_get: $('.linkman_address_details_get').val(),
+                    linkman_city_get: $('.linkman_city_get').val(),
+                    linkman_province_get: $('.linkman_province_get').val(),
+                    linkman_postcode_get: $('.linkman_postcode_get').val(),
+                    linkman_phone_get: $('.linkman_phone_get').val(),
+                    linkman_idCard_num_get: $('.linkman_idCard_num_get').val(),
+                    linkman_idCard_get: $('.linkman_idCard_get').val(),
+
+                    linkman_name_send: $('.linkman_name_send').val(),
+                    linkman_address_details_send: $('.linkman_address_details_send').val(),
+                    linkman_city_send: $('.linkman_city_send').val(),
+                    linkman_province_send: $('.linkman_province_send').val(),
+                    linkman_postcode_send: $('.linkman_postcode_send').val(),
+                    linkman_phone_send: $('.linkman_phone_send').val(),
+                    linkman_idCard_num_send: $('.linkman_idCard_num_send').val(),
+                    linkman_idCard_send: $('.linkman_idCard_send').val(),
+
+                    goodsName_name: goodsNameArr,
+                    goodsName_price: goodsPriceArr,
+                    goodsName_num: goodsNumArr,
+                    goodsName_total_price: goodsTotalArr,
+                    goodsName_weight: goodsWeightArr,
+                    goodsName_type: goodsTypeArr,
+                    goodsName_customs_code: goodsCodeArr,
+                    clause_name: fill_nameArr,
+                    clause_money: fill_priceArr,
+                   
+                },
+                xhrFields: {
+                withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                // console.log(msg)
+                if (msg.code == 200) {
+                    layer.msg('下单成功', { time: 1000 }, function () {
+                    // window.location.reload();
+                    });
+                } else {
+                    layer.msg(msg.msg);
+                }
+                }
+                , error: function (e) {
+                layer.msg('网络故障')
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

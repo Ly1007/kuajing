@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+  <div id="topnav" class="navbar navbar-inverse" role="navigation" style="z-index:999">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="index.html" class="smoothscroll" style="margin-top:2%"><img src="img/logo.png" width="120"></a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="index.html" class="smoothscroll">首页</a></li>
+          <li>
+          	<a  class="smoothscroll">产品服务</a>
+            <ul class="inner-dropdown">
+						<li><a href="cp1.html">集运头等舱</a></li>
+						<li><a href="cp2.html">拼箱头等舱</a></li>
+						<li><a href="cp3.html">空运头等舱</a></li>
+                        <li><a href="cp4.html">拖车</a></li>
+						<li><a href="cp5.html">滴滴询价</a></li>
+						<li><a href="cp6.html">跨境物流电商</a></li>
+					</ul>
+         </li>
+          <li>
+          	<a href="#features" class="smoothscroll">查询工具</a>
+            <ul class="inner-dropdown">
+						<li><a href="cx1.html">箱货查询<span style="color:#ff6726;margin-left:2%;font-size:12px;">可查抵港</span></a></li>
+						<li><a href="cx2.html">船期查询</a></li>
+						<li><a href="cx3.html">拖车定位</a></li>
+                        <li><a href="cx4.html">船计划查询</a></li>
+						<li><a href="cx5.html">HS Code查询</a></li>
+						<li><a href="cx6.html">船舶定位</a></li>
+                        <li><a href="cx7.html">拖车费用查询</a></li>
+                        <li><a href="cx8.html">内装费用查询</a></li>
+                        <li><a href="cx9.html">报关费用查询</a></li>
+                        <li><a href="cx10.html">海运保险费用查询</a></li>
+					</ul>
+         </li>
+          <li><a href="zq.html">中远海运专区</a></li>
+           <li><a href="new.html">物流新闻</a></li>
+            <li><a href="about.html">关于我们</a></li>
+             <li><a href="wl.html">物流管家</a></li>
+             
+           <li class="dl">  <a href="#" style="background:#0A81D7;color:#fff;font-size:16px;margin:12px 0;padding:2px 15px;font-weight:bold;margin-left:30px">登录</a></li>
+        	<li class="zc"><a href="#" style="background:none;color:#0A81D7;font-size:16px;margin:12px 0;padding:2px 15px;font-weight:bold">注册</a></li>
+        </ul>
+        
+        
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+<script type="text/javascript" src="js/jquery18.js"></script>
+<script src="js/unveil-effects.js"></script>
+<script type="text/javascript">
+$(function(){
+	//查询模块-START
+	var tabOpts = {};
+		tabOpts.curIndex;	
+		tabOpts.tabs = $(".aside-lf-content");//焦点层	
+		tabOpts.contents = $(".content");//显示内容
+		
+		tabOpts.show = function(index){
+			//当前，return
+			if(tabOpts.curIndex == index) return;	
+			//隐藏上一个index
+			if(tabOpts.curIndex >= 0){
+				$(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+				$(tabOpts.contents.get(tabOpts.curIndex)).hide();
+			}
+			
+			$(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+			$(tabOpts.contents.get(index)).show();
+			//改变当前index
+			tabOpts.curIndex = index;
+		}	
+		//数字单击事件
+		tabOpts.tabs.click(function(){
+			tabOpts.show(tabOpts.tabs.index(this));
+		});		
+		//开始显示
+		tabOpts.show(0);
+	//查询模块-END
+})
+</script> 
+
+<section class="main"  style="background:#f7f8fa;padding:33px 0">
+	<div class="container">
+    	<div class="cp1_lf" data-effect="slide-left" style="padding:0 0 33px 0;overflow:visible;box-shadow:none;border-radius:6px;margin-right:2%">
+			<div class="leftTOP">
+			   <h6></h6>
+               <h4>爱上老鼠的猫</h4>           
+            </div>
+     		<div class="pocket" style="overflow:hidden">
+            	<div class="aside-lf-content">
+					<h3>订单中心<a class="click_icon" href=" "></a></h3>
+                	<ul class="content" style="display:block">
+                	<li class="tit"><a href="order.html">海运出口订单</a></li>
+                	<li><a href="order.html">中远海运订单</a></li>
+                	<li class="current"><a href="order.html">拼箱头等舱订单</a></li>
+                    <li><a href="order.html">空运订单</a></li>
+                	</ul>
+                </div>
+                <div class="aside-lf-content">
+					<h3 class="iconb">账款中心<a href=" "></a></h3>
+                	<ul class="content">
+                	<li class="tit"><a href="bill.html">我的对账单</a></li>
+                	<li><a href="my_receipt .html">发票列表</a></li>
+                	</ul>
+                </div>
+                <div class="aside-lf-content">
+					<h3 class="iconb1">统计报表<a href=" "></a></h3>
+                	<ul class="content">
+                	<li class="tit"><a href=" ">订单统计</a></li>
+                	<li><a href=" ">财物统计</a></li>
+                	</ul>
+                </div>
+                <div class="aside-lf-content">
+					<h3  class="iconb2">买家中心<a class="click_icon" href=" "></a></h3>
+                	<ul class="content" style="display:block">
+                	<li class="tit"><a href=" ">我的委托书</a></li>
+                	<li><a href=" ">我的提单</a></li></a>
+                	<li><a href=" ">我的货盘</a></li></a>
+                	<li><a href=" ">我的供应商</a></li></a>
+                    <li><a href=" ">感兴趣航线</a></li></a>
+                	</ul>
+                </div>
+                <div class="aside-lf-content">
+					<h3 class="iconb3">实用工具<a href=" "></a></h3>
+                	<ul class="content">
+                	<li class="tit"><a href=" ">企业常用信息</a></li>
+                	<li><a href=" ">出口文件生成</a></li>
+                	<li><a href=" ">常用信息查询</a></li>
+                	</ul>
+                </div>
+                <div class="aside-lf-content">
+					<h3  class="iconb4">账号管理<a href=" "></a></h3>
+                </div>
+            </div>
+        </div>
+ <!--right           =                             -->       
+        <div class="cp1_lr cplLR" data-effect="slide-right">  	          
+        	<div class="orderCon">
+            	<h2 class="couponTit">订单详情</h2>
+ <!--创建订单           =                             -->                
+                <div class="order_content order_content01">
+                	<h4>1、基本信息</h4>
+                    <form action="#" method="post">
+                    	<ul class="inforL inforL01">
+                        	<li><label><b>*</b>目的国家/地区</label><label class="detail">日本</label></li>
+                            <li class="radi"><label>是否带电池</label><label class="detail">否</label></li>
+                            <li><label><b>*</b>货运类型</label><label class="detail">海运</label></li>
+                        </ul>
+                        <ul class="inforR inforR01">
+                        	<li><label>备注</label><label class="detail">易碎物品轻拿轻放</label></li>
+                            <li class="radi"><label>货物类型</label><label class="detail">其他</label></li>
+                            <li><li><label></label><label class="detail"></label></li></li>
+                        </ul>
+                    </form>
+                    <div style="clear:both;width:0;height:0;"></div>
+                    <h4>2、收件人信息</h4>
+                    <form action="#" method="post">
+                    	<ul class="inforL inforL01">
+                            <li><label><b>*</b>姓名</label><label class="detail">濑户口</label></li>
+                            <li class="current"><label><b>*</b>详细地址</label><label style="height:100%" class="detail">请输入街道、门牌号，1-120个字符</label></li>
+                            <li><label><b>*</b>城市</label><label class="detail">高松市栗林町</label></li>
+                            <li><label><b>*</b>省/州</label><label class="detail">香川县</label></li>
+							<li style="height:45px;"><label><b>*</b>邮编</label><label class="detail">256-8452</label></li>
+                        </ul>
+                        <ul class="inforR inforR01">    
+                            <li><label>电话</label><label class="detail">15825646558</label></li>
+                            <li><label>身份证号</label><label class="detail">3丁目3-32-305号</label></li>
+                            <li><label>证件照片</label><label class="detail"><img src="img/personal.png"></label></li>
+                        </ul>
+                    </form>
+                    <div style="clear:both;width:0;height:0;"></div>
+                    <h4>3、发件人信息</h4>
+                    <form action="#" method="post">
+                    	<ul class="inforL inforL01">
+                            <li><label><b>*</b>姓名</label><label class="detail">濑户口</label></li>
+                            <li class="current"><label><b>*</b>详细地址</label><label style="height:100%" class="detail">请输入街道、门牌号，1-120个字符</label></li>
+                            <li><label><b>*</b>城市</label><label class="detail">高松市栗林町</label></li>
+                            <li><label><b>*</b>省/州</label><label class="detail">香川县</label></li>
+							<li style="height:45px;"><label><b>*</b>邮编</label><label class="detail">256-8452</label></li>
+                        </ul>
+                        <ul class="inforR inforR01">    
+                            <li><label>电话</label><label class="detail">15825646558</label></li>
+                            <li><label>身份证号</label><label class="detail">3丁目3-32-305号</label></li>
+                            <li><label>证件照片</label><label class="detail"><img src="img/personal.png"></label></li>
+                        </ul>
+                    </form>
+                    <div style="clear:both;width:0;height:0;"></div>
+                    <h4 id="inf" style="margin:2% 0 1% 0;">4、海关申报品</h4>
+                    <div class="customs customsWidth" style="background:#f7f8fa;height:270px;padding-bottom:2%;">
+                    	<div class="customL customL01">
+                        	<ul>
+                            <li><label><b>*</b>英文名</label><label class="detail detail01">EORTION</label></li>
+                            <li><label>中文名</label><label class="detail detail01">摆件5</label></li>
+                            <li><label><b>*</b>单价</label><label class="detail detail01">5.0USD</label></li>
+                            <li class="current">
+                            	<label style="margin-right:4px;width:24%;"><b>*</b>数量：</label><label style="width:20%;" class="detail  detail01">2件</label>
+                                <label style="margin-right:4px;width:20%;text-align:left;">合计：</label><label style="width:20%;text-align:left;" class="detail  detail01">320￥</label>
+                            </li>
+                            </ul>
+                        </div>
+                        <div class="customR customL01">
+                        	<ul>
+                            <li><label>重量</label><label class="detail detail01">150KG</label></li>
+                            <li><label>类别</label><label class="detail detail01">电子产品</label></li>
+                            <li><label>海关编码</label><label class="detail detail01">39644541654</label></li>
+                            <li><i>1</i></li>
+                        	</ul>
+                        </div>
+                        <div class="customL customL01" style="border-top:1px solid #bce0ff;margin-top:1%;">
+                        	<ul>
+                            <li><label><b>*</b>英文名</label><label class="detail detail01">EORTION</label></li>
+                            <li><label>中文名</label><label class="detail detail01">摆件5</label></li>
+                            <li><label><b>*</b>单价</label><label class="detail detail01">5.0USD</label></li>
+                            <li class="current">
+                            	<label style="margin-right:4px;width:24%;"><b>*</b>数量：</label><label style="width:20%;" class="detail  detail01">2件</label>
+                                <label style="margin-right:4px;width:20%;text-align:left;">合计：</label><label style="width:20%;text-align:left;" class="detail  detail01">320￥</label>
+                            </li>
+                            </ul>
+                        </div>
+                        <div class="customR customL01" style="">
+                        	<ul>
+                            <li><label>重量</label><label class="detail detail01">150KG</label></li>
+                            <li><label>类别</label><label class="detail detail01">电子产品</label></li>
+                            <li><label>海关编码</label><label class="detail detail01">39644541654</label></li>
+                            <li><i>2</i></li>
+                        	</ul>
+                        </div>
+                        <div class="customL customL01" style="border-top:1px solid #bce0ff;margin-top:1%;">
+                        	<ul>
+                            <li><label><b>*</b>英文名</label><label class="detail detail01">EORTION</label></li>
+                            <li><label>中文名</label><label class="detail detail01">摆件5</label></li>
+                            <li><label><b>*</b>单价</label><label class="detail detail01">5.0USD</label></li>
+                            <li class="current">
+                            	<label style="margin-right:4px;width:24%;"><b>*</b>数量：</label><label style="width:20%;" class="detail  detail01">2件</label>
+                                <label style="margin-right:4px;width:20%;text-align:left;">合计：</label><label style="width:20%;text-align:left;" class="detail  detail01">320￥</label>
+                            </li>
+                            </ul>
+                        </div>
+                        <div class="customR customL01" style="">
+                        	<ul>
+                            <li><label>重量</label><label class="detail detail01">150KG</label></li>
+                            <li><label>类别</label><label class="detail detail01">电子产品</label></li>
+                            <li><label>海关编码</label><label class="detail detail01">39644541654</label></li>
+                            <li><i>3</i></li>
+                        	</ul>
+                        </div>
+                    </div>
+                    <h4 id="inf" style="margin:1% 0 1% 0;">5、增值服务</h4>
+                    <div class="lastSer">
+                	    <ul>
+                           <li>增值服务：包裹拆包&nbsp;&nbsp;;拍照核验</li>
+                           <li>保险费用：800$&nbsp;&nbsp;共计1800$</li>
+                        </ul>
+                    </div>
+                    <h4 id="inf" style="margin:1% 0 1% 0;">6、财物信息</h4>
+                    <div class="customs customsWidth" style="background:#f7f8fa;height:150px;">
+                    	<div class="customL customL01 customL02">
+                        	<ul>
+                            <li><label><b>*</b>总运费</label><label class="detail detail01">$739.00</label></li>
+                            <li><label>付款方式</label><label class="detail detail01">寄付</label></li>
+                            <li style="width:40%"><label style="width:40%"><b>*</b>付款状态</label><label class="detail detail01">已付款</label></li>
+                            </ul>
+                        </div>
+                        <div class="customR customR02">
+                        	<ul>
+                            <li><label>运费明细</label><span>保险费：￥400.00；&nbsp;&nbsp;运费：￥985.00；&nbsp;&nbsp;保险费：￥400.00；&nbsp;&nbsp;运费：￥985.00；</span></li>
+                            <li><label>付款记录</label><span>付款人：王一磊；&nbsp;&nbsp;付款流水号：1021212462；&nbsp;&nbsp;付款方式：网上银行；</span></li>
+                        	</ul>
+                        </div>
+                    </div>
+                </div>
+
+<!--right           =                             -->             
+            </div>
+        </div>       
+    </div>
+</section>
+ 
+  
+  
+
+ 
+	
+
+
+ <style>
+ 	.lj{background:#222;color:#fff;padding-top:2%}
+	.lj ul li{width:16%;float:left;font-size:12px;color:#fff;list-style:none;}
+	.lj ul li h4{color:#fff;font-size:14px;}
+	.lj ul li a{display:block;color:rgba(255,255,255,.8);margin:3% 0;text-decoration: none;}
+ </style>
+
+ 
+
+ <div class="lj">
+ 	<div class="container"  style="padding-bottom:3%;border-bottom:1px solid  rgba(255,255,255,.1)">
+    	<ul>
+        	<li data-effect="slide-bottom">
+            	<h4>产品服务</h4>
+                <a href="#">集运头等舱</a>
+                <a href="#">拼箱头等舱</a>
+                <a href="#">空运头等舱</a>
+                <a href="#">拖车</a>
+                <a href="#">滴滴询价</a>
+                <a href="#">跨境电商物流</a>
+            </li>
+            <li data-effect="slide-bottom">
+            	<h4>查询工具</h4>
+                <a href="#">箱货跟踪</a>
+                <a href="#">船期查询</a>
+                <a href="#">船计划查询</a>
+                <a href="#">船舶定位</a>
+                <a href="#">拖车定位</a>
+                <a href="#">HS Code查询</a>
+                <a href="#">拖车费用查询</a>
+                <a href="#">内装费用查询</a>
+                <a href="#">报关费用查询</a>
+                <a href="#">海运保险费用查询</a>
+            </li>
+            <li data-effect="slide-bottom">
+            	<h4>物流新闻</h4>
+                <a href="#">海运咨询</a>
+                <a href="#">空运咨询</a>
+                <a href="#">航贸百科</a>
+                <a href="#">全球贸易</a>
+                <a href="#">供应链</a>
+                
+            </li>
+            <li data-effect="slide-bottom">
+            	<h4>关于我们</h4>
+                <a href="#">人才招聘</a>
+                <a href="#">公司新闻</a>
+                <a href="#">服务条款</a>
+                <a href="#">联系我们</a>
+                
+            </li>
+            <li data-effect="slide-bottom">
+            	<h4>常见问题</h4>
+                <a href="#">注册和密码</a>
+                <a href="#">我是货主</a>
+                <a href="#">我是物流商</a>
+                <a href="#">在线拖报下单</a>
+                <a href="#">发布货盘</a>
+                <a href="#">订舱条款</a>
+                <a href="#">拖车附加费</a>
+                <a href="#">拖车调度方案</a>
+            </li>
+            <li data-effect="slide-bottom">
+            	<h4>产品服务</h4>
+                <a href="#">集运头等舱</a>
+                <a href="#">拼箱头等舱</a>
+                <a href="#">空运头等舱</a>
+                <a href="#">拖车</a>
+                <a href="#">滴滴询价</a>
+                <a href="#">跨境电商物流</a>
+            </li>
+        </ul>
+    </div>
+ </div>
+ 
+
+  <div id="copyrights" >
+    <div class="container">
+      <p style="font-size:12px;line-height:24px;">
+        © Copyright 2012-2020 运去哪 沪ICP备12035978号-2 版权所有查看营业执照<br>上海汇航捷讯网络科技有限公司地址：上海市浦东新区灵山路958号9号楼 
+      </p>
+     
+    </div>
+  </div> 
+</body>
+</html>

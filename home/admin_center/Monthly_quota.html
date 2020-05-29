@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船期查询</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <!-- //公共头部 -->
+    <script src="./head.js"></script>
+
+    <script type="text/javascript" src="js/jquery18.js"></script>
+    <script src="js/unveil-effects.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //查询模块-START
+            var tabOpts = {};
+            tabOpts.curIndex;
+            tabOpts.tabs = $(".aside-lf-content");//焦点层	
+            tabOpts.contents = $(".content");//显示内容
+
+            tabOpts.show = function (index) {
+                //当前，return
+                if (tabOpts.curIndex == index) return;
+                //隐藏上一个index
+                if (tabOpts.curIndex >= 0) {
+                    $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+                    $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+                }
+
+                $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+                $(tabOpts.contents.get(index)).show();
+                //改变当前index
+                tabOpts.curIndex = index;
+            }
+            //数字单击事件
+            tabOpts.tabs.click(function () {
+                tabOpts.show(tabOpts.tabs.index(this));
+            });
+            //开始显示
+            tabOpts.show(0);
+            //查询模块-END
+        })
+    </script>
+
+    <section class="main" style="background:#f7f8fa;padding:33px 0">
+        <div class="container">
+            <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right           =                             -->
+            <div class="cp1_lr cplLR" data-effect="slide-right">
+                <div class="orderCon receiptTit">
+                    <h2>我的月结额度</h2>
+                    <!--问题订单          =                             -->
+                    <div class="problem">
+                        <div class="problemTop">
+                            <div class="receipt">
+                                <div class="receiptL"><span class="current"></span><span></span></div>
+                                <div class="receiptR"><b>0</b><b class="use">已使用6000(万元)</b><b>总额度9000(万元)</b></div>
+                            </div>
+
+                            <div class="orderSearch_con">
+                                <div class="order_center order_center01">
+                                    <ul>
+                                        <li><select name="select" value="已销账">
+                                                <option value=" ">已销账</option>
+                                                <option value=" ">未销账</option>
+                                            </select><input class="current" type="text"
+                                                value="2020-02-24"><label>~</label><input class="current" type="text"
+                                                value="2020-03-18"><button><span></span></button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="center centerSheet">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th>序号</th>
+                                        <th>订单号</th>
+                                        <th>金额(万)</th>
+                                        <th>下单时间</th>
+                                        <th>是否销账</th>
+                                        <th>销账时间</th>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>18</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="over" href=" ">已销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>0.9</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="wait" href=" ">未销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>18</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="over" href=" ">已销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>0.9</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="over" href=" ">已销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>18</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="over" href=" ">已销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>0.9</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="wait" href=" ">未销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>18</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="over" href=" ">已销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="checkbox" /></td>
+                                        <td>1548658425547</td>
+                                        <td>0.9</td>
+                                        <td>2020/02/03 14:32:06</td>
+                                        <td><a class="over" href=" ">已销账</a></td>
+                                        <td>2020/02/03 14:32:06</td>
+                                    </tr>
+                                </table>
+
+                                <div class="serviceLf"><button>全选</button><button
+                                        class="current">销&nbsp;&nbsp;账</button>
+                                </div>
+                                <div class="scatter">
+                                    <div class="scatterL">共<span>0</span>条记录，第页<span>30</span>条，共<span>4</span>页</div>
+                                    <div class="scatterR">
+                                        <span></span><a href=" ">1</a><span class="current"></span>
+                                    </div>
+                                </div>
+                                <div style="width:0;height:0;clear:both;"></div>
+
+
+                            </div>
+
+
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- //公共底部 -->
+    <script src="./foot.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        // current
+        $('li').each(function () {
+            var text = $(this).children().text();
+            if (text == '我的月结额度') {
+                $(this).addClass('current');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

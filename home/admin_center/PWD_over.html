@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+  <!-- //公共头部 -->
+  <script src="./head.js"></script>
+
+  <script type="text/javascript" src="js/jquery18.js"></script>
+  <script src="js/unveil-effects.js"></script>
+ 
+  <section class="main" style="background:#f7f8fa;padding:33px 0">
+    <div class="container">
+      <div class="cp1_lf" data-effect="slide-left"
+        style="min-height:728px;padding:0 0 33px 0;overflow:visible;box-shadow:none;border-radius:6px;width:100%;">
+        <h4 class="idTop">找回密码</h4>
+        <div class="findP">
+          <div class="findPtop">
+            <p><b>1</b><i></i><b>2</b><i class="current"></i><b class="current">3</b></p>
+            <p class="current"><span>验证手机号</span><span>输入新密码</span><span class="current">完成修改</span></p>
+          </div>
+          <div class="findPbot">
+            <ul>
+
+              <li class="current okCon"><span><b></b></span></li>
+              <li class="current">重置成功，请牢记新的登录密码</li>
+              <li class="current"><button class="current" type="button" onclick="ajax_back()">返回登录</button></li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </section>
+
+  <div id="copyrights">
+    <div class="container">
+      <p style="font-size:12px;line-height:24px;">
+        © Copyright 2012-2020 运去哪 沪ICP备12035978号-2 版权所有查看营业执照<br>上海汇航捷讯网络科技有限公司地址：上海市浦东新区灵山路958号9号楼
+      </p>
+
+    </div>
+  </div>
+
+  <script>
+    function ajax_back(){
+      location.href = '../login.html';
+    }
+  </script>
+</body>
+
+</html>

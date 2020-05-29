@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船期查询</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+    <!-- //公共头部 -->
+    <script src="./head.js"></script>
+
+    <script type="text/javascript" src="js/jquery18.js"></script>
+    <script src="js/unveil-effects.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //查询模块-START
+            var tabOpts = {};
+            tabOpts.curIndex;
+            tabOpts.tabs = $(".aside-lf-content");//焦点层	
+            tabOpts.contents = $(".content");//显示内容
+
+            tabOpts.show = function (index) {
+                //当前，return
+                if (tabOpts.curIndex == index) return;
+                //隐藏上一个index
+                if (tabOpts.curIndex >= 0) {
+                    $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+                    $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+                }
+
+                $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+                $(tabOpts.contents.get(index)).show();
+                //改变当前index
+                tabOpts.curIndex = index;
+            }
+            //数字单击事件
+            tabOpts.tabs.click(function () {
+                tabOpts.show(tabOpts.tabs.index(this));
+            });
+            //开始显示
+            tabOpts.show(0);
+            //查询模块-END
+        })
+    </script>
+
+
+    <section class="main" style="background:#f7f8fa;padding:33px 0">
+        <div class="container">
+            <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right           =                             -->
+            <div class="cp1_lr cplLR" data-effect="slide-right">
+                <div class="center centerBill" style="margin-top:0;">
+                    <h3 class="billTit">我的账单</h3>
+                    <div class="billCon">
+                        <ul>
+                            <li><label>订单号</label><input type="text" placeholder="请输入订单号" class="bill_orderId"></li>
+                            <li><label>运输方式</label><select style="width:66%;" name="select" value=" " class="bill_freight_type">
+                                    <option value="1">整箱海运</option>
+                                    <option value="2">拼箱海运</option>
+                                    <option value="3">空运</option>
+                                    <option value="4">电商小包</option>
+                                    <option value="5">集装箱拖车</option>
+                                </select>
+                            </li>
+                            <li><label>收件人</label><input type="text" placeholder="王先生" class="bill_put_person"></li>
+                            <li><label>下单时间</label><input class="current bill_placeOrder_time" type="text" placeholder="2020-02-24&nbsp;16:32:21" id="test1"> 
+                            </li>
+                            <li><label>付款状态</label><select name="select" class="bill_pay_status">
+                                    <option value="1">已付款</option>
+                                    <option value="0">未付款</option>
+                                </select><button class="search_ajax" type="button"><span></span></button></li>
+                        </ul>
+                    </div>
+
+                    <table cellpadding="0" cellspacing="0" class="tableBox" data_count="">
+                        <tr>
+                            <th>序号</th>
+                            <th>订单号</th>
+                            <th>金额(万)</th>
+                            <th>状态</th>
+                            <th>付款流水号</th>
+                            <th>下单时间</th>
+                            <th>发票状态</th>
+                            <th>支付方式</th>
+                        </tr>
+                        <!-- <tr>
+                            <td><input type="checkbox" class="checkRow" /></td>
+                            <td>1548658425547</td>
+                            <td>18</td>
+                            <td><a class="over" href=" ">已付款</a></td>
+                            <td>001548658425547</td>
+                            <td>2020/02/03 14:32:06</td>
+                            <td>已开发票</td>
+                            <td>支付宝</td>
+                        </tr> -->
+                        <!-- <tr>
+                            <td><input type="checkbox" /></td>
+                            <td>1548658425547</td>
+                            <td>0.9</td>
+                            <td><a class="wait" href=" ">未付款</a></td>
+                            <td>001548658425547</td>
+                            <td>2020/02/03 14:32:06</td>
+                            <td>未开发票</td>
+                            <td>微信</td>
+                        </tr> -->
+                    </table>
+                    <div style="position:relative;">
+                        <div class="serviceLf">
+                            <button class="checkAll">全选</button><button class="current">合并付款</button><a
+                                href="receipt_ma.html">开票</a></span>
+                        </div>
+                        <div class="useer">
+                            合计：已付款金额<span class="CNYisPay">￥0.00</span>,<span class="USDisPay">￥0.00</span> 未付款金额<span class="CNYnoPay">￥0.00</span>,<span class="USDnoPay">￥0.00</span>
+                        </div>
+                    </div>
+                    <div class="scatter">
+                        <div class="scatterL">共<span class="count">0</span>条记录，每页<span>20</span>条，共<span class="pageNumber">4</span>页</div>
+                        <div class="scatterR">
+                            <span onclick="leftPage()"></span><a href="avascript:;">1</a><span class="current" onclick="rightPage()"></span>
+                        </div>
+                    </div>
+                    <div style="width:0;height:0;clear:both;"></div>
+                </div>
+                <!-- <div class="bot"></div>-->
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+            text-decoration: none;
+        }
+    </style>
+
+
+    <!-- //公共底部 -->
+    <script src="./foot.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        // current
+        $('li').each(function () {
+            var text = $(this).children().text();
+            if (text == '我的对账单') {
+                $(this).addClass('current');
+            }
+        });
+
+        layui.use(['table', 'layer', 'upload', 'laydate'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                upload = layui.upload,
+                $ = layui.$;
+            var laydate = layui.laydate;
+
+            //常规用法
+            laydate.render({
+                elem: '#test1'
+                ,type: 'datetime'
+            });
+
+            ajax_table();
+
+            //点击全部勾选按钮，选中全部checkbox
+            var flag = true;
+            $('.checkAll').on('click',function(){
+                if(flag){
+                    $('.checkRow').each(function(){
+                        $(this).prop('checked',true);
+                    });
+                }else{
+                    $('.checkRow').each(function(){
+                        $(this).prop('checked',false);
+                    });
+                }
+                flag = !flag;
+            })
+
+            $('.search_ajax').on('click',function(){
+                var bill_orderId = $('.bill_orderId').val();
+                var bill_placeOrder_time = $('.bill_placeOrder_time').val();
+                var bill_pay_status = $('.bill_pay_status').val();
+                var bill_freight_type = $('.bill_freight_type').val();
+                var bill_put_person = $('.bill_put_person').val();
+                ajax_table(bill_orderId,bill_put_person,bill_placeOrder_time,bill_pay_status, bill_freight_type,1)
+            })
+
+
+        });//layui
+
+        function ajax_table(bill_orderId = '', bill_put_person = '',bill_placeOrder_time = '', bill_pay_status = '', bill_freight_type = '', page = '1'){
+            $.ajax({
+                type: "POST",
+                url: "/index/queryorder/querybill",
+                data: {
+                    bill_orderId:bill_orderId,
+                    bill_placeOrder_time:bill_placeOrder_time,
+                    bill_pay_status:bill_pay_status,
+                    bill_freight_type:bill_freight_type,
+                    bill_put_person,bill_put_person,
+                    page:page,
+                    limit:20
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    console.log(msg)
+                    if (msg.code == 0) {
+                        var str = '';
+                        str = str
+                            + '<tr class="current">'
+                            + '<th>序号</th>'
+                            + '<th>订单号</th>'
+                            + '<th>金额(万)</th>'
+                            + '<th>状态</th>'
+                            + '<th>付款流水号</th>'
+                            + '<th>下单时间</th>'
+                            + '<th>发票状态</th>'
+                            + '<th>支付方式</th>'
+                            + '</tr>'
+                            
+                            for (var i = 0; i < msg.data.length; i++) {
+
+                                if(msg.data[i].bill_pay_status==0){
+                                    var bill_numbers = '/';
+                                }else{
+                                    var bill_numbers = msg.data[i].bill_numbers;
+                                }
+
+                                str = str
+                                    + '<tr style="background:#fff;">'
+                                    + '<td><input type="checkbox" class="checkRow"/></td>'
+                                    + '<td>'+msg.data[i].bill_id+'</td>'
+                                    + '<td>USD:'+msg.data[i].bill_money_USD+'</td>'
+                                    + '<td>'+showPayStatus(msg.data[i].bill_pay_status)+'</td>'
+                                    + '<td>'+bill_numbers+'</td>'
+                                    + '<td>'+msg.data[i].bill_placeOrder_time+'</td>'
+                                    + '<td>'+msg.data[i].bill_invoice_status+'</td>'
+                                    + '<td>'+msg.data[i].bill_pay_type+'</td>'
+                                    + '</tr>'
+
+                                    + '<tr style="background:#fff;">'
+                                    + '<td><input type="checkbox" class="checkRow"/></td>'
+                                    + '<td>'+msg.data[i].bill_id+'</td>'
+                                    + '<td>CNY:'+msg.data[i].bill_money_CNY+'</td>'
+                                    + '<td>'+showPayStatus(msg.data[i].bill_pay_status)+'</td>'
+                                    + '<td>'+bill_numbers+'</td>'
+                                    + '<td>'+msg.data[i].bill_placeOrder_time+'</td>'
+                                    + '<td>'+msg.data[i].bill_invoice_status+'</td>'
+                                    + '<td>'+msg.data[i].bill_pay_type+'</td>'
+                                    + '</tr>'
+                            }
+
+                        $('.tableBox').html(str);
+                        $('.count').text(msg.count);
+                        if(Number(msg.count)<=20){
+                            $('.pageNumber').text('1');
+                        }else{
+                            var num = Number(msg.count);
+                            //判断能否被整除
+                            const isDivisible = (dividend, divisor) => dividend % divisor === 0;
+                            var res = isDivisible(num,20); // true
+                            if(res){
+                                var page = num / 20;
+                                $('.pageNumber').text(page);
+                            }else{
+                                var page = parseInt(num / 20);
+                                page =  Math.ceil(page);  //5.33 向上取整，结果为6
+                                $('.pageNumber').text(page+1);
+                            }
+                        }
+
+                        $('.CNYisPay').html('￥'+msg.total_money.CNY_pay);
+                        $('.USDisPay').html('$'+msg.total_money.USD_pay);
+                        $('.CNYnoPay').html('￥'+msg.total_money.CNY_noPay);
+                        $('.USDnoPay').html('$'+msg.total_money.USD_noPay);
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+        }
+
+        function showPayStatus(res){
+            if(res == 0){
+                return '<a class="wait" href=" ">未付款</a>';
+            }
+            if(res == 1){
+                return '<a class="over" href=" ">已付款</a>';
+            }
+        }
+
+        function leftPage(){
+            var page_a = $('.page_a').text();
+            if(Number(page_a)>1){
+                var page = Number(page_a)-1;
+                ajax_table('','','','','','','','',page);
+                $('.page_a').text(page)
+            }else{
+                layer.msg('当前是首页',{time:1000});
+            }
+        }
+
+        function rightPage(){
+            var page_a = $('.page_a').text();
+            // console.log(page_a)
+            var count = $('.tableBox').attr('data_count');
+            if(Number(page_a+1) < Number(count)){
+                var page = Number(page_a)+1;
+                ajax_table('','','','','','','','',page);
+                $('.page_a').text(page)
+            }else{
+                layer.msg('当前是末页',{time:1000});
+            }
+        }
+
+        
+    </script>
+</body>
+
+</html>

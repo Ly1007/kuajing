@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船计划查询</title>
+
+
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="lib/unveil-effects/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <script src="head.js"></script>
+
+    <div class="cp_banner" style="background:url(img/cx4.jpg) no-repeat left -290px;">
+        <div class="container">
+            <div class="col-md-7">
+                <h2 data-effect="slide-left">在线下单会员价</h2>
+                <p data-effect="slide-right">最快30分钟报价<span style="margin-left:5%">100%真实有效</span></p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .main {
+            background: #f7f8fa;
+            padding: 0% 0;
+        }
+
+        .main_3 {
+            background: #fff;
+            padding: 0 2% 2% 2%;
+            overflow: hidden;
+            margin: 1% 0;
+        }
+
+        .main_3 h2 {
+            font-size: 16px;
+            color: #35abdf;
+            margin-top: 5%;
+            line-height: 36px;
+        }
+
+        .main_3 h2 span {
+            font-size: 12px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .orderLine {
+            line-height: 24px;
+            border-bottom: 2px solid #35abdf;
+            height: 62px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .orderLine span {
+            margin-right: 3%;
+        }
+    </style>
+
+    <section class="main">
+        <div class="container">
+            <div class="main_3">
+                <h2 style="margin:2% 0">发货到仓库<span>（*号表示必填项）</span></h2>
+                <div class="orderPro orderLine">
+                    如果在发货到仓库过程中您有任何疑问，请联系我们；信息提交后，我们会马上联系您安排发货到仓库事宜<br><span>业务员:
+                        搜航</span><span>销售电话:0755-22960108</span><span>手机:18820258792</span><span>邮箱:sf@sofreight.co</span>
+                </div>
+                <div class="main_3_lr" data-effect="slide-right">
+                    <div class="lineTop" style="height:auto !important;">
+                        <div class="lineLf" style="width: 100% !important;">
+                            <div class="top">
+                                <h5 style="margin-bottom:20px;margin-left:8%;">物流信息</h5>
+                                <ul>
+                                    <li><label><b>*</b>货仓：</label><select class="warehouse goods_warehouse">
+                                        </select></li>
+                                    <li>仓库地址:<span class="warehouse_address"></span>&nbsp;收件人姓名:<span class="warehouse_linkman"></span>&nbsp;收件人电话:<span class="warehouse_linkman_phone"></span>&nbsp;备注:<span class="warehouse_remark"></span></li>
+                                    <li style="clear: both;width: 30%;"><label
+                                            style="width: 50% !important;"><b>*</b>快递公司：</label><select
+                                            style="width: 50% !important;" id="express" class="goods_expressage_CO">
+                                        </select>
+                                    </li>
+                                    <li style="width: 30%;"><label
+                                            style="width: 50% !important;"><b>*</b>快递单号：</label><input type="text"
+                                            style="width: 50% !important;" class="goods_expressage_num"/></li>
+                                    <li style="width: 30%;"><label
+                                            style="width: 50% !important;"><b>*</b>SKU码：</label><input type="text"
+                                            style="width: 50% !important;" class="goods_SKU_num"/></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="lineLf" style="width: 100% !important;">
+                            <div class="top" style="border: none;height:auto !important;">
+                                <h5 style="margin-bottom:20px;margin-left:8%;">商品信息</h5>
+                                <ul>
+                                    <li><label><b>*</b>货物性质：</label><select class="nature goods_character" id="nature">
+                                            <option value="普通货">普通货</option>
+                                            <option value="敏感货">敏感货</option>
+                                            <option value="轻泡货">轻泡货</option>
+                                        </select></li>
+                                    <li><label><b>*</b>大分类：</label><select class="classification goods_big_classify"></select></li>
+                                    <li style="width:100%;" class="pBox">
+                                        <p style="clear: both;margin-bottom: 10px;" class="smallBoxFirst">
+                                            <label style="width:15% !important;"><b>*</b>商品名称：</label><input type="text" value=""
+                                                placeholder="如：衣服/手机"  style="display:inline;width: 18% !important;" class="goodsName_name"/><label
+                                                style="width:60px !important;"><b>*</b>数量：</label><input type="text"
+                                                value="1" style="width:60px !important;display:inline;"
+                                                class="amount goodsName_num"/>件<label
+                                                style="width:60px !important;"><b>*</b>单价：</label><input type="text"
+                                                value="1" class="price goodsName_price"
+                                                style="width:60px !important;display:inline;"/><label
+                                                style="width:60px !important;"><b>*</b>总价：</label><input type="text"
+                                                class="sum goodsName_total_price" placeholder="" style="width:80px !important;display:inline;"
+                                                disabled/><label style="width:80px !important;">海关编码：</label><input
+                                                type="text" placeholder="" class="goodsName_customs_code"
+                                                style="width:120px !important;display:inline;" /><button type="button"
+                                                style="margin-left:10px !important;" class="layui-btn layui-btn-warm"
+                                                id="add">添加</button>
+                                        </p>
+                                    </li>
+                                    <li><label><b>*</b>总件数：</label><input type="text" class="count goods_total_num" placeholder="1"
+                                            style="display:inline;width: 40% !important;" value="1" disabled />件</li>
+                                    <li><label><b>*</b>总价：</label><input type="text" class="sumMoney goods_total_price" placeholder=""
+                                            style="display:inline;width: 40% !important;" value="1" disabled />￥</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="numbel">
+                        <div class="numbelL"><input type="checkbox" class="surePost" /><label>我同意</label><a
+                                href="JavaScript:;">《在线订舱协议》</a></div>
+                    </div>
+                    <div class="butNum"><button class="current"
+                        onclick="ajaxPost()">提交</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+        }
+    </style>
+
+    <script src="foot.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/unveil-effects/unveil-effects.js"></script>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.use(['table', 'layer', 'upload', 'laydate'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                upload = layui.upload,
+                $ = layui.$;
+            var laydate = layui.laydate;
+
+            $('.classification').append('<option value="衣服">衣服</option>');
+            $('.classification').append('<option value="裤子">裤子</option>');
+            $('.classification').append('<option value="鞋子">鞋子</option>');
+            $('.classification').append('<option value="零食">零食</option>');
+
+            //快递公司
+            $.ajax({
+                url: "/index/warehouse/queryexpressage",
+                data: {},
+                dataType: "json",
+                success: function (resultData) {
+                    // console.log(resultData);
+                    if (resultData.code == 0) {
+                    //清空赋值
+                    $('#express').empty();
+                    // $('#express').append(new Option("请选择快递公司", ""));
+                    $.each(resultData.data, function (index, item) {
+                        //赋值
+                        $('#express').append(new Option(item.expressage_name, item.expressage_name));
+                    });
+                    } else {
+                    $('#express').append(new Option("暂无数据", ""));
+                    }
+                    layui.form.render("select");
+                }
+            })
+
+            //仓库
+            $.ajax({
+                url: "/index/warehouse/queryWarehouse",
+                data: {},
+                dataType: "json",
+                success: function (resultData) {
+                    // console.log(resultData);
+                    if (resultData.code == 0) {
+                        //清空赋值
+                        $('.warehouse').empty();
+                        if(resultData.data.length>0){
+                            $('.warehouse_address').text(resultData.data[0].warehouse_nation+""+resultData.data[0].warehouse_city);
+                            $('.warehouse_linkman').text(resultData.data[0].warehouse_linkman);
+                            $('.warehouse_linkman_phone').text(resultData.data[0].warehouse_linkman_phone);
+                            $('.warehouse_remark').text(resultData.data[0].warehouse_remark);
+                        }
+                        $.each(resultData.data, function (index, item) {
+                            //赋值
+                            $('.warehouse').append(new Option(item.warehouse_name,item.warehouse_id));
+                        });
+                    } else {
+                        $('.warehouse').append(new Option("暂无数据", ""));
+                    }
+                    layui.form.render("select");
+                }
+            })
+
+            $('.warehouse').change(function () {
+                var warehouse_id = this.value;
+                $.ajax({
+                    url: "/index/warehouse/queryWarehouseAddress",
+                    dataType: "json",
+                    data:{
+                        warehouse_id:warehouse_id
+                    },
+                    success: function (result) {
+                        // console.log(result);
+                        if (result.code == 0) {
+                            $('.warehouse_address').text(result.data[0].warehouse_nation+""+result.data[0].warehouse_city);
+                            $('.warehouse_linkman').text(result.data[0].warehouse_linkman);
+                            $('.warehouse_linkman_phone').text(result.data[0].warehouse_linkman_phone);
+                            $('.warehouse_remark').text(result.data[0].warehouse_remark);
+                        } else {
+                            layer.msg(result.msg,{time:2000});
+                        }
+                    }
+                })
+            });
+            
+            var count = 1;
+            var sum = Number($('.amount').val()) * Number($('.price').val());
+            $('.sum').val(sum);
+            $('#add').on('click', function () {
+                var str = '';
+                str = str
+                    + '<p style="clear: both;margin-bottom: 10px;" class="smallBox">'
+                    + '<label style="width:15% !important;"><b>*</b>商品名称：</label><input type="text" placeholder="如：衣服/手机" style="display:inline;width: 18% !important;" value="" class="goodsName_name"/>'
+                    + '<label style="width:60px !important;"><b>*</b>数量：</label><input type="text" value="1" style="width:60px !important;display:inline;" class="amount goodsName_num">件'
+                    + '<label style="width:60px !important;"><b>*</b>单价：</label><input type="text" value="1" class="price goodsName_price" style="width:60px !important;display:inline;"/>'
+                    + '<label style="width:60px !important;"><b>*</b>总价：</label><input type="text"  style="width:80px !important;display:inline;" disabled  class="sum goodsName_total_price"/>'
+                    + '<label style="width:80px !important;">海关编码：</label><input type="text" placeholder=""  style="width:120px !important;display:inline;" class="goodsName_customs_code"/>'
+                    + '<button type="button" class="layui-btn layui-btn-danger" style="margin-left:10px !important;" onclick="del(this)">删除</button>'
+                    + '</p>'
+                $('.pBox').append(str);
+                count++;
+                $('.count').val(count);
+                var sum = Number($('.amount').val()) * Number($('.price').val());
+                $('.sum').val(sum);
+                $('.sumMoney').val(count);
+
+                var count1 = 0, sum1 = 0;
+                $('.pBox').children().each(function () {
+                    //监听数量改变
+                    $(this).children().eq(3).bind('input propertychange', function () {
+                        var amount = $(this).val();
+                        var price = $(this).siblings().eq(4).val();
+                        var sum = Number(amount) * Number(price);
+                        $(this).siblings().eq(6).val(sum);
+                        Count($(this));
+                        Sum($(this));
+                    });
+
+                    //监听单价改变
+                    $(this).children().eq(5).bind('input propertychange', function () {
+                        var amount = $(this).siblings().eq(3).val();
+                        var price = $(this).val();
+                        var sum = Number(amount) * Number(price);
+                        $(this).siblings().eq(6).val(sum);
+                        Sum($(this));
+                    });
+                })
+            })
+
+            $('.pBox').children().each(function () {
+                //监听数量改变
+                $(this).children().eq(3).bind('input propertychange', function () {
+                    var amount = $(this).val();
+                    var price = $(this).siblings().eq(4).val();
+                    var sum = Number(amount) * Number(price);
+                    $(this).siblings().eq(6).val(sum);
+                    Count($(this));
+                    Sum($(this));
+                });
+
+                //监听单价改变
+                $(this).children().eq(5).bind('input propertychange', function () {
+                    var amount = $(this).siblings().eq(3).val();
+                    var price = $(this).val();
+                    var sum = Number(amount) * Number(price);
+                    $(this).siblings().eq(6).val(sum);
+                    Sum($(this));
+                });
+
+                //监听总价改变
+                $(this).children().eq(7).bind('input propertychange', function () {
+                    Sum($(this));
+                });
+            })
+
+            $('#nature').change(function () {
+                if (this.value == '普通货') {
+                    $('.classification').empty();
+                    $('.classification').append('<option value="衣服">衣服</option>');
+                    $('.classification').append('<option value="裤子">裤子</option>');
+                    $('.classification').append('<option value="鞋子">鞋子</option>');
+                    $('.classification').append('<option value="零食">零食</option>');
+                } else if (this.value == '敏感货') {
+                    $('.classification').empty();
+                    $('.classification').append('<option value="电池">电池</option>');
+                    $('.classification').append('<option value="液体">液体</option>');
+                    $('.classification').append('<option value="药物">药物</option>');
+                    $('.classification').append('<option value="膏体">膏体</option>');
+                } else if (this.value == '轻泡货') {
+                    $('.classification').empty();
+                    $('.classification').append('<option value="棉花">棉花</option>');
+                    $('.classification').append('<option value="海绵">海绵</option>');
+                } else {
+                    $('.classification').empty();
+                }
+            });
+        });
+
+        //点击删除
+        function del(e) {
+            $(e).parent().remove();
+            var amount = 0;
+            $('.amount').each(function () {
+                amount += Number($(this).val())
+            })
+            $('.count').val(amount);
+            Count($(this));
+            Sum($(this));
+        }
+
+        function Sum(res) {
+            var sum = 0;
+            $('.sum').each(function () {
+                sum += Number($(this).val());
+                // console.log(sum)
+            })
+            $('.sumMoney').val(sum);
+        }
+
+        function Count(res) {
+            var sum = 0;
+            $('.amount').each(function () {
+                sum += Number($(this).val());
+                // console.log(sum)
+            })
+            $('.count').val(sum);
+        }
+
+        function ajaxPost() {
+            layui.use(['table', 'layer'], function () {
+                var table = layui.table,
+                    layer = layui.layer,
+                    $ = layui.$;
+
+                var checked = $('.surePost').prop('checked');
+                if (!checked) {
+                    layer.msg('请勾选同意协议之后再提交', { time: 2000, shade: 0.4 });
+                    return false;
+                } else {
+                    var goods_warehouse = $('.goods_warehouse').val();
+                    if (goods_warehouse == '' || goods_warehouse == null || goods_warehouse == undefined) {
+                        layer.msg('货仓不能为空');
+                        return false;
+                    }
+                    var goods_expressage_CO = $('.goods_expressage_CO').val();
+                    if (goods_expressage_CO == '' || goods_expressage_CO == null || goods_expressage_CO == undefined) {
+                        layer.msg('快递公司不能为空');
+                        return false;
+                    }
+                    var goods_expressage_num = $('.goods_expressage_num').val();
+                    if (goods_expressage_num == '' || goods_expressage_num == null || goods_expressage_num == undefined) {
+                        layer.msg('快递单号不能为空');
+                        return false;
+                    }
+                    var goods_SKU_num = $('.goods_SKU_num').val();
+                    if (goods_SKU_num == '' || goods_SKU_num == null || goods_SKU_num == undefined) {
+                        layer.msg('SKU码不能为空');
+                        return false;
+                    }
+                    
+                    var goods_character = $('.goods_character').val();
+                    var goods_big_classify = $('.goods_big_classify').val();
+                    var goods_total_num = $('.goods_total_num').val();
+                    var goods_total_price = $('.goods_total_price').val();
+                    
+                    var nameArr = [];
+                    var numArr = [];
+                    var priceArr = [];
+                    var totalArr = [];
+                    var codeArr = [];
+                    // $('.pBox').children().each(function(){
+                    //     var goodsName_name = $(this).children().eq(1).val();
+                    //     console.log(goodsName_name.length)
+                    //     if(goodsName_name.length==0){
+                    //         layer.msg('商品名称不能为空',{time:2000},function(){
+                    //             return false;
+                    //         });
+                    //     }
+                    // })
+
+                    $('.goodsName_name').each(function(){
+                        if (!$(this).val()) {
+                            // return false;
+                        }else{
+                            nameArr.push($(this).val())
+                        }
+                    })
+
+                    $('.goodsName_num').each(function(){
+                        numArr.push($(this).val())
+                    })
+                    
+                    $('.goodsName_price').each(function(){
+                        priceArr.push($(this).val())
+                    })
+
+                    $('.goodsName_total_price').each(function(){
+                        totalArr.push($(this).val())
+                    })
+
+                    $('.goodsName_customs_code').each(function(){
+                        codeArr.push($(this).val())
+                    })
+
+                    if(nameArr.length==0){
+                        layer.msg('商品名称不能为空');
+                        return false;
+                    }
+                    if(nameArr.length != numArr.length){
+                        layer.msg('商品名称不能为空');
+                        return false;
+                    }
+
+                    var goods_warehouse = $(".goods_warehouse").find("option:selected").text();
+                    $.ajax({
+                        type: "POST",
+                        url: "/index/warehouse/deliverGoodsToWarehouse",
+                        data: {
+                            goods_warehouse: goods_warehouse,
+                            goods_expressage_CO: goods_expressage_CO,
+                            goods_expressage_num: goods_expressage_num,
+                            goods_SKU_num: goods_SKU_num,
+                            goods_character: goods_character,
+                            goods_big_classify: goods_big_classify,
+                            goods_total_num: goods_total_num,
+                            goods_total_price: goods_total_price,
+
+                            goodsName_name: nameArr,
+                            goodsName_num: numArr,
+                            goodsName_price: priceArr,
+                            goodsName_total_price: totalArr,
+                            goodsName_customs_code: codeArr,
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        dataType: "JSON",
+                        success: function (msg) {
+                            // console.log(msg)
+                            if (msg.code == 0) {
+                                layer.msg(msg.msg, {shade: 0.4 ,time:2000}, function () {
+                                    // location.href = "./admin_center/Warehousing_service.html";
+                                });
+                            } else {
+                                layer.msg(msg.msg)
+                            }
+                        }
+                        , error: function (e) {
+                            layer.msg('网络故障')
+                            }
+                        });
+                }
+            });
+        }
+
+    </script>
+
+</body>
+
+</html>

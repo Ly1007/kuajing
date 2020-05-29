@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+  <!-- //公共头部 -->
+  <script src="./head.js"></script>
+
+<script type="text/javascript" src="js/jquery18.js"></script>
+<script src="js/unveil-effects.js"></script>
+<script type="text/javascript">
+$(function(){
+	//查询模块-START
+	var tabOpts = {};
+		tabOpts.curIndex;	
+		tabOpts.tabs = $(".aside-lf-content");//焦点层	
+		tabOpts.contents = $(".content");//显示内容
+		
+		tabOpts.show = function(index){
+			//当前，return
+			if(tabOpts.curIndex == index) return;	
+			//隐藏上一个index
+			if(tabOpts.curIndex >= 0){
+				$(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+				$(tabOpts.contents.get(tabOpts.curIndex)).hide();
+			}
+			
+			$(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+			$(tabOpts.contents.get(index)).show();
+			//改变当前index
+			tabOpts.curIndex = index;
+		}	
+		//数字单击事件
+		tabOpts.tabs.click(function(){
+			tabOpts.show(tabOpts.tabs.index(this));
+		});		
+		//开始显示
+		tabOpts.show(0);
+	//查询模块-END
+})
+</script> 
+
+<section class="main"  style="background:#f7f8fa;padding:33px 0">
+	<div class="container">
+    	 <!--left------------------------------------------------------------>
+      <!-- //公共左侧栏 -->
+      <script src="./left.js"></script>
+ <!--right           =                             -->       
+        <div class="cp1_lr cplLR" data-effect="slide-right">  	          
+        	<div class="orderCon">
+            	<h2>申请会员级别</h2>
+<!--订单管理          =                             -->  
+                 <div class="order_manage">
+					<div class="vipCon">
+                    	<table cellpadding="0" cellspacing="0" style="margin-bottom:0;width:100%;">
+                            <tr>
+                            	<th>当前级别：</th>
+                                <td><span>V3</span></td>
+                        	<tr>
+                            	<th>申请级别：</th>
+                                <td><select><option>V1</option><option>V2</option><option>V3</option><option>V4</option><option>V5</option></select></td>
+                            </tr>
+                            <tr>
+                            	<th>申请原因：</th>
+                                <td><textarea></textarea></td>
+                            </tr>
+                        </table>
+                        
+                    </div>
+                    <div class="agentBut" style="margin-top:4%"><button>提交</button></div>
+                   	<div class="center center01 vipposer" style="overflow:hidden;border-right:none;border-radius:4px;clear:both;"> 
+				         <table cellpadding="0" cellspacing="0" style="margin-bottom:0;width:100%;">
+                	<tr class="current">
+                    	<th>会员级别</th> 
+                        <th>会员门槛</th>
+                        <th>尊享折扣</th>
+                        <th>退货保障</th>
+                        <th>VIP专属通道</th>              
+                    </tr>
+                    <tr>
+                    	<td>V1</td>
+                        <td>在本站购买产品并交易成功客户</td>
+                        <td>享受<i>9.8</i>折</td>
+                        <td>不满意退款</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                    	<td>V2</td>
+                        <td>在本站购买产品并交易成功客户</td>
+                        <td>享受<i>9.8</i>折</td>
+                        <td>不满意退款</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                    	<td>V3</td>
+                        <td>在本站购买产品并交易成功客户</td>
+                        <td>享受<i>9.8</i>折</td>
+                        <td>不满意退款</td>
+                        <td>无</td>
+                    </tr>
+                    <tr>
+                    	<td>V4</td>
+                        <td>在本站购买产品并交易成功客户</td>
+                        <td>享受<i>9.8</i>折</td>
+                        <td>不满意退款</td>
+                        <td>无</td>
+                    </tr>
+                    <tr style="border-bottom:none;">
+                    	<td>V5</td>
+                        <td>在本站购买产品并交易成功客户</td>
+                        <td>享受<i>9.8</i>折</td>
+                        <td>不满意退款</td>
+                        <td>无</td>
+                    </tr>
+                </table> 
+           		    </div> 
+			        <div class="care"><b>*</b>系统会自动识别会员优惠和店铺优惠，以最低价折扣显示在页面上，无需客服改价</div>
+ 			        <h4 class="vipTint">我的申请记录</h4>
+ 					<div class="center center01" style="overflow:hidden;border-right:none;border-radius:4px;clear:both;"> 
+				         <table cellpadding="0" cellspacing="0" style="margin-bottom:0;width:100%;">
+                	<tr class="current">
+                    	<th>申请级别</th> 
+                        <th>申请原因</th>
+                        <th>申请时间</th>
+                        <th>审核状态</th>
+                        <th>备注</th>              
+                    </tr>
+                    <tr>
+                    	<td>V4</td>
+                        <td>已消费满200万</td>
+                        <td>2020-03-21&nbsp;16:32:21</td>
+                        <td><a class="over" href=" ">已审核</a></td>
+                        <td>由于系统升级，暂时还无法调整。</td>
+                    </tr>
+                    <tr>
+                    	<td>V4</td>
+                        <td>已消费满200万</td>
+                        <td>2020-03-21&nbsp;16:32:21</td>
+                        <td><a class="wait" href=" ">未审核</a></td>
+                        <td>由于系统升级，暂时还无法调整。</td>
+                    </tr>
+                    <tr>
+                    	<td>V4</td>
+                        <td>已消费满200万</td>
+                        <td>2020-03-21&nbsp;16:32:21</td>
+                        <td><a class="over" href=" ">已审核</a></td>
+                        <td>由于系统升级，暂时还无法调整。</td>
+                    </tr>
+                    <tr>
+                    	<td>V4</td>
+                        <td>已消费满200万</td>
+                        <td>2020-03-21&nbsp;16:32:21</td>
+                        <td><a class="over" href=" ">已审核</a></td>
+                        <td>由于系统升级，暂时还无法调整。</td>
+                    </tr>
+                    <tr style="border-bottom:none;">
+                    	<td>V4</td>
+                        <td>已消费满200万</td>
+                        <td>2020-03-21&nbsp;16:32:21</td>
+                        <td><a class="over" href=" ">已审核</a></td>
+                        <td>由于系统升级，暂时还无法调整。</td>
+                    </tr>
+                </table> 
+           		    </div> 
+          </div>
+ <!--订单管理          =                             -->  
+      
+            </div>
+        </div>       
+    </div>
+</section>
+ 
+ <style>
+ 	.lj{background:#222;color:#fff;padding-top:2%}
+	.lj ul li{width:16%;float:left;font-size:12px;color:#fff;list-style:none;}
+	.lj ul li h4{color:#fff;font-size:14px;}
+	.lj ul li a{display:block;color:rgba(255,255,255,.8);margin:3% 0;text-decoration: none;}
+ </style>
+
+ <!-- //公共底部 -->
+ <script src="./foot.js"></script>
+ <script src="layui/layui.js"></script>
+ <script>
+   // current
+   $('li').each(function () {
+     var text = $(this).children().text();
+     if (text == '申请会员级别') {
+       $(this).addClass('current');
+     }
+   })
+ </script>
+</body>
+</html>

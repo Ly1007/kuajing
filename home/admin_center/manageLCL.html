@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船期查询</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <!-- //公共头部 -->
+    <script src="./head.js"></script>
+
+    <script type="text/javascript" src="js/jquery18.js"></script>
+    <script src="js/unveil-effects.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //查询模块-START
+            var tabOpts = {};
+            tabOpts.curIndex;
+            tabOpts.tabs = $(".aside-lf-content");//焦点层	
+            tabOpts.contents = $(".content");//显示内容
+
+            tabOpts.show = function (index) {
+                //当前，return
+                if (tabOpts.curIndex == index) return;
+                //隐藏上一个index
+                if (tabOpts.curIndex >= 0) {
+                    $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+                    $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+                }
+
+                $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+                $(tabOpts.contents.get(index)).show();
+                //改变当前index
+                tabOpts.curIndex = index;
+            }
+            //数字单击事件
+            tabOpts.tabs.click(function () {
+                tabOpts.show(tabOpts.tabs.index(this));
+            });
+            //开始显示
+            tabOpts.show(0);
+            //查询模块-END
+        })
+    </script>
+
+    <section class="main" style="background:#f7f8fa;padding:33px 0">
+        <div class="container">
+            <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right------------------------------------------------------------>
+            <div class="cp1_lr cplLR" data-effect="slide-right">
+                <div class="orderCon">
+                    <h2>
+                        <a href="manageFLC.html" class="">海运整箱</a><a class="current" href="manageLCL.html">海运拼箱</a><a
+                            href="manageAir.html">空运</a><a href=" ">电商小包裹</a><a href="manageTrailer.html">集装箱拖车</a><a
+                            class="fors" href="problem.html">问题件</a>
+                    </h2>
+                    <!--订单管理          =                             -->
+                    <div class="order_manage">
+                        <div class="search_con search_con01" style="margin-top:4%;">
+                            <form action="#" method="post">
+                                <ul class="searchtT">
+                                    <li><label>运单号:</label><input type="text" value="" class="order_id" /></li>
+                                    <li><label>目的国家:</label><input type="text" value="" class="order_nation_end" /></li>
+                                    <li><label>船司:</label>
+                                        <select class="sub order_express_Co" name="select" value="">
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label>是否付款:</label>
+                                        <select class="sub order_pay_status" name="select" value="">
+                                            <option value="1">已付款</option>
+                                            <option value="0">未付款</option>
+                                        </select>
+                                    </li>
+                                </ul>
+                                <ul class="searchtT">
+                                    <li><label>起运港:</label><input type="text" value=" " class="order_start_port" /></li>
+                                    <li><label>目的港:</label><input type="text" value=" " class="order_end_port" /></li>
+                                    <li><label>运费条款:</label><select name="select" value="" class="order_clause">
+                                        </select>
+                                    </li>
+
+                                </ul>
+                                <ul class="searchtC">
+                                    <li class="current">
+                                        <label>发货时间:</label><input type="text" value="2020-02-01" id="startDate"/><label
+                                            class="current">~</label><input type="text" value="2020-02-01"  id="endDate"/>
+                                    </li>
+                                    <li class="current01">
+                                        <label>发货状态:</label><span
+                                            class="current01">全部</span><span>等揽收</span><span>已到港</span><span>运输中</span><span>已到货</span><span
+                                            class="current">问题件</span>
+                                    </li>
+                                </ul>
+                                <ul class="searchtB">
+                                    <li><button class="search_ajax" type="button">查询</button></li>
+                                </ul>
+                            </form>
+                        </div>
+
+                        <div class="manageMain">
+                            <div class="manageSearch">
+                                <div class="manageSearch_left">
+                                    <button class="current checkAll"><span></span>全部勾选</button><button><span
+                                            class="current1"></span>打印标签</button><button class="current">申请退款</button>
+                                </div>
+                            </div>
+                            <div class="manageContent" style="overflow-x:scroll">
+                                <div class="manageCon_top manageCon_top01">
+                                    <table cellpadding="0" cellspacing="0" style="width:1100px;" class="tableBox" data_count="">
+                                        <tr class="current">
+                                            <th>序号</th>
+                                            <th>运单号</th>
+                                            <th>运费条款</th>
+                                            <th>起运/目的港</th>
+                                            <th>船司</th>
+                                            <th>截关/开船</th>
+                                            <th>状态</th>
+                                            <th>下单时间</th>
+                                            <th>箱柜明细</th>
+                                            <th>收/发货人</th>
+                                            <th>运费</th>
+                                            <th>重量</th>
+                                            <th>付款状态</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        <!-- <tr style="background:#fff;">
+                                            <td><input type="checkbox" /></td>
+                                            <td>124512455<span>新西兰</span></td>
+                                            <td>运输中</td>
+                                            <td>2020-03-20</td>
+                                            <td>xs衣服；l鞋子<span>（共7件）￥655.00</span></td>
+                                            <td>发：腾飞安炫<span>收：新新西兰</span></td>
+                                            <td>￥200.00&nbsp;$89.00</td>
+                                            <td>109KG</td>
+                                            <td>已付款</td>
+                                            <td><a href="express.html">轨迹</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+                                                    href="orderDetail .html">详情</a></td>
+                                        </tr>-->
+                                    </table>
+                                </div>
+                                <!-- <div class="manageCon_center"><span>暂无数据</span></div> -->
+                            </div>
+                            <div class="manageCon_bottom" style="margin-top:2%;">
+                                <div class="scatter">
+                                    <div class="scatterL">
+                                        合计：共<span class="CNYall">￥0.00</span>,<span class="USDall">￥0.00</span>，已付款<span class="CNYisPay">￥0.00</span>,<span class="USDisPay">￥0.00</span>，未付款<span class="CNYnoPay">￥0.00</span>,<span class="USDnoPay">￥0.00</span>
+                                    </div>
+                                    <div class="scatterR scatterR01">
+                                        <span onclick="leftPage()"></span><a href="javascript:;" class="page_a">1</a><span class="current" onclick="rightPage()"></span>
+                                        <select class="page" onchange="changePage(this)">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                            <option value="6">6</option>
+                                            <option value="7">7</option>
+                                            <option value="8">8</option>
+                                            <option value="9">9</option>
+                                            <option value="10">10</option>
+                                        </select>
+                                        <button>确定</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--订单管理          =                             -->
+
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- //公共底部 -->
+    <script src="./foot.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        // current
+        $('li').each(function () {
+            var text = $(this).children().text();
+            if (text == '订单管理') {
+                $(this).addClass('current');
+            }
+        })
+
+        layui.use(['table', 'layer', 'upload', 'laydate'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                upload = layui.upload,
+                $ = layui.$;
+            var laydate = layui.laydate;
+
+            //常规用法
+            laydate.render({
+                elem: '#startDate'
+            });
+            laydate.render({
+                elem: '#endDate'
+            });
+
+            //船司
+            $.ajax({
+                url: "/index/queryOrder/queryShipCo",
+                data: {},
+                dataType: "json",
+                success: function (resultData) {
+                    // console.log(resultData);
+                    if (resultData.code == 0) {
+                    //清空赋值
+                    $('.order_express_Co').empty();
+                    $('.order_express_Co').append(new Option("请选择船司", ""));
+                    $.each(resultData.data, function (index, item) {
+                        //赋值
+                        $('.order_express_Co').append(new Option(item.order_express_Co, item.order_express_Co));
+                    });
+                    } else {
+                    $('.order_express_Co').append(new Option("暂无数据", ""));
+                    }
+                    layui.form.render("select");
+                }
+            })
+
+             //运费条款
+             $.ajax({
+                url: "/index/queryOrder/queryclause",
+                data: {},
+                dataType: "json",
+                success: function (resultData) {
+                    // console.log(resultData);
+                    if (resultData.code == 0) {
+                    //清空赋值
+                    $('.order_clause').empty();
+                    $('.order_clause').append(new Option("请选择运费条款", ""));
+                    $.each(resultData.data, function (index, item) {
+                        //赋值
+                        $('.order_clause').append(new Option(item.order_clause, item.order_clause));
+                    });
+                    } else {
+                    $('.order_clause').append(new Option("暂无数据", ""));
+                    }
+                    layui.form.render("select");
+                }
+            })
+
+            ajax_table();
+
+            //点击全部勾选按钮，选中全部checkbox
+            var flag = true;
+            $('.checkAll').on('click',function(){
+                if(flag){
+                    $('.checkRow').each(function(){
+                        $(this).prop('checked',true);
+                    });
+                }else{
+                    $('.checkRow').each(function(){
+                        $(this).prop('checked',false);
+                    });
+                }
+                flag = !flag;
+            })
+
+            //点击全部勾选按钮，选中全部checkbox
+            var flag = true;
+            $('.checkAll').on('click',function(){
+                if(flag){
+                    $('.checkRow').each(function(){
+                        $(this).prop('checked',true);
+                    });
+                }else{
+                    $('.checkRow').each(function(){
+                        $(this).prop('checked',false);
+                    });
+                }
+                flag = !flag;
+            })
+
+            $('.search_ajax').on('click',function(){
+                var order_id = $('.order_id').val();
+                var order_nation_end = $('.order_nation_end').val();
+                var order_express_Co = $('.order_express_Co').val();
+                var order_clause = $('.order_clause').val();
+                var order_start_port = $('.order_start_port').val();
+                var order_end_port = $('.order_end_port').val();
+                var order_send_date_start = $('#startDate').val();
+                var order_send_date_end = $('#endDate').val();
+                var order_pay_status = $('.order_pay_status').val();
+                ajax_table(order_id,order_nation_end,order_express_Co,order_clause,order_start_port,order_end_port,order_send_date_start,order_send_date_end,order_pay_status,1);
+            })
+
+        });//layui
+
+        function showStatus(res){
+            if(res == 1){
+                return '等待揽收';
+            }
+            if(res == 2){
+                return '已到港';
+            }
+            if(res == 3){
+                return '运输中';
+            }
+            if(res == 4){
+                return '已到货';
+            }
+            if(res == 5){
+                return '问题件';
+            }
+        }
+
+        function showPayStatus(res){
+            if(res == 0){
+                return '未付款';
+            }
+            if(res == 1){
+                return '已付款';
+            }
+        }
+
+        function changePage(res){
+            var selected = $('.page option:selected').text();
+            // console.log(selected)
+            $('.page_a').text(selected);
+            var page_a = $('.page_a').text();
+            ajax_table('','','','','','','','',page_a);
+        }
+
+        function leftPage(){
+            var page_a = $('.page_a').text();
+            if(Number(page_a)>1){
+                var page = Number(page_a)-1;
+                ajax_table('','','','','','','','',page);
+                $('.page_a').text(page)
+            }else{
+                layer.msg('当前是首页',{time:1000});
+            }
+        }
+
+        function rightPage(){
+            var page_a = $('.page_a').text();
+            var count = $('.tableBox').attr('data_count');
+            if(Number(page_a+1) < Number(count)){
+                var page = Number(page_a)+1;
+                ajax_table('','','','','','','','',page);
+                $('.page_a').text(page)
+            }else{
+                layer.msg('当前是末页',{time:1000});
+            }
+        }
+
+        function ajax_table(order_id = '',order_nation_end= '',order_express_Co= '',order_clause = '',order_start_port = '',order_end_port = '',order_send_date_start = '',order_send_date_end = '',page = '1'){
+            $.ajax({
+                type: "POST",
+                url: "/index/queryOrder/queryOrder",
+                data: {
+                    order_id:order_id,
+                    order_nation_end:order_nation_end,
+                    order_express_Co:order_express_Co,
+                    order_clause:order_clause,
+                    order_start_port:order_start_port,
+                    order_end_port:order_end_port,
+                    order_send_date_start:order_send_date_start,
+                    order_send_date_end:order_send_date_end,
+                    order_freight_type:2,
+                    page:page,
+                    limit:10
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    // console.log(msg)
+                    if (msg.code == 0) {
+                        var str = '';
+                        str = str
+                            + '<tr class="current">'
+                            + '<th>序号</th>'
+                            + '<th>运单号</th>'
+                            + '<th>运费条款</th>'
+                            + '<th>起运/目的港</th>'
+                            + '<th>船司</th>'
+                            + '<th>截关/开船</th>'
+                            + '<th>状态</th>'
+                            + '<th>下单时间</th>'
+                            + '<th>箱柜明细</th>'
+                            + '<th>重量</th>'
+                            + '<th>收/发货人</th>'
+                            + '<th>运费</th>'
+                            + '<th>付款状态</th>'
+                            + '<th>操作</th>'
+                            + '</tr>'
+                            
+                            var arr = [],brr = [];
+                            var strArr = '',strBrr = '';
+                            for (var i = 0; i < msg.data.length; i++) {
+                                str = str
+                                + '<tr style="background:#fff;">'
+                                + '<td><input type="checkbox" class="checkRow"/></td>'
+                                + '<td>'+msg.data[i].order_id+'</td>'
+                                + '<td>'+msg.data[i].order_clause+'</td>'
+                                + '<td>'+msg.data[i].order_start_port+'/'+msg.data[i].order_end_port+'</td>'
+                                + '<td>'+msg.data[i].order_express_Co+'</td>'
+                                + '<td>'+msg.data[i].order_sail_end+'/'+msg.data[i].order_sail_start+'</td>'
+                                + '<td>'+showStatus(msg.data[i].order_send_status)+'</td>'
+                                + '<td>'+msg.data[i].order_place_date+'</td>'
+                                + '<td>'+msg.data[i].order_CBM+'CBM</td>'
+                                + '<td>'+msg.data[i].order_KGS+'KGS</td>'
+                                + '<td>发：'+msg.data[i].order_reserve_person+'<span>收：'+msg.data[i].order_put_person+'</span></td>'
+                                + '<td>￥'+msg.data[i].bill_money_CNY+'&nbsp;$'+msg.data[i].bill_money_USD+'</td>'
+                                + '<td>'+showPayStatus(msg.data[i].order_pay_status)+'</td>'
+                                + '<td><a href="express.html">轨迹</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="orderDetail .html">详情</a></td>'
+                                + '</tr>'
+                            }
+
+                        $('.tableBox').html(str);
+                        $('.tableBox').attr('data_count',msg.count);
+                        $('.CNYall').html('￥'+msg.total_money.CNY);
+                        $('.USDall').html('$'+msg.total_money.USD);
+                        $('.CNYisPay').html('￥'+msg.total_money.CNY_noPay);
+                        $('.CNYnoPay').html('￥'+msg.total_money.CNY_pay);
+                        $('.USDisPay').html('$'+msg.total_money.USD_pay);
+                        $('.USDnoPay').html('$'+msg.total_money.USD_noPay);
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

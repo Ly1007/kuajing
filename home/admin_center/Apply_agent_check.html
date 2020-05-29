@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+  <!-- //公共头部 -->
+  <script src="./head.js"></script>
+
+<script type="text/javascript" src="js/jquery18.js"></script>
+<script src="js/unveil-effects.js"></script>
+<script type="text/javascript">
+$(function(){
+	//查询模块-START
+	var tabOpts = {};
+		tabOpts.curIndex;	
+		tabOpts.tabs = $(".aside-lf-content");//焦点层	
+		tabOpts.contents = $(".content");//显示内容
+		
+		tabOpts.show = function(index){
+			//当前，return
+			if(tabOpts.curIndex == index) return;	
+			//隐藏上一个index
+			if(tabOpts.curIndex >= 0){
+				$(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+				$(tabOpts.contents.get(tabOpts.curIndex)).hide();
+			}
+			
+			$(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+			$(tabOpts.contents.get(index)).show();
+			//改变当前index
+			tabOpts.curIndex = index;
+		}	
+		//数字单击事件
+		tabOpts.tabs.click(function(){
+			tabOpts.show(tabOpts.tabs.index(this));
+		});		
+		//开始显示
+		tabOpts.show(0);
+	//查询模块-END
+})
+</script> 
+
+<section class="main"  style="background:#f7f8fa;padding:33px 0">
+	<div class="container">
+    	<!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right------------------------------------------------------------>
+
+ <!--right           =                             -->       
+        <div class="cp1_lr cplLR" data-effect="slide-right">  	          
+        	<div class="orderCon receiptTit">
+            	<h2>申请入驻代理商</h2>
+<!--问题订单          =                             --> 
+<div class="problem">
+	<div class="problemTop">
+    	<div class="sheetContent">
+        	<div class="sheetTit"><span class="another"></span><i></i><span></span><i class="current"></i><span class="another"></span></div>
+            <div class="sheetCon"><b>提交申请</b><b>审核中</b><b>申请完成</b></div>
+        </div>
+        <h4 class="agentTit">1、驻代理商信息<i>（用于入驻过程中接收商创反馈的入驻通知，请务必正确填写）</i></h4>
+        <div class="receiptCon">
+           <table cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th><b>*</b>申请人姓名</th>
+                        <td><input type="text" value="斋藤飞鸟" class="name"></td>
+                    </tr>
+                    <tr>
+                    	<th>申请人电话</th>
+                        <td><input value="0512" type="text" class="dif" /><label class="no">-</label><input type="text" placeholder="52525698" class="phone"></td>
+                    </tr>
+                    <tr>
+                    	<th><b>*</b>申请人电子邮箱</th>
+                        <td><input type="text" placeholder="13998254@qq.com" class="email"></td>
+                    </tr>
+                    <tr>
+                    	<th><b>*</b>国家</th>
+                        <td>
+                        	<select name="select" placeholder="请选择国家">
+                            	<option placeholder=" ">请选择国家</option>
+                            	<option placeholder=" ">身份证</option>
+                        		<option placeholder=" ">港澳通行证</option>
+                        		<option placeholder=" ">准签证</option>
+                            </select>
+                           <select name="select" placeholder="请选择省">
+                            	<option placeholder=" ">请选择省</option>
+                        		<option placeholder=" ">港澳通行证</option>
+                        		<option placeholder=" ">准签证</option>
+                            </select>
+                            <select name="select" placeholder="请选择市">
+                            	<option placeholder=" ">请选择市</option>
+                        		<option placeholder=" ">港澳通行证</option>
+                        		<option placeholder=" ">准签证</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th><b>*</b>期望代理商名称</th>
+                        <td><input type="text" placeholder="1 "></td>
+                    </tr>
+                    <tr>
+                    	<th><b>*</b>期望代理商登录用户名</th>
+                        <td><input type="text" placeholder="13998254"></td>
+                    </tr>
+                 </table>
+        </div>
+        <h4 class="agentTit">2、公司信息<i>（请详细完善公司信息）</i></h4>
+        <div class="receiptCon">
+           <table cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th>公司名称</th>
+                        <td><input type="text" placeholder="斋藤飞鸟"></td>
+                    </tr>
+                    <tr>
+                    	<th>营业执照注册号</th>
+                        <td><input type="text" placeholder="18652525698"></td>
+                    </tr>
+                    <tr>
+                    	<th>法定代表人性名</th>
+                        <td><input type="text" placeholder="13998254@qq.com"></td>
+                    </tr>
+                    <tr>
+                    	<th>身份证号</th>
+                        <td><input type="text" placeholder="13998254@qq.com"></td>
+                    </tr>
+                    <tr class="agentPic">
+                    	<th>法人身份证电子版</th>
+                        <td><input type="text" placeholder="大小不超过64KB"></td>
+                    </tr>
+                    <tr>
+                    	<th>营业执照所在地</th>
+                        <td>
+                        	<select name="select" placeholder="请选择国家">
+                            	    <option value="0">选择国家</option><option value="中国">中国</option><option value="阿尔巴尼亚">阿尔巴尼亚</option><option value="阿尔及利亚">阿尔及利亚</option><option value="阿富汗">阿富汗</option><option value="阿根廷">阿根廷</option><option value="阿拉伯联合酋长国">阿拉伯联合酋长国</option><option value="阿鲁巴">阿鲁巴</option><option value="阿曼">阿曼</option><option value="阿塞拜疆">阿塞拜疆</option><option value="阿森松岛">阿森松岛</option><option value="埃及">埃及</option><option value="埃塞俄比亚">埃塞俄比亚</option><option value="爱尔兰">爱尔兰</option><option value="爱沙尼亚">爱沙尼亚</option><option value="安道尔">安道尔</option><option value="安哥拉">安哥拉</option><option value="安圭拉">安圭拉</option><option value="安提瓜岛和巴布达">安提瓜岛和巴布达</option><option value="澳大利亚">澳大利亚</option><option value="奥地利">奥地利</option><option value="奥兰群岛">奥兰群岛</option><option value="巴巴多斯岛">巴巴多斯岛</option><option value="巴布亚新几内亚">巴布亚新几内亚</option><option value="巴哈马">巴哈马</option><option value="巴基斯坦">巴基斯坦</option><option value="巴拉圭">巴拉圭</option><option value="巴勒斯坦">巴勒斯坦</option><option value="巴林">巴林</option><option value="巴拿马">巴拿马</option><option value="巴西">巴西</option><option value="白俄罗斯">白俄罗斯</option><option value="百慕大">百慕大</option><option value="保加利亚">保加利亚</option><option value="北马里亚纳群岛">北马里亚纳群岛</option><option value="贝宁">贝宁</option><option value="比利时">比利时</option><option value="冰岛">冰岛</option><option value="波多黎各">波多黎各</option><option value="波兰">波兰</option><option value="玻利维亚">玻利维亚</option><option value="波斯尼亚和黑塞哥维那">波斯尼亚和黑塞哥维那</option><option value="博茨瓦纳">博茨瓦纳</option><option value="伯利兹">伯利兹</option><option value="不丹">不丹</option><option value="布基纳法索">布基纳法索</option><option value="布隆迪">布隆迪</option><option value="布韦岛">布韦岛</option><option value="朝鲜">朝鲜</option><option value="丹麦">丹麦</option><option value="德国">德国</option><option value="东帝汶">东帝汶</option><option value="多哥">多哥</option><option value="多米尼加">多米尼加</option><option value="多米尼加共和国">多米尼加共和国</option><option value="俄罗斯">俄罗斯</option><option value="厄瓜多尔">厄瓜多尔</option><option value="厄立特里亚">厄立特里亚</option><option value="法国">法国</option><option value="法罗群岛">法罗群岛</option><option value="法属波利尼西亚">法属波利尼西亚</option><option value="法属圭亚那">法属圭亚那</option><option value="法属南部领地">法属南部领地</option><option value="梵蒂冈">梵蒂冈</option><option value="菲律宾">菲律宾</option><option value="斐济">斐济</option><option value="芬兰">芬兰</option><option value="佛得角">佛得角</option><option value="弗兰克群岛">弗兰克群岛</option><option value="冈比亚">冈比亚</option><option value="刚果">刚果</option><option value="刚果民主共和国">刚果民主共和国</option><option value="哥伦比亚">哥伦比亚</option><option value="哥斯达黎加">哥斯达黎加</option><option value="格恩西岛">格恩西岛</option><option value="格林纳达">格林纳达</option><option value="格陵兰">格陵兰</option><option value="古巴">古巴</option><option value="瓜德罗普">瓜德罗普</option><option value="关岛">关岛</option><option value="圭亚那">圭亚那</option><option value="哈萨克斯坦">哈萨克斯坦</option><option value="海地">海地</option><option value="韩国">韩国</option><option value="大邱">大邱</option><option value="大田">大田</option><option value="釜山">釜山</option><option value="光州">光州</option><option value="济州特别自治道">济州特别自治道</option><option value="江原道">江原道</option><option value="京畿道">京畿道</option><option value="庆尚北道">庆尚北道</option><option value="庆尚南道">庆尚南道</option><option value="全罗北道">全罗北道</option><option value="全罗南道">全罗南道</option><option value="仁川">仁川</option><option value="首尔">首尔</option><option value="蔚山">蔚山</option><option value="忠清北道">忠清北道</option><option value="忠清南道">忠清南道</option><option value="荷兰">荷兰</option><option value="荷属安地列斯">荷属安地列斯</option><option value="赫德和麦克唐纳群岛">赫德和麦克唐纳群岛</option><option value="洪都拉斯">洪都拉斯</option><option value="基里巴斯">基里巴斯</option><option value="吉布提">吉布提</option><option value="吉尔吉斯斯坦">吉尔吉斯斯坦</option><option value="几内亚">几内亚</option><option value="几内亚比绍">几内亚比绍</option><option value="加拿大">加拿大</option><option value="加纳">加纳</option><option value="加蓬">加蓬</option><option value="柬埔寨">柬埔寨</option><option value="捷克共和国">捷克共和国</option><option value="津巴布韦">津巴布韦</option><option value="喀麦隆">喀麦隆</option><option value="卡塔尔">卡塔尔</option><option value="开曼群岛">开曼群岛</option><option value="科科斯群岛">科科斯群岛</option><option value="科摩罗">科摩罗</option><option value="科特迪瓦">科特迪瓦</option><option value="科威特">科威特</option><option value="克罗地亚">克罗地亚</option><option value="肯尼亚">肯尼亚</option><option value="库克群岛">库克群岛</option><option value="拉脱维亚">拉脱维亚</option><option value="莱索托">莱索托</option><option value="老挝">老挝</option><option value="黎巴嫩">黎巴嫩</option><option value="利比里亚">利比里亚</option><option value="利比亚">利比亚</option><option value="立陶宛">立陶宛</option><option value="列支敦士登">列支敦士登</option><option value="留尼旺岛">留尼旺岛</option><option value="卢森堡">卢森堡</option><option value="卢旺达">卢旺达</option><option value="罗马尼亚">罗马尼亚</option><option value="马达加斯加">马达加斯加</option><option value="马尔代夫">马尔代夫</option><option value="马耳他">马耳他</option><option value="马拉维">马拉维</option><option value="马来西亚">马来西亚</option><option value="马里">马里</option><option value="马其顿">马其顿</option><option value="马绍尔群岛">马绍尔群岛</option><option value="马提尼克">马提尼克</option><option value="马约特岛">马约特岛</option><option value="曼岛">曼岛</option><option value="毛里求斯">毛里求斯</option><option value="毛里塔尼亚">毛里塔尼亚</option><option value="美国">美国</option><option value="美属萨摩亚">美属萨摩亚</option><option value="美属外岛">美属外岛</option><option value="蒙古">蒙古</option><option value="蒙特塞拉特">蒙特塞拉特</option><option value="孟加拉">孟加拉</option><option value="密克罗尼西亚">密克罗尼西亚</option><option value="秘鲁">秘鲁</option><option value="缅甸">缅甸</option><option value="摩尔多瓦">摩尔多瓦</option><option value="摩洛哥">摩洛哥</option><option value="摩纳哥">摩纳哥</option><option value="莫桑比克">莫桑比克</option><option value="墨西哥">墨西哥</option><option value="纳米比亚">纳米比亚</option><option value="南非">南非</option><option value="南极洲">南极洲</option><option value="南乔治亚和南桑德威奇群岛">南乔治亚和南桑德威奇群岛</option><option value="瑙鲁">瑙鲁</option><option value="尼泊尔">尼泊尔</option><option value="尼加拉瓜">尼加拉瓜</option><option value="尼日尔">尼日尔</option><option value="尼日利亚">尼日利亚</option><option value="纽埃">纽埃</option><option value="挪威">挪威</option><option value="诺福克">诺福克</option><option value="帕劳群岛">帕劳群岛</option><option value="皮特凯恩">皮特凯恩</option><option value="葡萄牙">葡萄牙</option><option value="乔治亚">乔治亚</option><option value="日本">日本</option><option value="瑞典">瑞典</option><option value="瑞士">瑞士</option><option value="萨尔瓦多">萨尔瓦多</option><option value="萨摩亚">萨摩亚</option><option value="塞尔维亚,黑山">塞尔维亚,黑山</option><option value="塞拉利昂">塞拉利昂</option><option value="塞内加尔">塞内加尔</option><option value="塞浦路斯">塞浦路斯</option><option value="塞舌尔">塞舌尔</option><option value="沙特阿拉伯">沙特阿拉伯</option><option value="圣诞岛">圣诞岛</option><option value="圣多美和普林西比">圣多美和普林西比</option><option value="圣赫勒拿">圣赫勒拿</option><option value="圣基茨和尼维斯">圣基茨和尼维斯</option><option value="圣卢西亚">圣卢西亚</option><option value="圣马力诺">圣马力诺</option><option value="圣皮埃尔和米克隆群岛">圣皮埃尔和米克隆群岛</option><option value="圣文森特和格林纳丁斯">圣文森特和格林纳丁斯</option><option value="斯里兰卡">斯里兰卡</option><option value="斯洛伐克">斯洛伐克</option><option value="斯洛文尼亚">斯洛文尼亚</option><option value="斯瓦尔巴和扬马廷">斯瓦尔巴和扬马廷</option><option value="斯威士兰">斯威士兰</option><option value="苏丹">苏丹</option><option value="苏里南">苏里南</option><option value="所罗门群岛">所罗门群岛</option><option value="索马里">索马里</option><option value="塔吉克斯坦">塔吉克斯坦</option><option value="泰国">泰国</option><option value="坦桑尼亚">坦桑尼亚</option><option value="汤加">汤加</option><option value="特克斯和凯克特斯群岛">特克斯和凯克特斯群岛</option><option value="特里斯坦达昆哈">特里斯坦达昆哈</option><option value="特立尼达和多巴哥">特立尼达和多巴哥</option><option value="突尼斯">突尼斯</option><option value="图瓦卢">图瓦卢</option><option value="土耳其">土耳其</option><option value="土库曼斯坦">土库曼斯坦</option><option value="托克劳">托克劳</option><option value="瓦利斯和福图纳">瓦利斯和福图纳</option><option value="瓦努阿图">瓦努阿图</option><option value="危地马拉">危地马拉</option><option value="维尔京群岛，美属">维尔京群岛，美属</option><option value="维尔京群岛，英属">维尔京群岛，英属</option><option value="委内瑞拉">委内瑞拉</option><option value="文莱">文莱</option><option value="乌干达">乌干达</option><option value="乌克兰">乌克兰</option><option value="乌拉圭">乌拉圭</option><option value="乌兹别克斯坦">乌兹别克斯坦</option><option value="西班牙">西班牙</option><option value="希腊">希腊</option><option value="新加坡">新加坡</option><option value="新喀里多尼亚">新喀里多尼亚</option><option value="新西兰">新西兰</option><option value="匈牙利">匈牙利</option><option value="叙利亚">叙利亚</option><option value="牙买加">牙买加</option><option value="亚美尼亚">亚美尼亚</option><option value="也门">也门</option><option value="伊拉克">伊拉克</option><option value="伊朗">伊朗</option><option value="以色列">以色列</option><option value="意大利">意大利</option><option value="印度">印度</option><option value="印度尼西亚">印度尼西亚</option><option value="英国">英国</option><option value="英属印度洋领地">英属印度洋领地</option><option value="约旦">约旦</option><option value="越南">越南</option><option value="赞比亚">赞比亚</option><option value="泽西岛">泽西岛</option><option value="乍得">乍得</option><option value="直布罗陀">直布罗陀</option><option value="智利">智利</option><option value="中非共和国">中非共和国</option>
+                            </select>
+
+                           <select name="select" id="seachprov" placeholder="请选择省份" class="form-control"  onkeyup="showAreaID();" onChange="changeComplexProvince(this.value, sub_array, 'seachcity', 'seachdistrict');">
+                            	
+                            </select>
+                            
+                            <select name="select" id="seachcity" value="请选择城市" class="form-control" onChange="changeCity(this.value,'seachdistrict','seachdistrict');">
+                            	
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                    	<th>营业执照详细地址</th>
+                        <td><input type="text" placeholder="1 "></td>
+                    </tr>
+                    <tr class="agentPic">
+                    	<th>上传营业执照照片</th>
+                        <td><input type="text" placeholder=" "><input type="text" placeholder=" "><br><span>仅支持JPG/GIF/PNG格式图片、大小不超过64M、必须加盖企业彩色公章</span></td>
+                    </tr>
+                    <tr>
+                    	<th>成立日期</th>
+                        <td><input type="text" placeholder="2020-02-03"></td>
+                    </tr>
+                    <tr>
+                    	<th>注册资本(万元)</th>
+                        <td><input type="text" placeholder="2020-02-03"></td>
+                    </tr>
+                    <tr>
+                    	<th>公司网址</th>
+                        <td><input type="text" placeholder="1 "></td>
+                    </tr>
+                    <tr>
+                    	<th>公司电话</th>
+                        <td><input type="text" placeholder="1 "></td>
+                    </tr>
+                                        <tr>
+                    	<th>公司紧急联系人</th>
+                        <td><input type="text" placeholder="1 "></td>
+                    </tr>
+                    <tr>
+                    	<th>公司紧急联系人手机</th>
+                        <td><input type="text" placeholder="1 "></td>
+                 </table>
+        </div>
+        
+        <div class="agentBut"><button>提交</button></div>
+       
+    </div>
+</div>
+<!--问题订单          =    <h4 class="agentTit">3、个人信息<i>（如选择公司，则完善公司信息;如选择个人，则完善个人信息）</i></h4>
+        <div class="receiptCon">
+           <table cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th>姓名</th>
+                        <td><input type="text" placeholder="斋藤飞鸟"></td>
+                    </tr>
+                    <tr>
+                    	<th>身份证号码</th>
+                        <td><input type="text" placeholder="18652525698"></td>
+                    </tr>
+                    <tr>
+                    	<th>电话</th>
+                        <td><input type="text" placeholder="13998254@qq.com"></td>
+                    </tr>
+
+                 </table>
+        </div>                         --> 
+
+            </div>
+        </div>       
+    </div>
+</section>
+
+ <style>
+ 	.lj{background:#222;color:#fff;padding-top:2%}
+	.lj ul li{width:16%;float:left;font-size:12px;color:#fff;list-style:none;}
+	.lj ul li h4{color:#fff;font-size:14px;}
+	.lj ul li a{display:block;color:rgba(255,255,255,.8);margin:3% 0;text-decoration: none;}
+ </style>
+
+  <!-- //公共底部 -->
+  <script src="./foot.js"></script>
+  <script src="layui/layui.js"></script>
+  <script src="js/AreaData_min.js"></script>
+
+  <script>
+      // current
+      $('li').each(function () {
+          var text = $(this).children().text();
+          if (text == '申请入驻代理商') {
+              $(this).addClass('current');
+          }
+      });
+
+      layui.use(['table', 'layer', 'upload', 'laydate'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                upload = layui.upload,
+                $ = layui.$;
+            var laydate = layui.laydate;
+
+
+
+      });
+
+</script>      
+</body>
+</html>

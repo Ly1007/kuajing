@@ -1,0 +1,1133 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>在线下单整箱</title>
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="lib/unveil-effects/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <script src="head.js"></script>
+
+    <div class="cp_banner" style="background:url(img/cx4.jpg) no-repeat left -290px;">
+        <div class="container">
+            <div class="col-md-7">
+                <h2 data-effect="slide-left">在线下单会员价</h2>
+                <p data-effect="slide-right">最快30分钟报价<span style="margin-left:5%">100%真实有效</span></p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .main {
+            background: #f7f8fa;
+            padding: 0% 0;
+        }
+
+        .main_3 {
+            background: #fff;
+            padding: 0 2% 2% 2%;
+            overflow: hidden;
+            margin: 1% 0;
+        }
+
+        .main_3 h2 {
+            font-size: 16px;
+            color: #35abdf;
+            margin-top: 5%;
+            line-height: 36px;
+        }
+
+        .main_3 h2 span {
+            font-size: 12px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .orderLine {
+            line-height: 24px;
+            border-bottom: 2px solid #35abdf;
+            height: 62px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .orderLine span {
+            margin-right: 3%;
+        }
+
+        .lineLf li.type label {
+            width: 15% !important;
+        }
+
+        .top03 li a {
+            width: 15% !important;
+        }
+
+        .top03 li span {
+            width: 20% !important;
+        }
+    </style>
+
+    <section class="main">
+        <div class="container">
+            <div class="main_3">
+                <h2 style="margin:2% 0">整箱海运<span>（*号表示必填项）</span></h2>
+                <div class="orderPro orderLine">
+                    如果在整箱海运下单过程中您有任何疑问，请联系我们；信息提交后，我们会马上联系您安排整箱海运下单事宜<br><span>业务员:
+                        搜航</span><span>销售电话:0755-22960108</span><span>手机:18820258792</span><span>邮箱:sf@sofreight.co</span>
+                </div>
+                <div class="main_3_lr" data-effect="slide-right">
+                    <div class="lineTop" style="height:auto;">
+                        <div class="lineLf">
+                            <div class="top">
+                                <h5>订舱联系人<span>（联系人如果有多个邮箱请用半角分号隔开）</span></h5>
+                                <ul>
+                                    <li><label><b>*</b>联系人：</label><input type="text" class="username linkman_name"
+                                            data_id="" data_order_nation_start="" data_order_nation_end="" /></li>
+                                    <li><label><b>*</b>邮箱：</label><input type="text" class="email linkman_email" /></li>
+                                    <li><label><b>*</b>电话：</label><input type="text" placeholder="0512-"
+                                            class="tel linkman_mobile" />
+                                    </li>
+                                    <li><label><b>*</b>手机号：</label><input type="text" class="mobile linkman_phone" />
+                                    </li>
+                                    <li class="current"><input type="checkbox" /><label>保存为联系人</label></li>
+                                </ul>
+                            </div>
+                            <div class="top">
+                                <h5>补料联系人<span>（联系人如果有多个邮箱请用半角分号隔开）</span></h5>
+                                <ul>
+                                    <li><label>联系人：</label><input type="text" class="usernameBU linkman_name" /></li>
+                                    <li><label>邮箱：</label><input type="text" class="emailBU linkman_email" /></li>
+                                    <li><label>电话：</label><input type="text" placeholder="0512-"
+                                            class="telBU linkman_mobile" /></li>
+                                    <li><label>手机号：</label><input type="text" class="mobileBU linkman_phone" /></li>
+                                    <li class="current">
+                                        <input class="first same" type="checkbox" /><label>与订舱联系人一致</label><input
+                                            type="checkbox" /><label>保存为联系人</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="top">
+                                <h5>放舱联系人<span>（联系人如果有多个邮箱请用半角分号隔开）</span></h5>
+                                <ul>
+                                    <li><label>联系人：</label><input type="text" class="usernameFa linkman_name" /></li>
+                                    <li><label>邮箱：</label><input type="text" class="emailFa linkman_email" /></li>
+                                    <li><label>电话：</label><input type="text" placeholder="0512-"
+                                            class="telFa linkman_mobile" /></li>
+                                    <li><label>手机号：</label><input type="text" class="mobileFa linkman_phone" /></li>
+                                    <li class="current">
+                                        <input class="first Fasame" type="checkbox" /><label>与订舱联系人一致</label><input
+                                            type="checkbox" /><label>保存为联系人</label>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="top top01">
+                                <ul>
+                                    <li><label>货好时间：</label><input type="text" id="order_goods_doneTime"
+                                            placeholder="yyyy-mm-dd" style="display: inline;"
+                                            class="layui-input order_goods_doneTime" /></li>
+                                </ul>
+                            </div>
+                            <div class="top top01 top02">
+                                <ul>
+                                    <li style=""><label><b>*</b>提单方式：</label><input type="radio" checked name="choice"
+                                            data_name="MB/L" /><label>MB/L</label><input type="radio" value=" "
+                                            name="choice" data_name="HB/L" /><label>HB/L</label></li>
+                                    <li style=""><label>放货方式：</label><select class="method">
+                                            <option value="正文">正本</option>
+                                            <option value="电放">电放</option>
+                                        </select></li>
+                                    <li style="float:right;"><label><b>*</b>付款方式：</label><input type="radio" name="pay"
+                                            data_name="预付" /><label>预付</label><input type="radio" value=" " name="pay"
+                                            data_name="到付" checked /><label>到付</label></li>
+                                    <li style="width:49%;float:right;"><label
+                                            style="clear: both;"><b>*</b>运输条款：</label><input type="text" value="CY/CY"
+                                            class="clause" style="width:60%;" readonly /></li>
+                                </ul>
+                            </div>
+                            <div class="top top01 top02 top03 top04" id="Box" style="height:auto !important;">
+                                <ul class="smallBox">
+                                    <li class="anoth type" style="width: 70% !important;">
+                                        <label><b>*</b>箱型：</label><input type="radio" class="box_type" name="checkType"
+                                            data_name="twentyGP" checked /><label>20GP</label><input type="radio"
+                                            class="box_type" value=" " name="checkType"
+                                            data_name="fortyGP" /><label>40GP</label><input type="radio"
+                                            class="box_type" value=" " name="checkType"
+                                            data_name="fortyHC" /><label>40HC</label><input class="box_type"
+                                            type="radio" value=" " name="checkType"
+                                            data_name="fortyFiveHC" /><label>45HC</label>
+                                    </li>
+                                    <li style="width: 30% !important;"><label><b>*</b>箱量：</label><a href="JavaScript:;"
+                                            id="btsub">-</a><span id="buy_num" class="buy_num">1</span><a
+                                            href="JavaScript:;" id="btadd">+</a></li>
+                                    <li class="another"><label><b>*</b>货重(KGS):</label><input class="one" type="text"
+                                            value="" onblur="ajax_Money()" /><input
+                                            type="checkbox" /><label>重柜</label><i id="add">添加</i></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="lineRt">
+                            <h3>SHIPPER<span>（限英文、数字）</span></h3>
+                            <ul>
+                                <li><textarea class="SHIPPER"></textarea></li>
+                                <li><input type="checkbox" /><label>保存为SHIPPER</label></li>
+                            </ul>
+                            <h3>CONSIGNEE<span>（限英文、数字）</span></h3>
+                            <ul>
+                                <li><textarea class="CONSIGNEE"></textarea></li>
+                                <li><input type="checkbox" /><label>保存为CONSIGNEE</label></li>
+                            </ul>
+                            <h3>NOTIFY<span>（限英文、数字）</span></h3>
+                            <ul>
+                                <li><textarea class="NOTIFY"></textarea></li>
+                                <li><input type="checkbox" /><label>保存为NOTIFY</label></li>
+                            </ul>
+                            <div class="detailCon">
+                                <ul>
+                                    <li><label>驳船起运港：</label><input type="text" value="HAIKOU" class="order_start_place"
+                                            readonly data_nation="" /></li>
+                                    <li><label>驳船目的港：</label><input type="text" value="HAIKOU" class="order_end_place"
+                                            readonly data_nation="" /></li>
+                                    <li><label>驳船中转港：</label><input type="text" value="HAIKOU"
+                                            class="order_transfer_place" readonly /></li>
+                                    <li><label><b>*</b>驳船开船日期：</label><input type="text" value="" id="order_sail_start"
+                                            style="display: inline;" class="order_sail_start" /></li>
+                                    <li><label>驳船截关日期：</label><input type="text" value="" id="order_sail_end"
+                                            style="display: inline;" class="order_sail_end" />
+                                    </li>
+                                    <li><label>中转方式：</label><select class="order_transfer">
+                                            <option class="内河转关">内河转关</option>
+                                            <option class="国际中转">国际中转</option>
+                                        </select></li>
+                                    <li><label>船司：</label><input type="text" value="BUSAN" class="order_express_Co" />
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lineCen">
+                        <div class="lineCen_l">
+                            <p>注：没有特别说明，即默认为非危险品货物</p>
+                            <ul class="current">
+                                <li><b>*</b>品名<span>(限英文，数字，每行35字符，回车为一行)</span></li>
+                                <li><textarea class="goodsName_name"></textarea></li>
+                            </ul>
+                            <ul>
+                                <li><b>*</b>唛头<span>(限英文，数字，每行35字符，回车为一行)</span></li>
+                                <li><textarea class="goodsName_brand"></textarea></li>
+                            </ul>
+                        </div>
+                        <div class="lineCen_r">
+                            <ul>
+                                <li><label><b>*</b>总货量KGS：</label><input type="text" value="0.000" class="sumWeight"
+                                        readonly /></li>
+                                <li><label><b>*</b>体积CBM：</label><input type="text" value="0.000" class="order_CBM" />
+                                </li>
+                                <li style="clear: both;"><label><b>*</b>件数：</label><input type="text" value="0.000"
+                                        class="order_goods_nums" /></li>
+                                <li><label>HS CODE：</label><input type="text" value="0.000" class="order_HS_CODE" />
+                                </li>
+                                <li><label>包装：</label><select class="order_packing">
+                                        <option>请选择</option>
+                                        <option value="AE">AEROSOL</option>
+                                        <option value="AM">AMPOULE, NON-PROTECTED</option>
+                                        <option value="AP">AMPOULE, PROTECTED</option>
+                                        <option value="AT">ATOMIZER</option>
+                                        <option value="BG">BAG</option>
+                                        <option value="FX">BAG, FLEXIBLE CONTAINER</option>
+                                        <option value="GY">BAG, GUNNY</option>
+                                        <option value="JB">BAG, JUMBO</option>
+                                        <option value="ZB">BAG, LARGE</option>
+                                        <option value="MB">BAG, MULTIPLY</option>
+                                        <option value="5M">BAG, PAPER</option>
+                                        <option value="XJ">BAG, PAPER, MULTI-WALL</option>
+                                        <option value="EC">BAG, PLASTIC</option>
+                                        <option value="XD">BAG, PLASTICS FILM</option>
+                                        <option value="44">BAG, POLYBAG</option>
+                                        <option value="43">BAG, SUPER BULK</option>
+                                        <option value="5L">BAG, TEXTILE</option>
+                                        <option value="XG">BAG, TEXTILE, SIFT PROOF</option>
+                                        <option value="XH">BAG, TEXTILE, WATER RESISTANT</option>
+                                        <option value="TT">BAG, TOTE</option>
+                                        <option value="5H">BAG, WOVEN PLASTIC</option>
+                                        <option value="XB">BAG, WOVEN PLASTIC, SIFT PROOF</option>
+                                        <option value="XC">BAG, WOVEN PLASTIC, WATER RESISTANT</option>
+                                        <option value="XK">BAG,PAPER,MULTIWALL,H2O RESIS</option>
+                                        <option value="XF">BAG,TEXT,NO INNER COAT/LINER</option>
+                                        <option value="XA">BAG,WOVEN PLSTC,NO INNER COAT/LIN</option>
+                                        <option value="BG">BAGS</option>
+                                        <option value="BL1">BALE</option>
+                                        <option value="BL">BALE, COMPRESSED</option>
+                                    </select></li>
+                                <li><label>货物属性：</label><select class="order_goods_attribute">
+                                        <option value="">请选择</option>
+                                        <option value="DANGEROUS GOODS">DANGEROUS GOODS</option>
+                                        <option value="GENERAL CARGO">GENERAL CARGO</option>
+                                        <option value="COLD PRODUCTS">COLD PRODUCTSS</option>
+                                        <option value="REFRIGERATE PRODUCTS">REFRIGERATE PRODUCTS</option>
+                                        <option value="FRESH PRODUCTS">FRESH PRODUCTS</option>
+                                        <option value="VALUABLE ITEMS">VALUABLE ITEMS</option>
+                                        <option value="FROZEN AND DANGEROUS CARGO">FROZEN AND DANGEROUS CARGO</option>
+                                    </select></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lineBot">
+                        <div class="lineBot_l">
+                            <p>注：如果需要，可以使用您自己的订单号来管理订单</p>
+                            <ul>
+                                <li>客户参考号</li>
+                                <li><input type="text" placeholder="请输入您的客户参考号" class="CustomerNnumber" /></li>
+                                <li>其他服务要求</li>
+                                <li><input type="checkbox" class="CustomerRequirements"
+                                        data_name="AFR" /><label>AFR</label><input type="checkbox"
+                                        class="CustomerRequirements" data_name="报关" /><label>报关</label><input
+                                        type="checkbox" class="CustomerRequirements" data_name="拖车" /><label>拖车</label>
+                                </li>
+                                <li>备注</li>
+                                <li><textarea class="order_remark"></textarea></li>
+                            </ul>
+                        </div>
+                        <div class="lineBot_r">
+                            <p>注：如有需要，请上传附件(可同时上传多个附件)</p>
+                            <ul>
+                                <li>上传附件</li>
+                                <li><label>文件类型：</label><select class="order_file_type">
+                                        <option value="订舱委托书">订舱委托书</option>
+                                        <option value="普通附件">普通附件</option>
+                                    </select></li>
+                                <li>
+                                    <button type="button" class="layui-btn layui-btn-normal" id="testList"
+                                        style="height:38px !important;width: 30% !important;">选择多文件</button>
+                                    <div class="layui-upload-list">
+                                        <table class="layui-table">
+                                            <thead>
+                                                <tr>
+                                                    <th>文件名</th>
+                                                    <th>大小</th>
+                                                    <th>状态</th>
+                                                    <th>操作</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="demoList">
+
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <button type="button" class="layui-btn layui-btn-warm" id="testListAction"
+                                        style="height:38px !important;width: 30% !important;">开始上传</button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="lineLast">
+                        <p>费用仅供参考，实际费用请以最终账单为准</p>
+                        <table class="table_sum">
+                            <tr>
+                                <th class="first">费用名称</th>
+                                <th>单位</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th class="last">金额</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="numbel">
+                        <div class="numbelL"><input type="checkbox" class="surePost" /><label>我同意</label><a
+                                href=" ">《在线订舱协议》</a></div>
+                        <div class="numbelR">合计<span class="usdSUM">USD:0</span><span class="cnySUM">CNY:0</span>
+                        </div>
+                    </div>
+                    <div class="butNum"><button class="current" onclick="ajaxPost()">提交</button></div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+        }
+
+        #Box {
+            overflow: hidden;
+        }
+
+        .top03 li a {
+            height: auto !important;
+        }
+
+        .top03 li span {
+            height: auto !important;
+        }
+
+        .lineCen {
+            height: auto !important;
+        }
+    </style>
+
+    <script src="foot.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/unveil-effects/unveil-effects.js"></script>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        layui.use(['table', 'layer', 'upload', 'laydate'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                upload = layui.upload,
+                $ = layui.$;
+            var laydate = layui.laydate;
+
+            //货好时间
+            laydate.render({
+                elem: '#order_goods_doneTime'
+                // , triangle: 'click' // 防止自动填充后时间一闪而过
+            });
+
+            //获取跳转传的值
+            var url = decodeURI(location.search); //获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+                var strs = str.split("&");
+                for (var i = 0; i < strs.length; i++) {
+                    theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+                }
+                // console.log(theRequest); //此时的theRequest就是我们需要的参数；   
+            }
+            $('.clause').val(theRequest.clause);
+            $('.username').attr('data_id', theRequest.fullBox_id);
+
+            var arr_start = [];
+            arr_start = theRequest.fullBox_start_place.split(' ');
+            //驳船起运港
+            $('.order_start_place').val(arr_start[1]);
+            $('.order_start_place').attr('data_nation', arr_start[0]);
+
+            var arr_end = [];
+            arr_end = theRequest.fullBox_end_place.split(' ');
+            //驳船目的港
+            $('.order_end_place').val(arr_end[1]);
+            $('.order_end_place').attr('data_nation', arr_end[0]);
+
+            var arr_tranfer = [];
+            arr_tranfer = theRequest.fullBox_transfer.split(' ');
+            //驳船中转港
+            $('.order_transfer_place').val(arr_tranfer[1]);
+
+            //页面只有一个箱型数量改变时，请求更新费用接口
+            $('.buy_num').each(function () {
+                $(this).bind('DOMNodeInserted', function (e) {
+                    computedFreight();
+                });
+            })
+
+            //箱型改变时，请求更新费用接口
+            $(".box_type").on("change", function () {
+                var change = $(this).is(':checked'); //checkbox选中判断
+                // console.log(change)
+                computedFreight();
+            })
+
+            var id = 1;
+            $('#add').on('click', function () {
+                var str = '';
+                str = str
+                    + '<ul class="smallBox">'
+                    + '<li class="anoth type" style="width: 70% !important;">'
+                    + '<label><b>*</b>箱型：</label><input type="radio" name="' + id + '" class="box_type" data_name="twentyGP" checked/><label>20GP</label><input type="radio" class="box_type" value=" " name="' + id + '"  data_name="fortyGP"/><label>40GP</label><input class="box_type" type="radio" value=" "  name="' + id + '" data_name="fortyHC"/><label>40HC</label><input class="box_type" type="radio" value=" "  name="' + id + '" data_name="fortyFiveHC"/><label>45HC</label>'
+                    + '</li>'
+                    + '<li style="width: 30% !important;"><label><b>*</b>箱量：</label><a href="JavaScript:;" id="btsub" onclick="subS(this)">-</a><span id="buy_num" class="buy_num">1</span><a href="JavaScript:;" id="btadd" onclick="addS(this)">+</a></li>'
+                    + '<li class="another"><label><b>*</b>货重(KGS):</label><input class="one" type="text" value=""  onblur="ajax_Money()"/><input type="checkbox" /><label>重柜</label><i onclick="del(this)">删除</i></li>'
+                    + '</ul>'
+                $('#Box').append(str);
+                id++;
+
+                //数量改变时，请求更新费用接口
+                $('.buy_num').each(function () {
+                    $(this).bind('DOMNodeInserted', function (e) {
+                        console.log($(this).text())
+                        computedFreight();
+                    });
+                })
+
+                //箱型改变时，请求更新费用接口
+                $(".box_type").on("change", function () {
+                    var change = $(this).is(':checked'); //checkbox选中判断
+                    // console.log(change)
+                    computedFreight();
+                })
+            })
+
+            //点击文本框“+”，“-”号，改变a标签的值
+            $(document).ready(function () {
+                $("#btsub").click(function () {
+                    var n = parseInt($("#buy_num").text());
+                    if (n > 1) {
+                        n -= 1;
+                        $("#buy_num").text(n);
+                    }
+
+                });
+
+                $("#btadd").click(function () {
+                    var n = parseInt($("#buy_num").text());
+                    n += 1;
+                    $("#buy_num").text(n);
+                });
+            });
+
+            //监听补料联系人checkbox
+            $('.same').change(function () {
+                var checked = $(this).prop('checked');
+                if (checked) {
+                    $('.usernameBU').val($('.username').val());
+                    $('.emailBU').val($('.email').val());
+                    $('.telBU').val($('.tel').val());
+                    $('.mobileBU').val($('.mobile').val());
+                }
+            });
+
+            //监听放舱联系人checkbox
+            $('.Fasame').change(function () {
+                var checked = $(this).prop('checked');
+                if (checked) {
+                    $('.usernameFa').val($('.usernameBU').val());
+                    $('.emailFa').val($('.emailBU').val());
+                    $('.telFa').val($('.telBU').val());
+                    $('.mobileFa').val($('.mobileBU').val());
+                }
+            });
+
+            //多文件列表示例
+            var demoListView = $('#demoList')
+                , uploadListIns = upload.render({
+                    elem: '#testList'
+                    , url: '/index/placeorder/uploadFile' //改成您自己的上传接口
+                    , accept: 'file'
+                    , multiple: true
+                    , auto: false
+                    , bindAction: '#testListAction'
+                    , choose: function (obj) {
+                        $('#testListAction').css('background', '#FFB800');
+                        var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                        //读取本地文件
+                        obj.preview(function (index, file, result) {
+                            var tr = $(['<tr id="upload-' + index + '" style="max-height:40px !important;">'
+                                , '<th>' + file.name + '</th>'
+                                , '<th>' + (file.size / 1024).toFixed(1) + 'kb</th>'
+                                , '<th data_path="" class="success_path">等待上传</th>'
+                                , '<th>'
+                                , '<button class="layui-btn layui-btn-xs demo-reload layui-hide" style="height:30px !important;">重传</button>'
+                                , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete" style="height:30px !important;margin-left:0 !important;">删除</button>'
+                                , '</th>'
+                                , '</tr>'].join(''));
+
+                            //单个重传
+                            tr.find('.demo-reload').on('click', function () {
+                                obj.upload(index, file);
+                            });
+
+                            //删除
+                            tr.find('.demo-delete').on('click', function () {
+                                delete files[index]; //删除对应的文件
+                                tr.remove();
+                                uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                            });
+
+                            demoListView.append(tr);
+                        });
+                    }
+                    , done: function (res, index, upload) {
+                        $('#testListAction').css('background', '#999');
+
+                        if (res.code == 0) { //上传成功
+                            var tr = demoListView.find('tr#upload-' + index)
+                                , tds = tr.children();
+                            tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                            tds.eq(2).attr('data_path', res.data);
+                            tds.eq(3).html('<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete" style="height:30px !important;margin-left:0 !important;">删除</button>'); //保留删除操作
+
+                            //删除
+                            tr.find('.demo-delete').on('click', function () {
+                                // delete files[index]; //删除对应的文件
+                                tr.remove();
+                                uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                            });
+
+                            return delete this.files[index]; //删除文件队列已经上传成功的文件
+                        }
+                        this.error(index, upload);
+
+                        //删除
+                        tr.find('.demo-delete').on('click', function () {
+                            // delete files[index]; //删除对应的文件
+                            tr.remove();
+                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                        });
+
+                    }
+                    , error: function (index, upload) {
+                        var tr = demoListView.find('tr#upload-' + index)
+                            , tds = tr.children();
+                        tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                        tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+                    }
+                });
+
+
+        })//---LAYUI
+
+        //点击删除
+        function del(e) {
+            $(e).parent().parent().remove();
+            computedFreight();
+        }
+
+        function addS(res) {
+            var n = parseInt($(res).siblings("#buy_num").text());
+            n += 1;
+            $(res).siblings("#buy_num").text(n);
+        }
+
+        function subS(res) {
+            var n = parseInt($(res).siblings("#buy_num").text());
+            if (n > 1) {
+                n -= 1;
+                $(res).siblings("#buy_num").text(n);
+            }
+        }
+
+        function showTWO(res) {
+            var num = parseInt(res);
+            return num.toFixed(2);
+        }
+
+        function ajax_Money() {
+            layui.use(['table', 'layer'], function () {
+                var table = layui.table,
+                    layer = layui.layer,
+                    $ = layui.$;
+                //请求费用明细
+                var num = 0;
+                $('.one').each(function () {
+                    var weightOne = $(this).val();
+                    if (weightOne == null || weightOne == undefined || weightOne == '') {
+                        // layer.msg('货重不能为空');
+                        return false;
+                    } else {
+                        num += Number(weightOne);
+                    }
+                })
+                $('.sumWeight').val(num);
+                $('.order_CBM').val((num * 0.516).toFixed(3));
+
+                //件数
+                var number = 0;
+                $('.buy_num').each(function () {
+                    var buy_num = $(this).text();
+                    number += Number(buy_num);
+                })
+                $('.order_goods_nums').val(number);
+
+                var goodsName = [];
+                var goodsNums = [];
+                $('.smallBox').each(function () {
+                    var checked = $(this).children('.type').children('input[type=radio]:checked').attr('data_name');
+                    var number = $(this).children().children('#buy_num').text();
+                    goodsName.push(checked);
+                    goodsNums.push(number);
+                })
+
+                for(var i=0;i<goodsName.length;i++){
+                    if (goodsName[i]==goodsName[i+1]){
+                        layer.msg('同种箱型只能选择一个');
+                        return false;
+                    }else{
+                        console.log(goodsName,goodsNums)
+                        Money(goodsName,goodsNums);
+                    }
+                }
+            });
+        }
+
+        //提交下单
+        function ajaxPost() {
+            layui.use(['table', 'layer'], function () {
+                var table = layui.table,
+                    layer = layui.layer,
+                    $ = layui.$;
+
+                var checked = $('.surePost').prop('checked');
+                if (!checked) {
+                    layer.msg('请勾选同意协议之后再提交', { time: 2000, shade: 0.4 });
+                } else {
+                    var order_reserve_person = $('.username').val();
+                    if (order_reserve_person == '' || order_reserve_person == null || order_reserve_person == undefined) {
+                        layer.msg('订舱联系人不能为空');
+                        return false;
+                    }
+                    var order_reserve_mail = $('.email').val();
+                    if (order_reserve_mail == '' || order_reserve_mail == null || order_reserve_mail == undefined) {
+                        layer.msg('订舱联系人邮箱不能为空');
+                        return false;
+                    }
+                    var order_reserve_mobile = $('.tel').val();
+                    if (order_reserve_mobile == '' || order_reserve_mobile == null || order_reserve_mobile == undefined) {
+                        layer.msg('订舱联系人电话不能为空');
+                        return false;
+                    }
+                    var order_reserve_phone = $('.mobile').val();
+                    if (order_reserve_phone == '' || order_reserve_phone == null || order_reserve_phone == undefined) {
+                        layer.msg('订舱联系人手机号不能为空');
+                        return false;
+                    }
+
+
+                    //封装联系人电话邮箱...成数组
+                    var linkman_name = [], linkman_email = [], linkman_mobile = [], linkman_phone = [];
+                    $('.linkman_name').each(function () {
+                        linkman_name.push($(this).val());
+                    })
+                    $('.linkman_email').each(function () {
+                        linkman_email.push($(this).val());
+                    })
+                    $('.linkman_mobile').each(function () {
+                        linkman_mobile.push($(this).val());
+                    })
+                    $('.linkman_phone').each(function () {
+                        linkman_phone.push($(this).val());
+                    })
+
+                    $('.one').each(function () {
+                        var weightOne = $(this).val();
+                        if (weightOne == null || weightOne == undefined || weightOne == '') {
+                            layer.msg('货重不能为空');
+                            return false;
+                        }
+                    })
+
+                    var order_getGoodsWay = $('input[name=choice] :checked').attr('data_name');
+                    var order_putGoodsWay = $('.method').val();
+                    var order_clause = $('.clause').val();
+                    if (order_clause == '' || order_clause == null || order_clause == undefined) {
+                        layer.msg('运输条款不能为空');
+                        return false;
+                    }
+                    var order_pay_type = $('input[name=pay] :checked').attr('data_name');
+
+                    var str = '';
+                    $('.CustomerRequirements').each(function () {
+                        var checked = $(this).prop('checked');
+                        if (checked) {
+                            str = str + $(this).attr('data_name') + ',';
+                        }
+                    })
+                    str = str.slice(0, str.length - 1);
+
+                    var order_client_num = $('.CustomerNnumber').val();
+                    var order_other_require = str;
+                    var order_remark = $('.order_remark').val();
+                    var order_SHIPPER = $('.SHIPPER').val();
+                    var order_CONSIGNEE = $('.CONSIGNEE').val();
+                    var order_NOTIFY = $('.NOTIFY').val();
+
+                    var order_start_place = $('.order_start_place').val();//起运地
+                    var order_end_place = $('.order_end_place').val();
+                    var order_transfer_place = $('.order_transfer_place').val();
+                    var order_sail_start = $('.order_sail_start').val();
+                    if (order_sail_start == '' || order_sail_start == null || order_sail_start == undefined) {
+                        layer.msg('驳船开船日期不能为空');
+                        return false;
+                    }
+                    var order_sail_end = $('.order_sail_end').val();
+                    var order_transfer = $('.order_transfer').val();
+                    var order_express_Co = $('.order_express_Co').val();
+
+                    var order_KGS = $('.sumWeight').val();
+                    var order_CBM = $('.order_CBM').val();
+                    var order_goods_nums = $('.order_goods_nums').val();
+                    var order_HS_CODE = $('.order_HS_CODE').val();
+                    var order_packing = $('.order_packing').val();
+                    var order_goods_attribute = $('.order_goods_attribute').val();
+                    var order_file_type = $('.order_file_type').val();
+
+                    //多文件附件地址拼接
+                    var pathArr = [];
+                    $('#demoList').children().each(function () {
+                        var path = $(this).children().eq(2).attr('data_path');
+                        var name = $(this).children().eq(2).text();
+                        if (name == "上传成功") {
+                            pathArr.push(path);
+                        }
+                    })
+                    // console.log(pathArr)
+
+                    var nameArr = [];
+                    var moneyArr = [];
+                    $('.clause_name').each(function () {
+                        nameArr.push($(this).text())
+                    })
+
+                    $('.clause_money').each(function () {
+                        moneyArr.push($(this).text())
+                    })
+
+                    var order_goods_doneTime = $('.order_goods_doneTime').val();
+
+                    var goodsName_name = $('.goodsName_name').val();//品名
+                    if (goodsName_name == '' || goodsName_name == null || goodsName_name == undefined) {
+                        layer.msg('品名不能为空');
+                        return false;
+                    }
+                    var goodsName_brand = $('.goodsName_brand').val();//唛头
+                    if (goodsName_brand == '' || goodsName_brand == null || goodsName_brand == undefined) {
+                        layer.msg('唛头不能为空');
+                        return false;
+                    }
+
+                    var order_middle_port = $('.order_middle_port').val();
+
+                    var arr = [], brr = [], crr = [];
+                    $('.smallBox').children().each(function () {
+                        var checked = $(this).children('.box_type').filter(':checked').attr('data_name');
+                        if (checked != 'null' && checked != "" && checked != undefined) {
+                            arr.push(checked);
+                        }
+
+                        var buy_num = $(this).children('#buy_num').text();
+                        if (buy_num != 'null' && buy_num != "" && buy_num != undefined) {
+                            brr.push(buy_num);
+                        }
+
+                        var weightOne = $(this).children('.one').val();
+                        if (weightOne != 'null' && weightOne != "" && weightOne != undefined) {
+                            crr.push(weightOne);
+                        }
+                    })
+
+                    for(var i=0;i<arr.length;i++){
+                        if (arr[i]==arr[i+1]){
+                            layer.msg('同种箱型只能选择一个');
+                            return false;
+                        }
+                    }
+
+                    //合计美元
+                    var billArrUSD = [];
+                    var bill_money_USD = $('.usdSUM').text();
+                    billArrUSD = bill_money_USD.split(':');
+
+                    //合计人民币
+                    var billArrCNY = [];
+                    var bill_money_CNY = $('.cnySUM').text();
+                    billArrCNY = bill_money_CNY.split(':');
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/index/Placeorder/placeOrder",
+                        data: {
+                            linkman_name: linkman_name,//联系人
+                            linkman_email: linkman_email,//联系人邮箱
+                            linkman_mobile: linkman_mobile,//联系人电话
+                            linkman_phone: linkman_phone,//联系人手机号
+                            linkman_type: [1, 2, 3],//联系人类型
+
+                            order_getGoodsWay: order_getGoodsWay,//提单方式：0MB/L，1HB/L
+                            order_putGoodsWay: order_putGoodsWay,//放货方式：0正本，1电放
+                            order_clause: order_clause,//付款方式
+                            order_pay_type: order_pay_type,//运输条款
+
+                            order_client_num: order_client_num,//客户参考号
+                            order_other_require: order_other_require,//其他服务要求
+                            order_remark: order_remark,
+                            order_SHIPPER: order_SHIPPER,//SHIPPER
+                            order_CONSIGNEE: order_CONSIGNEE,//CONSIGNEE
+                            order_NOTIFY: order_NOTIFY,//NOTIFY
+
+                            order_start_place: order_start_place,//驳船起运港
+                            order_end_place: order_end_place,//驳船目的港
+                            order_sail_end: order_sail_end,//驳船截关日期
+                            order_transfer: order_transfer,//中转方式
+                            order_sail_start: order_sail_start,//驳船开船日期
+                            order_express_Co: order_express_Co,//运输公司
+                            order_transfer_place: order_transfer_place,//驳船中转港
+
+                            order_nation_start: $('.order_start_port').attr('data_nation'),//发货国家
+                            order_nation_end: $('.order_end_port').attr('data_nation'),//目的国家
+
+                            bill_money_USD: billArrUSD[1],//总金额美元
+                            bill_money_CNY: billArrCNY[1],//总金额人民币
+
+                            order_KGS: order_KGS,//总货量KGS
+                            order_CBM: order_CBM,//体积CBM
+                            order_goods_nums: order_goods_nums,//件数
+                            order_HS_CODE: order_HS_CODE,//HS CODE
+                            order_packing: order_packing,//包装
+                            order_goods_attribute: order_goods_attribute,//货物属性
+                            order_file_type: order_file_type,//附件类型
+                            order_file: pathArr,//附件
+                            order_goods_doneTime: order_goods_doneTime,//货好时间
+
+                            box_type: arr,//箱型
+                            box_num: brr,//箱量
+                            box_weight: crr,//货重
+
+                            clause_name: nameArr,//订单附加费名称
+                            clause_money: moneyArr,//订单附加费价格
+
+                            goodsName_name: goodsName_name,//品名
+                            goodsName_brand: goodsName_brand,//唛头
+
+                            order_freight_type: 1
+
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        dataType: "JSON",
+                        success: function (msg) {
+                            // console.log(msg)
+                            if (msg.code == 0) {
+                                layer.msg('下单成功', { shade: 0.4 }, function () {
+                                    location.href = "./admin_center/manageFLC.html";
+                                });
+                            } else {
+                                layer.msg(msg.msg)
+                            }
+                        }
+                        , error: function (e) {
+                            layer.msg('网络故障')
+                        }
+                    });
+                }
+            });
+        }
+
+        //计算运费
+        function computedFreight() {
+            //请求费用明细
+            var num = 0;
+            $('.one').each(function () {
+                var weightOne = $(this).val();
+                if (weightOne == null || weightOne == undefined || weightOne == '') {
+                    // layer.msg('货重不能为空');
+                    // return false;
+                } else {
+                    num += Number(weightOne);
+                }
+            })
+            $('.sumWeight').val(num);
+            $('.order_CBM').val((num * 0.516).toFixed(3));
+
+            //件数
+            var number = 0;
+            $('.buy_num').each(function () {
+                var buy_num = $(this).text();
+                number += Number(buy_num);
+            })
+            $('.order_goods_nums').val(number);
+
+            var goodsName = [];
+            var goodsNums = [];
+            $('.smallBox').each(function () {
+                var checked = $(this).children('.type').children('input[type=radio]:checked').attr('data_name');
+                var number = $(this).children().children('#buy_num').text();
+                goodsName.push(checked);
+                goodsNums.push(number);
+            })
+            // console.log(goodsName)
+            // console.log(goodsNums)
+            for(var i=0;i<goodsName.length;i++){
+                if (goodsName[i]==goodsName[i+1]){
+                    layer.msg('同种箱型只能选择一个');
+                    return false;
+                }else{
+                    Money(goodsName,goodsNums);
+                }
+            }
+        }
+
+        function Money(goodsName=[],goodsNums=[]) {
+            var twentyGPNum = 0;
+            var fortyGPNum = 0;
+            var fortyHCNum = 0;
+            var fortyFiveHCNum = 0;
+            $('.type').each(function () {
+                var checked = $(this).children('input[type=radio]:checked').attr('data_name');
+                var number = $(this).siblings().eq(0).children().eq(2).text();
+                if(checked=='twentyGP'){
+                    twentyGPNum = Number(number);
+                }
+                if(checked=='fortyGP'){
+                    fortyGPNum = Number(number);
+                }
+                if(checked=='fortyHC'){
+                    fortyHCNum = Number(number);
+                }
+                if(checked=='fortyFiveHC'){
+                    fortyFiveHCNum = Number(number);
+                }
+            })
+
+            //请求费用
+            $.ajax({
+                type: "POST",
+                url: "/index/Calculatefreight/calculateFullBox",
+                data: {
+                    freightId: $('.username').attr('data_id'),
+                    fullBoxId: $('.username').attr('data_id'),
+                    twentyGPNum: twentyGPNum,
+                    fortyGPNum: fortyGPNum,
+                    fortyHCNum: fortyHCNum,
+                    fortyFiveHCNum: fortyFiveHCNum,
+                    goodsName: goodsName,
+                    goodsNums: goodsNums,
+                    freightType: 1
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    // console.log(msg)
+                    if (msg.code == 0) {
+                        var str = '';
+                        str = str
+                            + '<tr>'
+                            + '<th class="first">费用名称</th>'
+                            + '<th>单位</th>'
+                            + '<th>单价</th>'
+                            + '<th>数量</th>'
+                            + '<th class="last">金额</th>'
+                            + '</tr>'
+
+                            + '<tr>'
+                            + '<td class="clause_name">运费</td>'
+                            + '<td>CNY</td>'
+                            + '<td>'+msg.data.fullBoxFreight+'</td>'
+                            + '<td>1</td>'
+                            + '<td class="clause_money">'+msg.data.fullBoxFreight+'</td>'
+                            + '</tr>'
+
+                        if (msg.data.fixed) {
+                            if (msg.data.fixed.length > 0) {
+                                for (var i = 0; i < msg.data.fixed.length; i++) {
+                                    str = str
+                                        + '<tr>'
+                                        + '<td class="clause_name">' + msg.data.fixed[i].clause_name + '</td>'
+                                        + '<td>' + msg.data.fixed[i].clause_unit + '</td>'
+                                        + '<td>' + msg.data.fixed[i].clause_money + '</td>'
+                                        + '<td>1</td>'
+                                        + '<td class="clause_money">' + msg.data.fixed[i].clause_money + '</td>'
+                                        + '</tr>'
+                                }
+                            }
+                        }
+                        //20GP
+                        if (msg.data.twentyGP) {
+                            for (var i = 0; i < msg.data.twentyGP.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td class="clause_name">20GP' + msg.data.twentyGP[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.twentyGP[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.twentyGP[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.twentyGP[i].num + '</td>'
+                                    + '<td class="clause_money">' + msg.data.twentyGP[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+                        //40GP
+                        if (msg.data.fortyGP) {
+                            for (var i = 0; i < msg.data.fortyGP.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td  class="clause_name">40GP' + msg.data.fortyGP[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.fortyGP[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.fortyGP[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.fortyGP[i].num + '</td>'
+                                    + '<td  class="clause_money">' + msg.data.fortyGP[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+                        //40HC
+                        if (msg.data.fortyHC) {
+                            for (var i = 0; i < msg.data.fortyHC.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td  class="clause_name">40HC' + msg.data.fortyHC[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.fortyHC[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.fortyHC[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.fortyHC[i].num + '</td>'
+                                    + '<td  class="clause_money">' + msg.data.fortyHC[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+                        //45HC
+                        if (msg.data.fortyFiveHC) {
+                            for (var i = 0; i < msg.data.fortyFiveHC.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td  class="clause_name">45HC' + msg.data.fortyFiveHC[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.fortyFiveHC[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.fortyFiveHC[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.fortyFiveHC[i].num + '</td>'
+                                    + '<td  class="clause_money">' + msg.data.fortyFiveHC[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+
+                        $('.usdSUM').text('USD:' + msg.data.USD_total + '');
+                        $('.cnySUM').text('CNY:' + msg.data.CNY_total + '');
+
+                        $('.table_sum').html(str);
+                        layer.msg('费用明细已更新');
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+        }
+    
+    </script>
+
+</body>
+
+</html>

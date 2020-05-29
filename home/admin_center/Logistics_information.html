@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+ <!-- //公共头部 -->
+ <script src="./head.js"></script>
+
+<script type="text/javascript" src="js/jquery18.js"></script>
+<script src="js/unveil-effects.js"></script>
+<script type="text/javascript">
+$(function(){
+	//查询模块-START
+	var tabOpts = {};
+		tabOpts.curIndex;	
+		tabOpts.tabs = $(".aside-lf-content");//焦点层	
+		tabOpts.contents = $(".content");//显示内容
+		
+		tabOpts.show = function(index){
+			//当前，return
+			if(tabOpts.curIndex == index) return;	
+			//隐藏上一个index
+			if(tabOpts.curIndex >= 0){
+				$(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+				$(tabOpts.contents.get(tabOpts.curIndex)).hide();
+			}
+			
+			$(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+			$(tabOpts.contents.get(index)).show();
+			//改变当前index
+			tabOpts.curIndex = index;
+		}	
+		//数字单击事件
+		tabOpts.tabs.click(function(){
+			tabOpts.show(tabOpts.tabs.index(this));
+		});		
+		//开始显示
+		tabOpts.show(0);
+	//查询模块-END
+})
+</script> 
+  
+
+<section class="main"  style="background:#f7f8fa;padding:33px 0">
+	<div class="container">
+ <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+ <!--right           =                             -->       
+        <div class="cp1_lr cplLR" data-effect="slide-right">  	                   
+           <!-- <div class="bot"></div>-->
+            <div class="express">
+           		<h2>物流信息</h2>	
+                <div class="expressNav">
+                	<div class="navLine">
+                    	<span></span><span class="spanBg"></span><span class="one"></span><span class="spanBg"></span><span class="two"></span><span class="spanBg"></span><span class="three"></span><span class="spanBg"></span><span class="four"></span>
+                    </div>
+                	<ul>
+                    <li>等待装箱</li>
+                    <li class="one">飞速运输</li>
+                    <li>到达目的地</li>
+                    <li>派送中</li>
+                    <li class="current">已签收</li>
+                    </ul>
+                    <div class="clearF"></div>
+                </div>
+                <div class="exBot">
+                	<div>
+                    	<label>运单号：</label><span>9898179448101</span><label>物流公司：</label><span>邮政国际快递</span><label>客服电话：</label><span>142563254</span>
+                    </div>
+                   	<div>
+                    	<label>卖家昵称：</label><span>红色苹果溪水</span><a href=" ">和我联系</a>
+                    </div>
+                    <div>
+                    	<label>发货地址：</label><label>山东省青岛市平度市里几首</label><span class="current">320256</span><span>尚文</span><span>15945789856</span>
+                    </div>
+                    <div>
+                    	<label>收货地址：</label><label>江苏省苏州市苏省苏州市井</label><span class="current">320256</span><span>尚文</span><span>15945789856</span>
+                    </div>
+                </div>
+                <div class="expressCon">
+                	<ul class="conList">
+                    	<li class="borline">
+                            <span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>商品已经下单</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>您的订单开始处理</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>您的订单待配货</span>
+                        </li>
+                         <li>
+                         	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>您的包裹已出库</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>等待揽收中</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>【山东平度第三营业部】已收件,揽投员:郭朋朋</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>离开【山东平度第三营业部】,下一站【青岛航空处理中心】</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>到达【青岛航空处理中心】</span>
+                        </li>
+                        <li>
+                            <span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周五</span>
+                            <span>14:25:33</span>
+                            <span>离开【青岛航空处理中心】,下一站【南京中心局邮件处理中心】</span>
+                        </li>
+                        <li>
+                            <span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周六</span>
+                            <span>14:25:33</span>
+                            <span>到达【南京中心局邮件处理中心】（经转）</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>离开【南京中心局邮件处理中心】,下一站【苏州邮件处理分局】（经转）</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>到达【苏州邮件处理分局】</span>
+                        </li>
+                        <li>
+                            <span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周日</span>
+                            <span>14:25:33</span>
+                            <span>离开【苏州邮件处理分局】,下一站【郭巷支局】</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>【郭巷支局】代收入库</span>
+                        </li>
+                        <li>
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>【郭巷支局】安排投递,投递员:曹久峰,电话:13606210405,揽投部电话:0512-65961910</span>
+                        </li>
+                        <li class="current">
+                        	<span class="bold">2020-03-05</span>
+                            <span class="bold boldBg">周四</span>
+                            <span>14:25:33</span>
+                            <span>已签收,本人签收 :王成龙,投递员:曹久峰,电话：<b>13606210405</b></span>
+                        </li>
+                    </ul>
+                </div>
+           </div>
+           <!-- <div class="bot"></div>-->
+        </div>       
+    </div>
+</section>
+ 
+
+ <style>
+ 	.lj{background:#222;color:#fff;padding-top:2%}
+	.lj ul li{width:16%;float:left;font-size:12px;color:#fff;list-style:none;}
+	.lj ul li h4{color:#fff;font-size:14px;}
+	.lj ul li a{display:block;color:rgba(255,255,255,.8);margin:3% 0;text-decoration: none;}
+ </style>
+
+ <!-- //公共底部 -->
+ <script src="./foot.js"></script>
+ <script src="layui/layui.js"></script>
+
+ <script>
+     // current
+     $('li').each(function () {
+         var text = $(this).children().text();
+         if (text == '我的物流') {
+             $(this).addClass('current');
+         }
+     })
+</script>
+
+</body>
+</html>

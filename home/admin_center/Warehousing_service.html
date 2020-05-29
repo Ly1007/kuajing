@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船期查询</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <!-- //公共头部 -->
+    <script src="./head.js"></script>
+
+    <script type="text/javascript" src="js/jquery18.js"></script>
+    <script src="js/unveil-effects.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //查询模块-START
+            var tabOpts = {};
+            tabOpts.curIndex;
+            tabOpts.tabs = $(".aside-lf-content");//焦点层	
+            tabOpts.contents = $(".content");//显示内容
+
+            tabOpts.show = function (index) {
+                //当前，return
+                if (tabOpts.curIndex == index) return;
+                //隐藏上一个index
+                if (tabOpts.curIndex >= 0) {
+                    $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+                    $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+                }
+
+                $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+                $(tabOpts.contents.get(index)).show();
+                //改变当前index
+                tabOpts.curIndex = index;
+            }
+            //数字单击事件
+            tabOpts.tabs.click(function () {
+                tabOpts.show(tabOpts.tabs.index(this));
+            });
+            //开始显示
+            tabOpts.show(0);
+            //查询模块-END
+        })
+    </script>
+
+    <section class="main" style="background:#f7f8fa;padding:33px 0">
+        <div class="container">
+            <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right           =                             -->
+            <div class="cp1_lr cplLR" data-effect="slide-right">
+                <div class="orderCon receiptTit">
+                    <h2 style="border-bottom:2px solid #0a80d7;">仓储服务</h2>
+                    <div class="house">
+                        <h4>选择仓库</h4>
+                        <ul class="warehouse">
+
+                        </ul>
+                    </div>
+                    <div class="house">
+                        <h4>货物状态</h4>
+                        <ul class="goods_status">
+                            <li class="current"><a href="javascript:;" onclick="goods_status(this)">全部</a></li>
+                            <li><a href="javascript:;" onclick="goods_status(this)">未出货</a></li>
+                            <li><a href="javascript:;" onclick="goods_status(this)">仓储中</a></li>
+                            <li><a href="javascript:;" onclick="goods_status(this)">出货中</a></li>
+                            <li><a href="javascript:;" onclick="goods_status(this)">等待揽收</a></li>
+                            <li><a href="javascript:;" onclick="goods_status(this)">已到货</a></li>
+                            <li><a href="javascript:;" onclick="goods_status(this)">问题件</a></li>
+                        </ul>
+                    </div>
+                    <div style="width:0;height:0;clear:both;"></div>
+                    <div class="houseSer">
+                        <div class="house">
+                            <ul class="delivery_type">
+                                <li class="currentTit">
+                                    <h4>送货类型</h4>
+                                </li>
+                                <li class="current"><a href="javascript:;" onclick="delivery_type(this)">全部</a></li>
+                                <li><a href="javascript:;" onclick="delivery_type(this)">快递</a></li>
+                                <li><a href="javascript:;" onclick="delivery_type(this)">自配送</a></li>
+                                <li><a href="javascript:;" onclick="delivery_type(this)">上门取货</a></li>
+                            </ul>
+                        </div>
+                        <div class="house" style="width:46%;">
+                            <ul>
+                                <li class="currentTit">
+                                    <h4>入库时间</h4>
+                                </li>
+                                <li class="current"><input type="text" placeholder="2019-03-21" id="test1"
+                                        class="time_start" /></li>
+                                <li style="margin-right:4%;"><label>~</label></li>
+                                <li class="current"><input type="text" placeholder="2020-03-21" id="test2"
+                                        class="time_end" /></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div style="width:0;height:0;clear:both;"></div>
+                    <div class="lastTit">
+                        <ul>
+                            <li class="long"><input type="text" placeholder="请输入品名、运单号、收件人姓名、发件人姓名、备注"
+                                    class="searchInput" /></li>
+                            <li><button class="search_ajax" type="button"><b></b></button></li>
+                        </ul>
+                    </div>
+                    <div style="width:0;height:0;clear:both;"></div>
+                    <!--问题订单          =                             -->
+
+                    <div class="center center01">
+                        <table cellpadding="0" cellspacing="0" style="margin-bottom:0;" class="tableBox" data_count="">
+
+                        </table>
+                    </div>
+
+                    <style>
+                        .serviceLine ul li {
+                            float: left;
+                            width: 30px;
+                            font-size: 16px;
+                        }
+
+                        .serviceLine ul li a:hover {
+                            color: rgb(248, 9, 9);
+                            font-weight: bold;
+                            text-decoration: none;
+                        }
+
+                        .serviceLine ul {
+                            float: right;
+                        }
+
+                        .li_current {
+                            background: #0A81D7;
+                            border-radius: 4px;
+                        }
+
+                        .li_current a {
+                            color: #fff;
+
+                        }
+                    </style>
+
+                    <div class="serviceLf"><select>
+                            <option>条数</option>
+                            <option>10</option>
+                            <option>30</option>
+                            <option>50</option>
+                            <option>100</option>
+                        </select><button class="checkAll">全选</button><button class="current Air" onclick="ajax_Air()">选中发空运</button><button
+                            class="current">选中发海运拼箱</button><button class="current dianshang"
+                            onclick="ajax_package()">选中发电商小包</button>
+                    </div>
+                    <div class="scatter" style="padding:2% 0;">
+                        <div class="scatterL">共<span class="current count">988</span>件，总重量<span
+                                class="current">1200</span>KG，总体积<span class="current">2011</span>CMB</div>
+                        <div class="serviceLine">
+                            <ul class="serviceLineUl">
+                                <li>
+                                    <a href="#" aria-label="Left" id="Left">
+                                        <span aria-hidden="true" style="padding: 0 25%;">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li class="a li_current" style=""><a href="#" class="pageSel">1</a></li>
+                                <li class="a"><a href="#" class="pageSel">2</a></li>
+                                <li class="a"><a href="#" class="pageSel">3</a></li>
+                                <li class="a"><a href="#" class="pageSel">4</a></li>
+                                <li class="a"><a href="#" class="pageSel">5</a></li>
+                                <li>
+                                    <a href="javascript:;" aria-label="Next" id="next" onclick="next(this)">
+                                        <span aria-hidden="true" style="padding: 0 25%;">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <!-- <a href=" ">首页</a>第<span class="page">8</span>页<a class="current" href=" ">尾页</a>到第<input type="text" value="19" />页<button>跳转</button>	 -->
+                        </div>
+                    </div>
+                    <div style="width:0;height:0;clear:both;"></div>
+
+                    <!--问题订单          =                             -->
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- //公共底部 -->
+    <script src="./foot.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        // current
+        $('li').each(function () {
+            var text = $(this).children().text();
+            if (text == '我的仓库') {
+                $(this).addClass('current');
+            }
+        });
+
+        //仓库
+        $.ajax({
+            url: "/index/warehouse/queryWarehouse",
+            data: {},
+            dataType: "json",
+            success: function (resultData) {
+                // console.log(resultData);
+                if (resultData.code == 0) {
+                    //清空赋值
+                    $('.warehouse').empty();
+                    $.each(resultData.data, function (index, item) {
+                        //赋值
+                        $('.warehouse').append('<li><a href="javascript:;" onclick="select_house(this)">' + item.warehouse_name + '</a></li>')
+                    });
+                } else {
+                    $('.warehouse').append(new Option("暂无数据", ""));
+                }
+                $('.warehouse').children().eq(0).addClass('current');
+            }
+        })
+
+        layui.use(['table', 'layer', 'upload', 'laydate'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                upload = layui.upload,
+                $ = layui.$;
+            var laydate = layui.laydate;
+
+            //常规用法
+            laydate.render({
+                elem: '#test1'
+            });
+
+            //常规用法
+            laydate.render({
+                elem: '#test2'
+            });
+
+            ajax_table();
+
+            //点击全部勾选按钮，选中全部checkbox
+            var flag = true;
+            $('.checkAll').on('click', function () {
+                if (flag) {
+                    $('.checkRow').each(function () {
+                        $(this).prop('checked', true);
+                    });
+                } else {
+                    $('.checkRow').each(function () {
+                        $(this).prop('checked', false);
+                    });
+                }
+                flag = !flag;
+            })
+
+            $('.search_ajax').on('click', function () {
+                var goods_warehouse;
+                $('.warehouse').children().each(function () {
+                    if ($(this).hasClass('current')) {
+                        goods_warehouse = $(this).text();
+                    }
+                })
+                $('.goods_status').children().each(function () {
+                    if ($(this).hasClass('current')) {
+                        goods_status = $(this).text();
+                    }
+                })
+                $('.delivery_type').children().each(function () {
+                    if ($(this).hasClass('current')) {
+                        goods_send_type = $(this).text();
+                    }
+                })
+                var time_start = $('.time_start').val();
+                var time_end = $('.time_end').val();
+                var searchInput = $('.searchInput').val();
+                ajax_table(goods_warehouse, goods_status, goods_send_type, time_start, time_end, searchInput, 1)
+            })
+
+        });//layui
+
+        function ajax_table(goods_warehouse = '', goods_status = '', goods_send_type = '', time_start = '', time_end = '', searchInput = '', page = '1') {
+        
+            $.ajax({
+                type: "POST",
+                url: "/index/warehouse/myWarehouse",
+                data: {
+                    goods_warehouse: goods_warehouse,
+                    goods_status: goods_status,
+                    goods_send_type: goods_send_type,
+                    time_start: time_start,
+                    time_end, time_end,
+                    searchInput: searchInput,
+                    page: page,
+                    limit: 10
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    // console.log(msg)
+                    if (msg.code == 0) {
+
+                        var str = '';
+                        str = str
+                            + '<tr class="current">'
+                            + '<th></th> '
+                            + '<th>序号</th> '
+                            + '<th>品名</th>'
+                            + '<th>送货类型</th>'
+                            + '<th>国内运单号</th>'
+                            + '<th>入库时间</th>'
+                            + '<th>重量</th> '
+                            + '<th>体积</th>'
+                            + '<th>状态</th>'
+                            + '<th>SKU码</th>'
+                            + '<th>操作</th>  '
+                            + '</tr>'
+
+                        var status_str = '';
+                        for (var i = 0; i < msg.data.length; i++) {
+                            if (msg.data[i].status == '4') {
+                                status_cm = '<b class="num">' + msg.data[i].goods_volume + 'CBM</b><span class="numCon">20*98*9</span>';
+                            }
+                            if(msg.data[i].status == 1){
+                                status_str = '<a class="no" href=" ">未出货</a>';
+                            }
+                            if(msg.data[i].status == 2){
+                                status_str = '<a href=" ">仓储中</a>';
+                            }
+                            if(msg.data[i].status == 3){
+                                status_str = '<a class="go" href=" ">出库中</a>';
+                            }
+                            if(msg.data[i].status == 4){
+                                status_str = '<a class="wait" href=" ">待揽收</a>';
+                            }
+                            if(msg.data[i].status == 5){
+                                status_str = '<a class="over" href=" ">已到货</a>';
+                            }
+                            if(msg.data[i].status == 6){
+                                status_str = '<a class="pro" href=" ">问题件</a>';
+                            }
+
+                            if(msg.data[i].goods_weight==null){
+                                weight = '/';
+                            }else{
+                                weight = msg.data[i].goods_weight+'KGS';
+                            }
+
+                            var status_cm = '<b class="num">' + msg.data[i].goods_volume + 'CBM</b>';
+                            if(msg.data[i].goods_volume==null){
+                                status_cm = '/';
+                            }
+
+                            str = str
+                                + '<tr style="background:#fff;">'
+                                + '<td><input type="checkbox"  class="checkRow"/></td>'
+                                + '<td>' + msg.data[i].goods_id + '</td>'
+                                + '<td>' + msg.data[i].goodsName_name + '<span class="numCon">￥' + msg.data[i].goods_total_price + '（共' + msg.data[i].goods_total_num + '件）</span></td>'
+                                + '<td>快递</td>'
+                                + '<td><b>' + msg.data[i].goods_expressage_CO + '</b>' + msg.data[i].goods_expressage_num + '</td>'
+                                + '<td>' + msg.data[i].goods_inStorage_date + '</td>'
+                                + '<td>' + weight + '</td>'
+                                + '<td>' + status_cm + '</td>'
+                                + '<td class="cli">'+status_str+'</td>'
+                                + '<td>' + msg.data[i].goods_SKU_num + '</td>'
+                                + '<td><a class="anotherBg" href=' + "Package_details.html?goods_id=" + '' + msg.data[i].goods_id + '>详情</a></td>'
+                                + '</tr>'
+                        }
+
+                        $('.tableBox').html(str);
+                        $('.count').text(msg.count);
+
+                        if (Number(msg.count) <= 10) {
+                            // $('.pageNumber').text('1');
+                            var str = '';
+                            str = str
+                                + '<li>'
+                                + '<a href="#" aria-label="Left" id="Left">'
+                                + '<span aria-hidden="true" style="padding: 0 25%;">&laquo;</span>'
+                                + '</a>'
+                                + '</li>'
+                                + '<li class="a li_current"><a href="#" class="pageSel">1</a></li>'
+                                + '<li>'
+                                + '<a href="javascript:;" aria-label="Next" id="next" onclick="next(this)">'
+                                + '<span aria-hidden="true" style="padding: 0 25%;">&raquo;</span>'
+                                + '</a>'
+                                + '</li>'
+                            $('.serviceLineUl').html(str);
+
+                        } else {
+                            var num = Number(msg.count);
+                            //判断能否被整除
+                            const isDivisible = (dividend, divisor) => dividend % divisor === 0;
+                            var res = isDivisible(num, 10); // true
+                            if (res) {
+                                page = num / 10;
+                                var pageStr = '', pagestr = "";
+                                for (var i = 1; i <= page; i++) {
+                                    pagestr = pagestr
+                                        + '<li class="a"><a href="#" class="pageSel" onclick="location(this)">' + i + '</a></li>'
+                                }
+                                pageStr = pageStr
+                                    + '<li>'
+                                    + '<a href="#" aria-label="Left" id="Left">'
+                                    + '<span aria-hidden="true" style="padding: 0 25%;">&laquo;</span>'
+                                    + '</a>'
+                                    + '</li>'
+                                    + pagestr
+                                    + '<li>'
+                                    + '<a href="javascript:;" aria-label="Next" id="next" onclick="next(this)">'
+                                    + '<span aria-hidden="true" style="padding: 0 25%;">&raquo;</span>'
+                                    + '</a>'
+                                    + '</li>'
+
+                                $('.serviceLineUl').html(pageStr);
+
+                            } else {
+                                var page = parseInt(num / 10);
+                                page = Math.ceil(page);  //5.33 向上取整，结果为6
+                                var pageStr = '', pagestr = "";
+                                for (var i = 1; i <= page; i++) {
+                                    pagestr = pagestr
+                                        + '<li class="a"><a href="#" class="pageSel" onclick="self_skip(this)">' + i + '</a></li>'
+                                }
+                                pageStr = pageStr
+                                    + '<li>'
+                                    + '<a href="#" aria-label="Left" id="Left">'
+                                    + '<span aria-hidden="true" style="padding: 0 25%;">&laquo;</span>'
+                                    + '</a>'
+                                    + '</li>'
+                                    + pagestr
+                                    + '<li>'
+                                    + '<a href="javascript:;" aria-label="Next" id="next" onclick="next(this)">'
+                                    + '<span aria-hidden="true" style="padding: 0 25%;">&raquo;</span>'
+                                    + '</a>'
+                                    + '</li>'
+
+                                $('.serviceLineUl').html(pageStr);
+                            }
+                        }
+
+
+
+                        $('.pageSel').parent().each(function () {
+                            $(this).addClass('li_current');
+                            return false;
+                        });
+
+                        // $('.CNYisPay').html('￥'+msg.total_money.CNY_pay);
+                        // $('.USDisPay').html('$'+msg.total_money.USD_pay);
+                        // $('.CNYnoPay').html('￥'+msg.total_money.CNY_noPay);
+                        // $('.USDnoPay').html('$'+msg.total_money.USD_noPay);
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+        }
+
+        function showPayStatus(res) {
+            if (res == 0) {
+                return '<a class="wait" href=" ">未付款</a>';
+            }
+            if (res == 1) {
+                return '<a class="over" href=" ">已付款</a>';
+            }
+        }
+
+        function leftPage() {
+            var page_a = $('.page_a').text();
+            if (Number(page_a) > 1) {
+                var page = Number(page_a) - 1;
+                ajax_table('', '', '', '', '', '', '', '', page);
+                $('.page_a').text(page)
+            } else {
+                layer.msg('当前是首页', { time: 1000 });
+            }
+        }
+
+        function rightPage() {
+            var page_a = $('.page_a').text();
+            // console.log(page_a)
+            var count = $('.tableBox').attr('data_count');
+            if (Number(page_a + 1) < Number(count)) {
+                var page = Number(page_a) + 1;
+                ajax_table('', '', '', '', '', '', '', '', page);
+                $('.page_a').text(page)
+            } else {
+                layer.msg('当前是末页', { time: 1000 });
+            }
+        }
+
+        //切换选择仓库
+        function select_house(res) {
+            $('.warehouse').children().removeClass('current');
+            $(res).parent().addClass('current');
+        }
+
+        function goods_status(res) {
+            $('.goods_status').children().removeClass('current');
+            $(res).parent().addClass('current');
+        }
+
+        function delivery_type(res) {
+            $('.delivery_type').children().removeClass('current');
+            $(res).parent().addClass('current');
+        }
+
+        function next(res) {
+            var text;
+            $('.pageSel').siblings();
+            $('.pageSel').parent().each(function () {
+                var cls = $(this).hasClass('li_current');
+                if (cls) {
+                    //true
+                    text = $(this).children().text();
+                    text = Number(text);
+                    text++;
+                    ajax_table('', '', '', '', '', '', page = "" + text + "")
+                    return false;
+                }
+            });
+        }
+
+        function self_skip(res) {
+            var page = Number($(res).text());
+            ajax_table('', '', '', '', '', '', page = "" + page + "")
+        }
+
+        function ajax_package() {
+            var idArr = [];
+            var nameArr = [];
+            $('.checkRow').each(function () {
+                var checked = $(this).prop('checked');
+                // console.log(checked);
+                if (checked) {
+                    var name = $(this).parent().parent().children().eq(2).text();
+                    var id = $(this).parent().parent().children().eq(1).text();
+                    idArr.push(id);
+                    nameArr.push(name);
+                }
+            })
+            if(nameArr.length==0){
+                layer.msg('请勾选要发货的订单')
+                return false;
+            }
+            // console.log(idArr)
+            // console.log(nameArr)
+            location.href="./order.html?name="+encodeURI(nameArr)+"&idArr="+encodeURI(idArr);
+        }
+
+        // function ajax_Air() {
+        //     var idArr = [];
+        //     var nameArr = [];
+        //     $('.checkRow').each(function () {
+        //         var checked = $(this).prop('checked');
+        //         // console.log(checked);
+        //         if (checked) {
+        //             var name = $(this).parent().parent().children().eq(2).text();
+        //             var id = $(this).parent().parent().children().eq(1).text();
+        //             idArr.push(id);
+        //             nameArr.push(name);
+        //         }
+        //     })
+        //     if(nameArr.length==0){
+        //         layer.msg('请勾选要发货的订单')
+        //         return false;
+        //     }
+        //     // console.log(idArr)
+        //     location.href="./orderAir.html?name="+encodeURI(nameArr)+"&idArr="+encodeURI(idArr);
+        // }
+    </script>
+
+</body>
+
+</html>

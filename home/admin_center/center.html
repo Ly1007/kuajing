@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    .lj{background:#222;color:#fff;padding-top:2%}
+   .lj ul li{width:16%;float:left;font-size:12px;color:#fff;list-style:none;}
+   .lj ul li h4{color:#fff;font-size:14px;}
+   .lj ul li a{display:block;color:rgba(255,255,255,.8);margin:3% 0;text-decoration: none;}
+</style>
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+<!-- //公共头部 -->
+<script src="./head.js"></script>
+
+<script type="text/javascript" src="js/jquery18.js"></script>
+<script src="js/unveil-effects.js"></script>
+<script type="text/javascript">
+$(function(){
+	//查询模块-START
+	var tabOpts = {};
+		tabOpts.curIndex;	
+		tabOpts.tabs = $(".aside-lf-content");//焦点层	
+		tabOpts.contents = $(".content");//显示内容
+		
+		tabOpts.show = function(index){
+			//当前，return
+			if(tabOpts.curIndex == index) return;	
+			//隐藏上一个index
+			if(tabOpts.curIndex >= 0){
+				$(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+				$(tabOpts.contents.get(tabOpts.curIndex)).hide();
+			}
+			
+			$(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+			$(tabOpts.contents.get(index)).show();
+			//改变当前index
+			tabOpts.curIndex = index;
+		}	
+		//数字单击事件
+		tabOpts.tabs.click(function(){
+			tabOpts.show(tabOpts.tabs.index(this));
+		});		
+		//开始显示
+		tabOpts.show(0);
+	//查询模块-END
+})
+</script> 
+  
+
+
+<section class="main"  style="background:#f7f8fa;padding:33px 0">
+	<div class="container">
+ <!--left------------------------------------------------------------>      
+    <!-- //公共左侧栏 -->
+    <script src="./left.js"></script>
+ <!--right------------------------------------------------------------>       
+        <div class="cp1_lr cplLR" data-effect="slide-right">  	          
+			<div class="top">
+            	<div class="top1">
+                	<div class="topT">88</div>
+                    <div class="topC">我推荐的人数</div>
+                    <div class="topB"><a href="">查看</a></div>
+                </div>
+                <div class="top1">
+                    <div class="topT">107</div>
+                    <div class="topC">我收到的订单</div>
+                    <div class="topB"><a href="">查看</a></div>
+                </div>
+                <div class="top1 topbg">
+                    <div class="topT">88</div>
+                    <div class="topC">我发出的订单</div>
+                    <div class="topB"><a href="">下单</a></div>                                                                                                                           
+                </div>
+                <div class="top1 news">
+                	<h4>最新公告<a href=" ">更多>></a></h4>
+                    <ul>
+                   	<li>目前国家航运业在未来几年表现如何？<a href=" ">2020-02-03 </a></li>
+                    <li class="lastl">BIMCO: 全球集装箱船装箱装运计...<a href=" ">2020-02-03 </a></li>
+                    </ul>
+                </div>	
+            </div>
+            <div style="clear:both;"></div>
+            <div class="center centerCon">
+            	<h2>我发出的运单<a href="search.html">更多>></a></h4>
+				<table cellpadding="0" cellspacing="0">
+                	<tr>
+                        <th>序号</td>
+                        <th>运单号</th>
+                        <th>货物状态</th>
+                        <th>目的国家</th>
+                        <th>承运商</th>
+                        <th>发货人</th>
+                        <th>订单时间</th>	
+                        <th>操作</th>				                                                                                                                 
+ 				    </tr>
+                    <tr>
+                    	<td>1</td>
+                        <td><span>海运整箱</span>1548658425547 </td>
+                        <td><a href=" ">问题件</a></td>
+                        <td>丹麦</td>
+                        <td>德邦物流</td>
+                        <td>王磊</td>
+                        <td>2020-03-02</td>
+                        <td><a class="nobg" href="orderDetail .html">查看</a></td>
+                    </tr>
+                    <tr>
+                    	<td>2</td>
+                        <td><span>海运整箱</span>1548658425547 </td>
+                        <td><a class="go" href=" ">运送中</a></td>
+                        <td>青蒲</td>
+                        <td>建勋物流</td>
+                        <td>张石磊</td>
+                        <td>2020-03-12</td>
+                        <td><a class="nobg" href="orderDetail .html">查看</a></td>
+                    </tr>
+                    <tr>
+                    	<td>3</td>
+                        <td><span>海运整箱</span>1548658425547 </td>
+                        <td><a class="wait" href=" ">等待揽收</a></td>
+                        <td>青蒲</td>
+                        <td>建勋物流</td>
+                        <td>张石磊</td>
+                        <td>2020-03-12</td>
+                        <td><a class="nobg" href="orderDetail .html">查看</a></td>
+                    </tr>
+                    <tr style="border-bottom:none">
+                    	<td>4</td>
+                        <td><span>海运整箱</span>1548658425547 </td>
+                        <td><a class="over" href=" ">配送完成</a></td>
+                        <td>青蒲</td>
+                        <td>建勋物流</td>
+                        <td>张石磊</td>
+                        <td>2020-03-12</td>
+                        <td><a class="nobg" href="orderDetail .html">查看</a></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="center centerCon">
+            	<h2>我收到的运单<a href="search.html">更多>></a></h4>
+				<table cellpadding="0" cellspacing="0">
+                	<tr>
+                    	<th>序号</td>
+                        <th>运单号</th>
+                        <th>货物状态</th>
+                        <th>目的国家</th>
+                        <th>承运商</th>
+                        <th>收货人</th>
+                        <th>订单时间</th>
+                        <th>操作</th>                                                                                                                             
+                    </tr>
+                    <tr>
+                    	<td>1</td>
+                        <td><span>海运整箱</span>1548658425547 </td>
+                        <td><a href=" ">问题件</a></td>
+                        <td>丹麦</td>
+                        <td>德邦物流</td>
+                        <td>王磊</td>
+                        <td>2020-03-02</td>
+                        <td><a class="nobg" href="orderDetail .html">查看</a></td>
+                    </tr>
+                    <tr>
+                    	<td>2</td>
+                        <td><span>海运整箱</span>1548658425547 </td>
+                        <td><a class="over" href=" ">配送完成</a></td>
+                        <td>青蒲</td>
+                        <td>建勋物流</td>
+                        <td>张石磊</td>
+                        <td>2020-03-12</td>
+                        <td><a class="nobg" href="orderDetail .html">查看</a></td>
+                    </tr>
+                    <tr style="border-bottom:none">
+                    	<td>3</td>
+                        <td><span>海运整箱</span>1548658425547 </td>
+                        <td><a class="over" href=" ">配送完成</a></td>
+                        <td>青蒲</td>
+                        <td>建勋物流</td>
+                        <td>张石磊</td>
+                        <td>2020-03-12</td>
+                        <td><a class="nobg" href="orderDetail .html">查看</a></td>
+                    </tr>
+                </table>
+            </div>
+           <!-- <div class="bot"></div>-->
+        </div>       
+    </div>
+</section>
+ 
+
+<!-- //公共底部 -->
+<script src="./foot.js"></script>
+
+</body>
+</html>

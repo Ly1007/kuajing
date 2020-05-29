@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船期查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+  <!-- //公共头部 -->
+  <script src="./head.js"></script>
+
+  <script type="text/javascript" src="js/jquery18.js"></script>
+  <script src="js/unveil-effects.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      //查询模块-START
+      var tabOpts = {};
+      tabOpts.curIndex;
+      tabOpts.tabs = $(".aside-lf-content");//焦点层	
+      tabOpts.contents = $(".content");//显示内容
+
+      tabOpts.show = function (index) {
+        //当前，return
+        if (tabOpts.curIndex == index) return;
+        //隐藏上一个index
+        if (tabOpts.curIndex >= 0) {
+          $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+          $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+        }
+
+        $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+        $(tabOpts.contents.get(index)).show();
+        //改变当前index
+        tabOpts.curIndex = index;
+      }
+      //数字单击事件
+      tabOpts.tabs.click(function () {
+        tabOpts.show(tabOpts.tabs.index(this));
+      });
+      //开始显示
+      tabOpts.show(0);
+      //查询模块-END
+    })
+  </script>
+
+  <section class="main" style="background:#f7f8fa;padding:33px 0">
+    <div class="container">
+      <!--left------------------------------------------------------------>
+      <!-- //公共左侧栏 -->
+      <script src="./left.js"></script>
+      <!--right           =                             -->
+      <div class="cp1_lr cplLR" data-effect="slide-right">
+        <div class="orderCon receiptTit">
+          <h2>申请入驻代理商</h2>
+          <!--问题订单          =                             -->
+
+
+          <div class="agent_over  agent_title"></div>
+          <div class="agent_content agent_content01">
+            <p>恭喜您申请成功<span>回执单号：23546521232</span><i>2020年3月12日 08：25：46</i></p>
+          </div>
+
+
+          <!--问题订单          =                             -->
+
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+  <style>
+    .lj {
+      background: #222;
+      color: #fff;
+      padding-top: 2%
+    }
+
+    .lj ul li {
+      width: 16%;
+      float: left;
+      font-size: 12px;
+      color: #fff;
+      list-style: none;
+    }
+
+    .lj ul li h4 {
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .lj ul li a {
+      display: block;
+      color: rgba(255, 255, 255, .8);
+      margin: 3% 0;
+      text-decoration: none;
+    }
+  </style>
+
+  <!-- //公共底部 -->
+  <script src="./foot.js"></script>
+  <script src="layui/layui.js"></script>
+  <script>
+    // current
+    $('li').each(function () {
+      var text = $(this).children().text();
+      if (text == '*申请成功') {
+        $(this).addClass('current');
+      }
+    })
+  </script>
+</body>
+
+</html>

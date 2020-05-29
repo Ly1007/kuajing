@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>注册</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="img/favicon.png" rel="icon">
+  <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
+
+  <!-- Bootstrap CSS File -->
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Libraries CSS Files -->
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/unveil-effects/animations.css" rel="stylesheet">
+  <link href="lib/cubeportfolio/cubeportfolio.css" rel="stylesheet">
+
+  <!-- Main Stylesheet File -->
+
+  <link href="https://fonts.googleapis.com/css?family=Hind+Vadodara:400,600,700|Frank+Ruhl+Libre:700" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <script src="https://unpkg.com/scrollreveal@4.0.0/dist/scrollreveal.min.js"></script>
+
+  <link rel="stylesheet" href="./layui/css/layui.css" media="all">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav"
+  style="background:url(img/ys.jpg) no-repeat;background-size:100% 100%">
+
+  <style>
+    .logo {
+      width: 200px;
+      margin: 2% 0
+    }
+
+    .logo img {
+      width: 100%
+    }
+
+    .span_red {
+      color: red;
+      font-size: 14px;
+      font-weight: normal;
+      float: left;
+    }
+  </style>
+  <div class="container">
+    <div class="logo"><img src="img/logo1.png"></div>
+
+    <div class="login_main col-lg-5" data-effect="slide-bottom">
+      <h4>注册</h4>
+      <label><input type="text" name="mobile" placeholder="请输入你的手机号" onblur="mobile_content()"><span
+          class="span_red mobile_span"></span></label>
+      <label><input type="password" name="pwd" placeholder="请输入密码" onblur="pwd_content()"><span
+          class="span_red pwd_span"></span></label>
+      <label><input type="password" name="pwd2" placeholder="请再一次输入密码" onblur="pwd2_content()"><span
+          class="span_red pwd2_span"></span></label>
+      <label style="clear: both;"><input type="text" name="code" placeholder="请输入验证码" onblur="code_content()"
+          style="width:60%;margin-right:2%;"><button
+          style="width:38%;border:none;padding:2% 0;background:#35abdf;color:#fff;border:1px solid #35abdf;font-size:14px;"
+          class="feachBtn">发送验证码</button><span class="span_red code_span"></span></label>
+
+      <label><a href="JavaScript:;" class="checkLogin">注册</a></label>
+      <label style="margin-bottom:0"><a href="login.html"
+          style="background:none;color:#35abdf;border:1px solid #35abdf;margin-bottom:2%">登录</a></label>
+      <label style="font-size:14px;margin-top:0;font-weight:normal;font-size:16px;"><input type="checkbox"
+          name="agreement" style="width:5% !important;">请先阅读《用户协议》后再使用本网站<span
+          class="span_red agreement_span"></span></label>
+    </div>
+  </div>
+
+  <div class="bq">
+    <p style="font-size:12px;line-height:24px;">
+      © Copyright 2012-2020 运去哪 沪ICP备12035978号-2 版权所有查看营业执照<br>上海汇航捷讯网络科技有限公司地址：上海市浦东新区灵山路958号9号楼
+    </p>
+  </div>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+  <script src="lib/php-mail-form/validate.js"></script>
+  <script src="lib/easing/easing.min.js"></script>
+  <script src="lib/cubeportfolio/cubeportfolio.js"></script>
+  <script src="lib/unveil-effects/unveil-effects.js"></script>
+
+
+  <!-- Template Main Javascript File -->
+  <!-- <script src="js/main.js"></script> -->
+  <!-- <script src="./dist/js/main.min.js"></script> -->
+  <script src="./js/jquery-3.2.1.min.js"></script>
+  <script src="./layui/layui.js"></script>
+
+  <script>
+    layui.use(['form', 'layer'], function () {
+      var form = layui.form;
+      var layer = layui.layer;
+
+      // 点击获取验证码操作
+      $('.feachBtn').click(function () {
+        let count = 60;
+        const countDown = setInterval(() => {
+          if (count === 0) {
+            $('.feachBtn').text('重新发送').removeAttr('disabled');
+            $('.feachBtn').css({
+              background: '#ff9400',
+              color: '#fff',
+            });
+            clearInterval(countDown);
+          } else {
+            $('.feachBtn').attr('disabled', true);
+            $('.feachBtn').css({
+              background: '#d8d8d8',
+              color: '#707070',
+            });
+            $('.feachBtn').text(count + '秒后可重新获取');
+          }
+          count--;
+        }, 1000);
+        //发送验证码请求
+        $.ajax({
+          type: "POST",
+          url: "/index/user/sendPhoneCode",
+          data: {
+            vipPhone: $('input[name=mobile]').val(),
+          },
+          dataType: "JSON",
+          success: function (msg) {
+            // console.log(msg)
+            if (msg.code == 200) {
+            } else {
+              layer.msg(msg.msg, { icon: 2 })
+            }
+          }
+          , error: function (e) {
+            layer.msg('网络故障',{ icon: 2 })
+          }
+        });
+      });
+
+      //点击注册按钮
+      $('.checkLogin').on('click', function () {
+        var mobile = $('input[name=mobile]').val();
+        var pwd = $('input[name=pwd]').val();
+        var pwd2 = $('input[name=pwd2]').val();
+        var code = $('input[name=code]').val();
+        var checked = $('input[name=agreement]').prop('checked');
+        if (!checked) {
+          layer.msg('请勾选用户协议');
+          return false;
+          // $('.agreement_span').html('*请勾选用户协议');
+        }
+        if (mobile && pwd && pwd2 && code && checked) {
+          /**********************input不为空则提交登录请求********************************/
+          $.ajax({
+            type: "POST",
+            url: "/index/user/userRegister",
+            data: {
+              vipPhone: $('input[name=mobile]').val(),
+              vipPassword: $('input[name=pwd]').val(),
+              validateUser: $('input[name=code]').val(),
+            },
+            xhrFields: {
+              withCredentials: true
+            },
+            crossDomain: true,
+            dataType: "JSON",
+            success: function (msg) {
+              // console.log(msg)
+              if (msg.code == 200) {
+                layer.msg(msg.msg, { icon: 1, time: 2000 },function(){
+                  location.href = "./center/ID.html";
+                });
+              } else {
+                layer.msg(msg.msg, { icon: 2 })
+              }
+            }
+            , error: function (e) {
+              layer.msg('网络故障',{ icon: 2 })
+            }
+          });
+        } else {
+          // console.log('xxxx')
+        }
+      })
+    })
+
+    function mobile_content() {
+      var mobile = $('input[name=mobile]').val();
+      if (mobile == "" || mobile == "null" || typeof (mobile) == 'undefined') {
+        $('.mobile_span').html('*请输入手机号');
+      } else if (mobile.length != '11') {
+        $('.mobile_span').html('*请输入正确的手机号');
+      } else if (mobile.indexOf('#') != -1 || mobile.indexOf('&') != -1 || mobile.indexOf('@') != -1 || mobile.indexOf('%') != -1) {
+        $('.mobile_span').html('*手机号不能含有特殊字符');
+      } else {
+        $('.mobile_span').html('');
+      }
+    }
+
+    function pwd_content() {
+      var pwd = $('input[name=pwd]').val();
+      if (pwd == "" || pwd == "null" || typeof (pwd) == 'undefined') {
+        $('.pwd_span').html('*请输入密码');
+      } else {
+        $('.pwd_span').html('');
+      }
+    }
+
+    function pwd2_content() {
+      var pwd2 = $('input[name=pwd2]').val();
+      if (pwd2 == "" || pwd2 == "null" || typeof (pwd2) == 'undefined') {
+        $('.pwd2_span').html('*请再次输入密码');
+      } else {
+        $('.pwd2_span').html('');
+      }
+    }
+
+    function code_content() {
+      var code = $('input[name=code]').val();
+      if (code == "" || code == "null" || typeof (code) == 'undefined') {
+        $('.code_span').html('*请输入验证码');
+      } else if (code.indexOf('#') != -1 || code.indexOf('&') != -1 || code.indexOf('@') != -1 || code.indexOf('%') != -1) {
+        $('.code_span').html('*验证码不能含有特殊字符');
+      } else {
+        $('.code_span').html('');
+      }
+    }
+
+  </script>
+</body>
+
+</html>

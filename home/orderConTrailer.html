@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船计划查询</title>
+
+
+    <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="lib/unveil-effects/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="layui/css/layui.css" media="all">
+
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <script src="head.js"></script>
+
+    <div class="cp_banner" style="background:url(img/cx4.jpg) no-repeat left -290px;">
+        <div class="container">
+            <div class="col-md-7">
+                <h2 data-effect="slide-left">在线下单会员价</h2>
+                <p data-effect="slide-right">最快30分钟报价<span style="margin-left:5%">100%真实有效</span></p>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        .main {
+            background: #f7f8fa;
+            padding: 0% 0;
+        }
+
+        .main_3 {
+            background: #fff;
+            padding: 0 2% 2% 2%;
+            overflow: hidden;
+            margin: 1% 0;
+        }
+
+        .main_3 h2 {
+            font-size: 16px;
+            color: #35abdf;
+            margin-top: 5%;
+            line-height: 36px;
+        }
+
+        .main_3 h2 span {
+            font-size: 12px;
+            font-weight: 500;
+            color: #333;
+        }
+
+        .orderLine {
+            line-height: 24px;
+            border-bottom: 2px solid #35abdf;
+            height: 62px;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .orderLine span {
+            margin-right: 3%;
+        }
+
+        /* .lineLf li.type label {
+            width: 15% !important;
+        } */
+
+        .top03 li a {
+            width: 15% !important;
+        }
+
+        .top03 li span {
+            width: 20% !important;
+        }
+
+        #add,
+        #resure,
+        #del {
+            font-size: 14px;
+            color: #35abdf;
+            font-style: normal;
+            cursor: pointer;
+        }
+
+        .lineLf .type input[type=radio] {
+            width: 4% !important;
+        }
+
+        .lineLf li.anoth label {
+            text-align: left !important;
+            width: 10% !important;
+        }
+
+        .lineLf li #btsub,
+        .lineLf li #btadd {
+            width: 7% !important;
+            font-size: 12px;
+            color: #333;
+            display: inline-block;
+            width: 6%;
+            height: 10%;
+            background: #e2e2e2;
+            text-align: center;
+            border-radius: 4px;
+        }
+
+        .lineLf li #buy_num {
+            width: 10% !important;
+            font-size: 12px;
+            display: inline-block;
+            width: 10%;
+            height: 10%;
+            border-radius: 4px;
+            border: 1px solid #cecece;
+            text-align: center;
+            margin: 0 2%;
+        }
+    </style>
+
+    <section class="main">
+        <div class="container">
+            <div class="main_3">
+                <h2 style="margin:2% 0">在线订舱<span>（*号表示必填项）</span></h2>
+                <div class="orderPro orderLine">
+                    如果在订舱过程中您有任何疑问，请联系我们；信息提交后，我们会马上联系您安排订舱事宜<br><span>业务员:
+                        搜航</span><span>销售电话:0755-22960108</span><span>手机:18820258792</span><span>邮箱:sf@sofreight.co</span>
+                </div>
+                <div class="main_3_lr" data-effect="slide-right">
+                    <div class="lineTop" style="height:auto !important;border:none;">
+                        <div class="lineLf" style="width: 100% !important;">
+                            <div class="top">
+                                <h5 style="margin-bottom:20px;margin-left:8%;">拖车联系人<span>（联系人如果有多个邮箱请用半角分号隔开）</span>
+                                </h5>
+                                <ul>
+                                    <li><label><b>*</b>联系人：</label><input type="text"
+                                            class="order_reserve_person linkman_name" data_id=""/></li>
+                                    <li><label><b>*</b>邮箱：</label><input type="text"
+                                            class="order_reserve_mail linkman_email" /></li>
+                                    <li><label><b>*</b>电话：</label><input type="text" placeholder="0512-"
+                                            class="order_reserve_mobile linkman_mobile" /></li>
+                                    <li><label><b>*</b>手机号：</label><input type="text"
+                                            class="order_reserve_phone linkman_phone" /></li>
+                                    <!-- <li class="current"><input type="checkbox" /><label>保存为联系人</label></li> -->
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="lineLf" style="width: 100% !important;">
+                            <div class="top" style="height:auto !important;">
+                                <ul>
+                                    <div class="" id="Box"
+                                        style="height:auto !important;border: 1px solid #fff;overflow: auto;">
+                                        <ul class="smallBox" style="margin-top:20px;">
+                                            <li class="anoth type">
+                                                <label
+                                                    style="width: 30% !important;text-align: right !important;"><b>*</b>箱型：</label><input
+                                                    type="radio" name="checkType" data_name="twentyGP" class="box_type"
+                                                    checked /><label>20GP</label><input type="radio" value=" "
+                                                    class="box_type" name="checkType"
+                                                    data_name="fortyGP" /><label>40GP</label><input type="radio"
+                                                    value=" " name="checkType"
+                                                    data_name="fortyHC" /><label>40HC</label><input type="radio"
+                                                    class="box_type" value=" " name="checkType" data_name="fortyFiveHC"
+                                                    class="box_type" /><label>45HC</label>
+                                            </li>
+                                            <li><label><b>*</b>箱量：</label><a href="JavaScript:;" id="btsub">-</a><span
+                                                    id="buy_num" class="buy_num">1</span><a href="JavaScript:;"
+                                                    id="btadd">+</a></li>
+                                            <li class="another"><label><b>*</b>货重(KGS)：</label><input class="one"
+                                                    type="text" value=" " style="width: 30% !important;"  onblur="ajax_Money()" /><input
+                                                    type="checkbox" style="width: 4% !important;" /><label
+                                                    style="text-align: left !important;width:12.5% !important;">重柜</label><i
+                                                    id="add">添加</i></li>
+                                        </ul>
+                                    </div>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="lineLf" style="width: 100% !important;">
+                            <div class="top" style="height:auto !important;border: none;">
+                                <ul style="margin-top:20px;">
+                                    <li><label><b>*</b>货物类型：</label><select name="order_goods_type"
+                                            class="order_goods_type" style="width: 60%;display: inline;">
+                                            <option value="手机">手机</option>
+                                            <option value="衣服">衣服</option>
+                                        </select></li>
+                                    <li><label><b>*</b>起运详细地址：</label><input type="text" class="order_start_place" />
+                                    </li>
+                                    <li><label><b>*</b>目的详细地址：</label><input type="text" class="order_end_place" />
+                                    </li>
+                                    <li><label><b>*</b>请选择拖车日期：</label><input type="text"
+                                            class="layui-input order_express_date" id="date"
+                                            style="width: 60%;display: inline;">
+                                    <li><label><b>*</b>请填写提单SO号：</label><input type="text"
+                                            class="layui-input order_trailer_SONum" id="order_trailer_SONum"
+                                            placeholder="" style="width: 60%;display: inline;"></li>
+                                    <li><label><b>*</b>请填写所属船公司：</label><input type="text" class="order_express_Co" />
+                                    </li>
+                                    <li style="clear: both;width: 100% !important;"><label
+                                            style="width: 15% !important;"><b>*</b>回传拖车需要的文件：</label>
+                                        <button type="button" class="layui-btn layui-btn-normal" id="testList"
+                                            style="height:38px !important;width: 10% !important;">选择文件</button>
+                                        <button type="button" class="layui-btn layui-btn-warm" id="testListAction"
+                                            style="height:38px !important;width: 10% !important;">开始上传</button>如有需要，请上传附件(可同时上传多个附件:doc、docx、pdf、rar、zip、jpg、png)
+                                        <div class="layui-upload-list"
+                                            style="width:80% !important;text-align:center;margin:0 auto;">
+                                            <table class="layui-table">
+                                                <thead>
+                                                    <tr>
+                                                        <th>文件名</th>
+                                                        <th>大小</th>
+                                                        <th>状态</th>
+                                                        <th>操作</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody id="demoList">
+
+                                                </tbody>
+                                            </table>
+                                        </div>
+
+                                    </li>
+
+                                    <!-- <li class="current"><input type="checkbox" /><label>保存为联系人</label></li> -->
+                                    <!-- <li class="current"><input type="checkbox" /><label>确定条款，生成拖车订单</label></li> -->
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lineLast" style="margin-top: 20px !important;">
+                        <p>费用仅供参考，实际费用请以最终账单为准</p>
+                        <table class="table_sum">
+                            <tr>
+                                <th class="first">费用名称</th>
+                                <th>单位</th>
+                                <th>单价</th>
+                                <th>数量</th>
+                                <th class="last">金额</th>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="numbel">
+                        <div class="numbelL"><input type="checkbox" class="surePost" /><label>我同意</label><a
+                                href=" ">《在线订舱协议》</a></div>
+                        <div class="numbelR">合计<span>USD:0</span><span>CNY:0</span></div>
+                    </div>
+                    <div class="butNum"><button class="current" onclick="ajaxPost()">提交</button></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+        }
+    </style>
+
+    <script src="foot.js"></script>
+
+    <!-- JavaScript Libraries -->
+    <script src="lib/jquery/jquery.min.js"></script>
+    <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+    <script src="lib/unveil-effects/unveil-effects.js"></script>
+
+    <script src="js/jquery-3.2.1.min.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        var url = decodeURI(location.search);//获取url中"?"符后的字串 ('?modFlag=business&role=1')  
+        var theRequest = new Object();
+        if (url.indexOf("?") != -1) {
+            var str = url.substr(1); //substr()方法返回从参数值开始到结束的字符串；  
+            var strs = str.split("&");
+            for (var i = 0; i < strs.length; i++) {
+                theRequest[strs[i].split("=")[0]] = (strs[i].split("=")[1]);
+            }
+            // console.log(theRequest); //此时的theRequest就是我们需要的参数；   
+        }
+        $('.order_reserve_person').attr('data_id', theRequest.container_id);
+
+        layui.use(['table', 'layer', 'laydate', 'upload'], function () {
+            var table = layui.table,
+                layer = layui.layer,
+                $ = layui.$,
+                upload = layui.upload,
+                laydate = layui.laydate;
+
+            //时间选择器
+            laydate.render({
+                elem: '#date'
+                , type: 'datetime'
+                , triangle: 'click' // 防止自动填充后时间一闪而过
+            });
+
+            //页面只有一个箱型数量改变时，请求更新费用接口
+            $('.buy_num').each(function () {
+                $(this).bind('DOMNodeInserted', function (e) {
+                    computedFreight();
+                });
+            })
+
+            //箱型改变时，请求更新费用接口
+            $(".box_type").on("change", function () {
+                var change = $(this).is(':checked'); //checkbox选中判断
+                // console.log(change)
+                computedFreight();
+            })
+
+            var id = 1;
+            $('#add').on('click', function () {
+                var str = '';
+                str = str
+                    + '<ul class="smallBox">'
+                    + '<li class="anoth type">'
+                    + '<label style="width: 30% !important;text-align: right !important;"><b>*</b>箱型：</label><input type="radio"  class="box_type" name="' + id + '" data_name="twentyGP" checked/><label>20GP</label><input type="radio" class="box_type" value=" "  name="' + id + '" data_name="fortyGP"/><label>40GP</label><input type="radio"  class="box_type" value=" " name="' + id + '"  data_name="fortyHC"/><label>40HC</label><input type="radio" value=" " class="box_type" name="' + id + '" data_name="fortyFiveHC" /><label>45HC</label>'
+                    + '</li>'
+                    + '<li><label><b>*</b>箱量：</label><a href="JavaScript:;" id="btsub" onclick="subS(this)">-</a><span id="buy_num" class="buy_num">1</span><a href="JavaScript:;" id="btadd" onclick="addS(this)">+</a></li>'
+                    + '<li class="another"><label><b>*</b>货重(KGS)：</label><input class="one" type="text" value=" " style="width: 30% !important;"/><input type="checkbox" style="width: 4% !important;"/><label style="text-align: left !important;width:12.5% !important;">重柜</label><i onclick="del(this)" id="del">删除</i></li>'
+                    + '</ul>'
+                $('#Box').append(str);
+
+                id++;
+
+                //数量改变时，请求更新费用接口
+                $('.buy_num').each(function () {
+                    $(this).bind('DOMNodeInserted', function (e) {
+                        computedFreight();
+                    });
+                })
+
+                //箱型改变时，请求更新费用接口
+                $(".box_type").on("change", function () {
+                    var change = $(this).is(':checked'); //checkbox选中判断
+                    // console.log(change)
+                    computedFreight();
+                })
+            })
+
+            //点击文本框“+”，“-”号，改变a标签的值
+            $(document).ready(function () {
+                $("#btsub").click(function () {
+                    var n = parseInt($("#buy_num").text());
+                    if (n > 1) {
+                        n -= 1;
+                        $("#buy_num").text(n);
+                    }
+
+                });
+
+                $("#btadd").click(function () {
+                    var n = parseInt($("#buy_num").text());
+                    n += 1;
+                    $("#buy_num").text(n);
+                });
+            });
+
+            //多文件列表示例
+            var demoListView = $('#demoList')
+                , uploadListIns = upload.render({
+                    elem: '#testList'
+                    , url: '/index/placeorder/trailerUploadFile' //改成您自己的上传接口
+                    , accept: 'file'
+                    , exts: 'doc|docx|pdf|rar|zip|jpg|png' //只允许上传压缩文件
+                    , multiple: true
+                    , auto: false
+                    , bindAction: '#testListAction'
+                    , choose: function (obj) {
+                        $('#testListAction').css('background', '#FFB800');
+                        var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+                        //读取本地文件
+                        obj.preview(function (index, file, result) {
+                            var tr = $(['<tr id="upload-' + index + '" style="max-height:40px !important;">'
+                                , '<th>' + file.name + '</th>'
+                                , '<th>' + (file.size / 1024).toFixed(1) + 'kb</th>'
+                                , '<th data_path="" class="success_path">等待上传</th>'
+                                , '<th>'
+                                , '<button class="layui-btn layui-btn-xs demo-reload layui-hide" style="height:30px !important;">重传</button>'
+                                , '<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete" style="height:30px !important;margin-left:0 !important;">删除</button>'
+                                , '</th>'
+                                , '</tr>'].join(''));
+
+                            //单个重传
+                            tr.find('.demo-reload').on('click', function () {
+                                obj.upload(index, file);
+                            });
+
+                            //删除
+                            tr.find('.demo-delete').on('click', function () {
+                                delete files[index]; //删除对应的文件
+                                tr.remove();
+                                uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                            });
+
+                            demoListView.append(tr);
+                        });
+                    }
+                    , done: function (res, index, upload) {
+                        $('#testListAction').css('background', '#999');
+
+                        if (res.code == 0) { //上传成功
+                            var tr = demoListView.find('tr#upload-' + index)
+                                , tds = tr.children();
+                            tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+                            tds.eq(2).attr('data_path', res.data);
+                            tds.eq(3).html('<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete" style="height:30px !important;margin-left:0 !important;">删除</button>'); //保留删除操作
+
+                            //删除
+                            tr.find('.demo-delete').on('click', function () {
+                                // delete files[index]; //删除对应的文件
+                                tr.remove();
+                                uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                            });
+
+                            return delete this.files[index]; //删除文件队列已经上传成功的文件
+                        }
+                        this.error(index, upload);
+
+                        //删除
+                        tr.find('.demo-delete').on('click', function () {
+                            // delete files[index]; //删除对应的文件
+                            tr.remove();
+                            uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+                        });
+                    }
+                    , error: function (index, upload) {
+                        var tr = demoListView.find('tr#upload-' + index)
+                            , tds = tr.children();
+                        tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+                        tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+                    }
+                });
+        });
+
+        //点击删除
+        function del(e) {
+            $(e).parent().parent().remove();
+            computedFreight();
+        }
+
+        function addS(res) {
+            var n = parseInt($(res).siblings("#buy_num").text());
+            n += 1;
+            $(res).siblings("#buy_num").text(n);
+        }
+
+        function subS(res) {
+            var n = parseInt($(res).siblings("#buy_num").text());
+            if (n > 1) {
+                n -= 1;
+                $(res).siblings("#buy_num").text(n);
+            }
+        }
+
+        function showTWO(res) {
+            var num = parseInt(res);
+            return num.toFixed(2);
+        }
+
+        function ajaxPost() {
+            layui.use(['table', 'layer'], function () {
+                var table = layui.table,
+                    layer = layui.layer,
+                    $ = layui.$;
+
+                var checked = $('.surePost').prop('checked');
+                if (!checked) {
+                    layer.msg('请勾选同意协议之后再提交', { time: 2000, shade: 0.4 });
+                } else {
+                    var order_reserve_person = $('.order_reserve_person').val();
+                    if (order_reserve_person == '' || order_reserve_person == null || order_reserve_person == undefined) {
+                        layer.msg('拖车联系人不能为空');
+                        return false;
+                    }
+                    var order_reserve_mail = $('.order_reserve_mail').val();
+                    if (order_reserve_mail == '' || order_reserve_mail == null || order_reserve_mail == undefined) {
+                        layer.msg('拖车联系人邮箱不能为空');
+                        return false;
+                    }
+                    var order_reserve_mobile = $('.order_reserve_mobile').val();
+                    if (order_reserve_mobile == '' || order_reserve_mobile == null || order_reserve_mobile == undefined) {
+                        layer.msg('拖车联系人电话不能为空');
+                        return false;
+                    }
+                    var order_reserve_phone = $('.order_reserve_phone').val();
+                    if (order_reserve_phone == '' || order_reserve_phone == null || order_reserve_phone == undefined) {
+                        layer.msg('拖车联系人手机号不能为空');
+                        return false;
+                    }
+
+                    //封装联系人电话邮箱...成数组
+                    var linkman_name = [], linkman_email = [], linkman_mobile = [], linkman_phone = [];
+                    $('.linkman_name').each(function () {
+                        linkman_name.push($(this).val());
+                    })
+                    $('.linkman_email').each(function () {
+                        linkman_email.push($(this).val());
+                    })
+                    $('.linkman_mobile').each(function () {
+                        linkman_mobile.push($(this).val());
+                    })
+                    $('.linkman_phone').each(function () {
+                        linkman_phone.push($(this).val());
+                    })
+
+                    $('.one').each(function () {
+                        var weightOne = $(this).val();
+                        if (weightOne == null || weightOne == undefined || weightOne == '') {
+                            layer.msg('货重不能为空');
+                            return false;
+                        }
+                    })
+
+                    var order_express_date = $('.order_express_date').val();
+                    var order_trailer_SONum = $('.order_trailer_SONum').val();
+                    var order_express_Co = $('.order_express_Co').val();
+                    var order_goods_type = $('.order_goods_type').val();
+                    var order_start_place = $('.order_start_place').val();
+                    var order_end_place = $('.order_end_place').val();
+
+                    //多文件附件地址拼接
+                    var pathArr = [];
+                    $('#demoList').children().each(function () {
+                        var path = $(this).children().eq(2).attr('data_path');
+                        var name = $(this).children().eq(2).text();
+                        if (name == "上传成功") {
+                            pathArr.push(path);
+                        }
+                    })
+                    // console.log(pathArr)
+
+                    var nameArr = [];
+                    var moneyArr = [];
+                    $('.clause_name').each(function () {
+                        nameArr.push($(this).text())
+                    })
+
+                    $('.clause_money').each(function () {
+                        moneyArr.push($(this).text())
+                    })
+                    // if(nameArr.length<1){
+                    //     layer.msg('请点击确定按钮更新费用明细');
+                    //     return false;
+                    // }
+
+                    var arr = [], brr = [], crr = [];
+                    $('.smallBox').children().each(function () {
+                        var checked = $(this).children('.box_type').filter(':checked').attr('data_name');
+                        if (checked != 'null' && checked != "" && checked != undefined) {
+                            arr.push(checked);
+                        }
+
+                        var buy_num = $(this).children('#buy_num').text();
+                        if (buy_num != 'null' && buy_num != "" && buy_num != undefined) {
+                            brr.push(buy_num);
+                        }
+
+                        var weightOne = $(this).children('.one').val();
+                        if (weightOne != 'null' && weightOne != "" && weightOne != undefined) {
+                            crr.push(weightOne);
+                        }
+                    })
+
+                    for(var i=0;i<arr.length;i++){
+                        if (arr[i]==arr[i+1]){
+                            layer.msg('同种箱型只能选择一个');
+                            return false;
+                        }
+                    }
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/index/Placeorder/placeOrder",
+                        data: {
+                            linkman_name: linkman_name,//联系人
+                            linkman_email: linkman_email,//联系人邮箱
+                            linkman_mobile: linkman_mobile,//联系人电话
+                            linkman_phone: linkman_phone,//联系人手机号
+                            linkman_type: [1],//联系人类型
+
+                            box_type: arr,//箱型
+                            box_num: brr,//箱量
+                            box_weight: crr,//货重
+                            order_goods_type: order_goods_type,//货物类型
+                            order_start_place: order_start_place,//起运详细地址
+                            order_end_place: order_end_place,//目的详细地址
+                            order_express_date: order_express_date,//拖车时间
+                            order_trailer_SONum: order_trailer_SONum,//SO
+                            order_express_Co: order_express_Co,//CO
+                            order_file: pathArr,//附件
+                            clause_name: nameArr,//订单附加费名称
+                            clause_money: moneyArr,//订单附加费价格
+                            order_freight_type: 4
+                        },
+                        xhrFields: {
+                            withCredentials: true
+                        },
+                        crossDomain: true,
+                        dataType: "JSON",
+                        success: function (msg) {
+                            // console.log(msg)
+                            if (msg.code == 0) {
+                                layer.msg('下单成功', { shade: 0.4 }, function () {
+                                    // location.href = "./admin_center/manageTrailer.html";
+                                });
+                            } else {
+                                layer.msg(msg.msg)
+                            }
+                        }
+                        , error: function (e) {
+                            layer.msg('网络故障')
+                        }
+                    });
+                }
+            });
+        }
+
+        //计算运费
+        function computedFreight() {
+            //请求费用明细
+            var num = 0;
+            $('.one').each(function () {
+                var weightOne = $(this).val();
+                if (weightOne == null || weightOne == undefined || weightOne == '') {
+                    // layer.msg('货重不能为空');
+                    // return false;
+                } else {
+                    num += Number(weightOne);
+                }
+            })
+
+            //件数
+            var number = 0;
+            $('.buy_num').each(function () {
+                var buy_num = $(this).text();
+                number += Number(buy_num);
+            })
+            $('.order_goods_nums').val(number);
+
+            var goodsName = [];
+            var goodsNums = [];
+            $('.smallBox').each(function () {
+                var checked = $(this).children('.type').children('input[type=radio]:checked').attr('data_name');
+                var number = $(this).children().children('#buy_num').text();
+                goodsName.push(checked);
+                goodsNums.push(number);
+            })
+
+            for(var i=0;i<goodsName.length;i++){
+                if (goodsName[i]==goodsName[i+1]){
+                    layer.msg('同种箱型只能选择一个');
+                    return false;
+                }else{
+                    console.log(goodsName,goodsNums)
+                    Money(goodsName,goodsNums);
+                }
+            }
+        }
+
+        function ajax_Money() {
+                //请求费用明细
+                var num = 0;
+                $('.one').each(function () {
+                    var weightOne = $(this).val();
+                    if (weightOne == null || weightOne == undefined || weightOne == '') {
+                        // layer.msg('货重不能为空');
+                        return false;
+                    } else {
+                        num += Number(weightOne);
+                    }
+                })
+                $('.sumWeight').val(num);
+                $('.order_CBM').val((num * 0.516).toFixed(3));
+
+                //件数
+                var number = 0;
+                $('.buy_num').each(function () {
+                    var buy_num = $(this).text();
+                    number += Number(buy_num);
+                })
+                $('.order_goods_nums').val(number);
+
+                var goodsName = [];
+                var goodsNums = [];
+                $('.smallBox').each(function () {
+                    var checked = $(this).children('.type').children('input[type=radio]:checked').attr('data_name');
+                    var number = $(this).children().children('#buy_num').text();
+                    goodsName.push(checked);
+                    goodsNums.push(number);
+                })
+
+                for(var i=0;i<goodsName.length;i++){
+                if (goodsName[i]==goodsName[i+1]){
+                    layer.msg('同种箱型只能选择一个');
+                    return false;
+                }else{
+                    console.log(goodsName,goodsNums)
+                    Money(goodsName,goodsNums);
+                }
+            }
+        }
+
+        function Money(goodsName=[],goodsNums=[]) {
+            var twentyGPNum = 0;
+            var fortyGPNum = 0;
+            var fortyHCNum = 0;
+            var fortyFiveHCNum = 0;
+            $('.type').each(function () {
+                var checked = $(this).children('input[type=radio]:checked').attr('data_name');
+                var number = $(this).siblings().eq(0).children().eq(2).text();
+                if(checked=='twentyGP'){
+                    twentyGPNum = Number(number);
+                }
+                if(checked=='fortyGP'){
+                    fortyGPNum = Number(number);
+                }
+                if(checked=='fortyHC'){
+                    fortyHCNum = Number(number);
+                }
+                if(checked=='fortyFiveHC'){
+                    fortyFiveHCNum = Number(number);
+                }
+            })
+
+            //请求费用
+            $.ajax({
+                type: "POST",
+                url: "/index/Calculatefreight/calculateContainer",
+                data: {
+                    freightId: $('.order_reserve_person').attr('data_id'),
+                    containerId: $('.order_reserve_person').attr('data_id'),
+                    twentyGPNum: twentyGPNum,
+                    fortyGPNum: fortyGPNum,
+                    fortyHCNum: fortyHCNum,
+                    fortyFiveHCNum: fortyFiveHCNum,
+                    goodsName: goodsName,
+                    goodsNums: goodsNums,
+                    freightType: 4
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    console.log(msg)
+                    if (msg.code == 0) {
+                        var str = '';
+                        str = str
+                            + '<tr>'
+                            + '<th class="first">费用名称</th>'
+                            + '<th>单位</th>'
+                            + '<th>单价</th>'
+                            + '<th>数量</th>'
+                            + '<th class="last">金额</th>'
+                            + '</tr>'
+
+                            + '<tr>'
+                            + '<td class="clause_name">运费</td>'
+                            + '<td>CNY</td>'
+                            + '<td>'+msg.data.containerFreight+'</td>'
+                            + '<td>1</td>'
+                            + '<td class="clause_money">'+msg.data.containerFreight+'</td>'
+                            + '</tr>'
+
+                        if (msg.data.fixed) {
+                            if (msg.data.fixed.length > 0) {
+                                for (var i = 0; i < msg.data.fixed.length; i++) {
+                                    str = str
+                                        + '<tr>'
+                                        + '<td class="clause_name">' + msg.data.fixed[i].clause_name + '</td>'
+                                        + '<td>' + msg.data.fixed[i].clause_unit + '</td>'
+                                        + '<td>' + msg.data.fixed[i].clause_money + '</td>'
+                                        + '<td>1</td>'
+                                        + '<td class="clause_money">' + msg.data.fixed[i].clause_money + '</td>'
+                                        + '</tr>'
+                                }
+                            }
+                        }
+                        //20GP
+                        if (msg.data.twentyGP) {
+                            for (var i = 0; i < msg.data.twentyGP.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td class="clause_name">20GP' + msg.data.twentyGP[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.twentyGP[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.twentyGP[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.twentyGP[i].num + '</td>'
+                                    + '<td class="clause_money">' + msg.data.twentyGP[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+                        //40GP
+                        if (msg.data.fortyGP) {
+                            for (var i = 0; i < msg.data.fortyGP.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td  class="clause_name">40GP' + msg.data.fortyGP[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.fortyGP[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.fortyGP[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.fortyGP[i].num + '</td>'
+                                    + '<td  class="clause_money">' + msg.data.fortyGP[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+                        //40HC
+                        if (msg.data.fortyHC) {
+                            for (var i = 0; i < msg.data.fortyHC.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td  class="clause_name">40HC' + msg.data.fortyHC[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.fortyHC[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.fortyHC[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.fortyHC[i].num + '</td>'
+                                    + '<td  class="clause_money">' + msg.data.fortyHC[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+                        //45HC
+                        if (msg.data.fortyFiveHC) {
+                            for (var i = 0; i < msg.data.fortyFiveHC.length; i++) {
+                                str = str
+                                    + '<tr>'
+                                    + '<td  class="clause_name">45HC' + msg.data.fortyFiveHC[i].clause_name + '</td>'
+                                    + '<td>' + msg.data.fortyFiveHC[i].clause_unit + '</td>'
+                                    + '<td>' + msg.data.fortyFiveHC[i].clause_money + '</td>'
+                                    + '<td>' + msg.data.fortyFiveHC[i].num + '</td>'
+                                    + '<td  class="clause_money">' + msg.data.fortyFiveHC[i].clause_money_total + '</td>'
+                                    + '</tr>'
+                            }
+                        }
+
+                        $('.usdSUM').text('USD:' + msg.data.USD_total + '');
+                        $('.cnySUM').text('CNY:' + msg.data.CNY_total + '');
+
+                        $('.table_sum').html(str);
+                        layer.msg('费用明细已更新');
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+        }
+    
+    </script>
+
+</body>
+
+</html>

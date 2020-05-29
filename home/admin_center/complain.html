@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船期查询</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+    <!-- //公共头部 -->
+    <script src="./head.js"></script>
+
+    <script type="text/javascript" src="js/jquery18.js"></script>
+    <script src="js/unveil-effects.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //查询模块-START
+            var tabOpts = {};
+            tabOpts.curIndex;
+            tabOpts.tabs = $(".aside-lf-content");//焦点层	
+            tabOpts.contents = $(".content");//显示内容
+
+            tabOpts.show = function (index) {
+                //当前，return
+                if (tabOpts.curIndex == index) return;
+                //隐藏上一个index
+                if (tabOpts.curIndex >= 0) {
+                    $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+                    $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+                }
+
+                $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+                $(tabOpts.contents.get(index)).show();
+                //改变当前index
+                tabOpts.curIndex = index;
+            }
+            //数字单击事件
+            tabOpts.tabs.click(function () {
+                tabOpts.show(tabOpts.tabs.index(this));
+            });
+            //开始显示
+            tabOpts.show(0);
+            //查询模块-END
+        })
+    </script>
+
+    <section class="main" style="background:#f7f8fa;padding:33px 0">
+        <div class="container">
+            <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right           =                             -->
+            <div class="cp1_lr cplLR" data-effect="slide-right">
+                <div class="orderCon">
+                    <h2>留言投诉</h2>
+                    <div class="complay">
+                        <h6>我的建议</h6>
+                        <p>我们真诚欢迎您对*****的工作进行监督指导，并留下您的宝贵意见，我们会及时处理并给予回复。我们真诚欢迎您对的工作进行监督指导，并留下您的宝贵意见，我们会及时处理并给予回复。并给予回复。我们真诚欢迎您对的工作进行监督指导，并留下您的宝贵意见，我们会及时处理并给予回复。并给予回复。我们真诚欢迎您对的工作进行监督指导，并留下您的宝贵意见，我们会及时处理并给予回复。
+                        </p>
+                    </div>
+                    <!--问题订单          =                             -->
+                    <div class="problem">
+                        <div class="problemTop">
+                            <div class="receiptCon complain">
+                                <table cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <th>投拆标题：</th>
+                                        <td><input type="text" value="" class="subject"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>订单号：</th>
+                                        <td><input type="text" value="" class="order_sn"></td>
+                                    </tr>
+                                    <tr>
+                                        <th>类型：</th>
+                                        <td><select class="type">
+                                                <option>海运</option>
+                                                <option>空运</option>
+                                                <option>陆运</option>
+                                            </select></td>
+                                    </tr>
+                                    <tr class="agent">
+                                        <th>留言内容：</th>
+                                        <td><textarea class="comp_content"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <th>联系人名称：</th>
+                                        <td><label class="name">伍月</label></td>
+                                    </tr>
+                                    <tr>
+                                        <th>联系人手机：</th>
+                                        <td><label class="vipPhone">158989855656</label></td>
+                                    </tr>
+                                    <tr>
+                                        <th>联系人邮箱：</th>
+                                        <td><label class="vipMailbox">158989855656@qq.com</label></td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="agentBut"><button onclick="ajax_post()" type="button">提交</button></div>
+
+                        </div>
+                    </div>
+                    <!--问题订单          =                             -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- //公共底部 -->
+    <script src="./foot.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        // current
+        $('li').each(function () {
+            var text = $(this).children().text();
+            if (text == '留言投诉') {
+                $(this).addClass('current');
+            }
+        })
+
+        layui.use(['layer', 'upload', 'form', 'laydate'], function () {
+            var layer = layui.layer;
+            var form = layui.form;
+            var upload = layui.upload;
+            var laydate = layui.laydate;
+
+            $(function () {
+                //展示页面数据
+                $.ajax({
+                    type: "POST",
+                    url: "/index/complaint/messageShow",
+                    data: {
+
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    crossDomain: true,
+                    dataType: "JSON",
+                    success: function (msg) {
+                        // console.log(msg)
+                        if (msg.code == 200) {
+                            for(var i=0;i<msg.data.type.length;i++){
+                                $('.type').empty();
+                                $('.type').append(new Option(msg.data.type[i],msg.data.type[i]));
+                            }
+                            $('.name').text(msg.data.info.name);
+                            $('.vipMailbox').text(msg.data.info.vipMailbox);
+                            $('.vipPhone').text(msg.data.info.vipPhone);
+
+                        } else {
+                            layer.msg(msg.msg);
+                        }
+                    }
+                    , error: function (e) {
+                        layer.msg('网络故障')
+                    }
+                });
+            })
+
+        });
+
+        function ajax_post() {
+            if ($('.subject').val() == '' || $('.subject').val() == null || $('.subject').val() == undefined) {
+                layer.msg('请输入投拆标题再提交');
+                return false;
+            }
+            if ($('.order_sn').val() == '' || $('.order_sn').val() == null || $('.order_sn').val() == undefined) {
+                layer.msg('请输入订单号再提交');
+                return false;
+            }
+            if ($('.comp_content').val() == '' || $('.comp_content').val() == null || $('.comp_content').val() == undefined) {
+                layer.msg('请输入留言内容再提交');
+                return false;
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "/index/complaint/leaveMessage",
+                data: {
+                    subject: $('.subject').val(),
+                    order_sn: $('.order_sn').val(),
+                    type: $('.type').val(),
+                    content: $('.comp_content').val(),
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    // console.log(msg)
+                    if (msg.code == 200) {
+                        layer.msg(msg.msg, { time: 2000 }, function () {
+                            window.location.reload();
+                        });
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

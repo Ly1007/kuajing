@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>船计划查询</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="lib/unveil-effects/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="layui/css/layui.css" media="all">
+
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+  <script src="head.js"></script>
+
+  <div class="cp_banner" style="background:url(img/cx4.jpg) no-repeat center;background-size:100%;height:34%;">
+    <div class="container">
+      <div class="col-md-7">
+        <h2 data-effect="slide-left">海运费查询，想查的都能查到</h2>
+        <p data-effect="slide-right">最快30分钟报价<span style="margin-left:5%">100%真实有效</span></p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .input-group .form-control {
+      width: 48%;
+      margin: 0 1%
+    }
+
+    .domain-search {
+      padding: 20px 0
+    }
+
+    .seaLeft .c-dropdown__list {
+      width: 40%;
+      background: #fff;
+      position: absolute;
+      z-index: 88;
+      top: 60px;
+      left: 15px;
+      padding: 1%;
+      border-radius: 4px;
+      height: 175px;
+      /* 超过则显示滚动条 */
+      overflow:auto;
+      overflow-x: hidden;
+      border: 1px solid #d8d8d8;
+      /* height: auto; */
+    }
+
+    .c-dropdown__item {
+      padding: 6px 12px;
+      font-size: 14px;
+      line-height: 18px;
+      cursor: pointer;
+      color: #434A54;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-transition: background-color .25s linear;
+      transition: background-color .25s linear;
+    }
+
+    .c-dropdown__item:hover {
+      background-color: #C6E1F5;
+    }
+
+    .seaLeft .port_span {
+      float: left;
+      background: none;
+      width: auto;
+      color: #66ABDC;
+      border-radius: 4px;
+      margin-right: 2%;
+    }
+
+    .seaLeft .Eng_span {
+      background: none;
+      width: auto;
+      font-size: 12px;
+    }
+
+    .seaLeft .clause {
+      width: 20%;
+      border: none;
+      font-size: 16px;
+      margin-left: 2%;
+      height: 40px;
+      display: inline-block;
+      text-align: center;
+      padding-left: 0 !important;
+    }
+
+    .seaLeft .clause__list {
+      width: 21.5%;
+      background: #fff;
+      position: absolute;
+      z-index: 88;
+      top: 60px;
+      left: 65.5%;
+      padding: 1%;
+      border-radius: 4px;
+      /* height: 168px;
+      overflow:auto;
+      overflow-x: hidden; */
+      border: 1px solid #d8d8d8;
+      height: auto;
+      text-align: center;
+    }
+  </style>
+
+  <!--Find Domain-->
+  <form class="row domain-search bg-pblue" action="#" style="position: relative;z-index: 21111;">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-md-12" data-effect="slide-right">
+          <div class="search_title">
+            <ul>
+              <li style="border-radius:4px 0 0 0;"><a href="orderSch.html" class="current">整箱</a></li>
+              <li style="border-radius:0 !important;"><a href="orderLCL.html">拼箱</a></li>
+              <li><a href="orderAir.html">空运</a></li>
+              <li><a href="orderLogistics.html">电商物流</a></li>
+              <li style="border-radius:0 4px 0 0;"><a class="last" href="orderTrailer.html">集装箱拖车</a></li>
+            </ul>
+          </div>
+          <div>
+
+            <div class="seaLeft" style="">
+              <input class="current start_port" type="text" placeholder="起运港 从TEP台北" style="float: left;" />
+              <ul class="c-dropdown__list" style="display: none;" data_strat="1">
+                <li class="c-dropdown__item" data-dropdown-value="angular" onclick="selectPortStart(this)"><span
+                    class="port_span">港口</span> <span class="Eng_span">SUZHOUGANGGANG,suzhoushi,China</span> <span
+                    style="float: right;background: none;width: auto;" class="span_name">苏州港,苏州市,中国</span></li>
+                <li class="c-dropdown__item" data-dropdown-value="backbone" onclick="selectPortStart(this)"><span
+                    class="port_span">港口</span> <span class="Eng_span">QINGDAOGANG,qingdaoshi,China</span> <span
+                    style="float: right;background: none;width: auto;" class="span_name">青岛港,青岛市,中国</span></li>
+                <li class="c-dropdown__item" data-dropdown-value="ember" onclick="selectPortStart(this)"><span
+                    class="port_span">港口</span> <span class="Eng_span">SHANGHAIGANG,shanghaishi,China</span> <span
+                    style="float: right;background: none;width: auto;" class="span_name">上海港,上海市,中国</span></li>
+                <li class="c-dropdown__item" data-dropdown-value="knockout" onclick="selectPortStart(this)"><span
+                    class="port_span">港口</span> <span class="Eng_span">BEIJINGGANG,bijingshi,China</span> <span
+                    style="float: right;background: none;width: auto;" class="span_name">北京港,北京市,中国</span></li>
+                <li class="c-dropdown__item last" data-dropdown-value="react" onclick="selectPortStart(this)"><span
+                    class="port_span">港口</span> <span class="Eng_span">NINGXIAGANG,ningxiashi,China</span> <span
+                    style="float: right;background: none;width: auto;" class="span_name">宁夏港,宁夏市,中国</span></li>
+              </ul>
+              <span></span><input type="text" class="end_port" placeholder="目地港 到入国家/台北/机场" />
+              <!-- <select>
+                <option>搜索运费条款</option>
+              </select> -->
+              <input class="clause" type="text" placeholder="搜索运费条款" style="" />
+              <ul class="clause__list" style="display: none;">
+                <li class="clause__item" data-dropdown-value="angular" onclick="selectClause(this)">VOC</li>
+                <li class="clause__item" data-dropdown-value="angular" onclick="selectClause(this)">VCC</li>
+                <li class="clause__item" data-dropdown-value="angular" onclick="selectClause(this)">VOD</li>
+              </ul>
+            </div>
+
+            <div class="seaLert" style="color: fff;">SEARCH</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <style>
+    .seaLeft {
+      width: 88%;
+      height: 60px;
+      background: #fff;
+      border-radius: 4px;
+      float: left;
+    }
+
+    .seaLeft input {
+      border: none;
+      width: 33%;
+      font-size: 16px;
+      padding-left: 3%;
+      line-height: 60px;
+      border-radius: 4px 0 0 4px;
+      border-right: 1px solid #efefef;
+      cursor: pointer;
+      margin-left: 8%;
+    }
+
+    .seaLeft select {
+      width: 20%;
+      border: none;
+      font-size: 16px;
+      margin-left: 2%;
+      height: 40px;
+      display: inline-block;
+    }
+
+    .seaLeft span {
+      width: 17px;
+      height: 16px;
+      display: inline-block;
+      background: url(img/search.png) no-repeat center;
+    }
+
+    .seaLeft input.current {
+      border-right: none;
+      width: 30%;
+      margin-left: 2%;
+    }
+
+    .seaLert {
+      float: right;
+      width: 10%;
+      height: 60px;
+      background: #ffc410;
+      border-radius: 4px;
+      text-align: center;
+      color: #252829;
+      font-size: 18px;
+      line-height: 60px;
+      cursor: pointer;
+    }
+
+    .main {
+      background: #f7f8fa;
+      padding: 0% 0;
+    }
+
+    .main_1,
+    .main_2,
+    .main_3 {
+      background: #fff;
+      padding: 0 2% 2% 2%;
+      overflow: hidden;
+      margin: 1% 0;
+    }
+
+    .main_3 b {
+      color: #f00;
+    }
+
+    .main_3 h2 {
+      font-size: 16px;
+      color: #35abdf;
+      line-height: 36px;
+      /* position: relative; */
+      margin-top: 2%;
+      z-index: 1;
+    }
+
+    .main_3 h2 span {
+      font-size: 12px;
+      color: #333;
+      font-weight: normal;
+      /* position: absolute; */
+      float: right;
+      right: 0;
+    }
+
+    .main_3_top {
+      width: 100%;
+      overflow: hidden
+    }
+
+    .main_3_pic {
+      width: 10%;
+      float: left;
+    }
+
+    .main_3_pic img {
+      width: 100%
+    }
+
+    .main_3_name {
+      width: 85%;
+      float: left;
+      margin-left: 5%;
+      font-size: 16px;
+    }
+
+    .main_3_wz {
+      width: 100%;
+      display: block;
+      font-size: 14px;
+      border-left: 1px solid #eee;
+      height: auto;
+      overflow: hidden;
+      padding: 2% 5%;
+      margin-left: 5%
+    }
+
+    .main_3_wz_1 {
+      background: #eee;
+      margin: 0 5%;
+      padding: 2%;
+      color: #333;
+      font-size: 12px
+    }
+
+    .main_3_wz_1 span {
+      float: right;
+      color: #CC950A;
+      font-size: 12px;
+      margin: 1% 0;
+    }
+
+    .main_3_wz_2 {
+      font-size: 14px;
+      overflow: hidden;
+    }
+
+    .main_3_nr h3 {
+      font-size: 18px;
+      margin: 0;
+      border-bottom: 2px solid #35abdf
+    }
+
+    .main_3_nr table {
+      width: 100%;
+      overflow: hidden;
+      font-size: 14px;
+      color: #333;
+      margin-top: 2%;
+    }
+
+    .main_3_nr tr.current {
+      background: #f7f8fa;
+    }
+
+    .main_3_nr th {
+      background: #35abdf;
+      margin-top: 3%;
+      color: #fff;
+      font-weight: 400;
+      font-size: 15px;
+    }
+
+    .main_3_nr th.current {
+      padding-right: 4px;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .main_3_nr td.numbelN {
+      color: #35abdf;
+      font-weight: 600;
+    }
+
+    .main_3_nr th.first {
+      border-radius: 4px 0 0 4px;
+    }
+
+    .main_3_nr th,
+    .main_3_nr td {
+      padding: 2% 0;
+      text-align: center
+    }
+
+    .main_3_nr table a {
+      display: inline-block;
+      width: 26px;
+      height: 26px;
+      background: url(img/searchbg.png) no-repeat center;
+    }
+
+    .orderBot {
+      font-size: 14px;
+      text-align: right;
+      color: #333;
+    }
+
+    .orderBot select {
+      color: #848484;
+      border: 1px solid #e2e2e2;
+      font-size: 12px;
+      padding: 4px 12px;
+    }
+
+    .orderBot .scalteLast {
+      float: left;
+      width: 50%;
+      text-align: left;
+    }
+  </style>
+
+  <section class="main" style="position: relative;z-index: 1;">
+    <div class="container">
+      <div class="main_3">
+        <h2>海运费查询<span><b>*</b>注：如无特殊说明以下海运费币种均以USD为准。</span></h2>
+
+        <div class="main_3_lr" data-effect="slide-right" style="">
+          <div class="main_3_nr">
+
+            <table id="goodsList" lay-filter="goodsList2">
+              
+            </table>
+
+            <div class="orderBot">
+              <div class="scalteLast"><span class="count">共0条记录</span></div>
+              <div><select>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select></div>
+            </div>
+          </div>
+        </div>
+      </div>
+  </section>
+
+  <style>
+    .lj {
+      background: #222;
+      color: #fff;
+      padding-top: 2%
+    }
+
+    .lj ul li {
+      width: 16%;
+      float: left;
+      font-size: 12px;
+      color: #fff;
+      list-style: none;
+    }
+
+    .lj ul li h4 {
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .lj ul li a {
+      display: block;
+      color: rgba(255, 255, 255, .8);
+      margin: 3% 0;
+    }
+  </style>
+
+  <script src="foot.js"></script>
+
+  <!-- JavaScript Libraries -->
+  <script src="lib/jquery/jquery.min.js"></script>
+  <script src="lib/bootstrap/js/bootstrap.min.js"></script>
+
+  <script src="lib/unveil-effects/unveil-effects.js"></script>
+
+  <!-- Template Main Javascript File -->
+  <script src="js/main.js"></script>
+
+  <!-- <script src="dist/js/main.min.js"></script> -->
+  <script src="js/jquery-3.2.1.min.js"></script>
+  <script src="layui/layui.js"></script>
+  <script>
+    //起运港
+    $('.start_port').on('click', function () {
+      $('.c-dropdown__list').attr('data_strat', '1');
+      $('.c-dropdown__list').css('left', '15px');
+      $('.c-dropdown__list').toggle();
+      $('.clause__list').hide();
+    })
+    //目的港
+    $('.end_port').on('click', function () {
+      $('.c-dropdown__list').css('left', '37%');
+      $('.c-dropdown__list').attr('data_strat', '2');
+      $('.c-dropdown__list').toggle();
+      $('.clause__list').hide();
+    })
+    //运费条款
+    $('.clause').on('click', function () {
+      $('.c-dropdown__list').hide();
+      $('.clause__list').toggle();
+    })
+
+    //起运港首字母搜索
+    $('.start_port').bind('input propertychange', function () {
+      $('.c-dropdown__list').show();
+      $.ajax({
+        url: "/index/freight/searchSeaPort",
+        data: {
+          startSeaPort: $(this).val()
+        },
+        dataType: "json",
+        success: function (res) {
+          // console.log(res);
+          if (res.code == 0) {
+            $('.c-dropdown__list').html('');
+            var str = '';
+            for(var i = 0;i<res.data.length;i++){
+              str += '<li class="c-dropdown__item" data-dropdown-value="angular" onclick="selectPortStart(this)"><span class="port_span">港口</span> <span class="Eng_span">'+res.data[i].seaport_name_EN+','+res.data[i].seaport_city_EN+','+res.data[i].seaport_nation_EN+'</span> <span style="float: right;background: none;width: auto;" class="span_name">'+res.data[i].seaport_name+','+res.data[i].seaport_city+','+res.data[i].seaport_nation+'</span></li>'
+            }
+            $('.c-dropdown__list').html(str);
+          } else {
+            layer.msg(res.msg, { shade: 0.4 })
+          }
+        }
+        , error: function (res) {
+          layer.msg('网络故障', { shade: 0.4 })
+        }
+      })
+    });
+
+    //目的港首字母搜索
+    $('.end_port').bind('input propertychange', function () {
+      $('.c-dropdown__list').show();
+      $.ajax({
+        url: "/index/freight/searchSeaPort",
+        data: {
+          endSeaPort: $(this).val()
+        },
+        dataType: "json",
+        success: function (res) {
+          // console.log(res);
+          if (res.code == 0) {
+            $('.c-dropdown__list').html('');
+            var str = '';
+            for(var i = 0;i<res.data.length;i++){
+              str += '<li class="c-dropdown__item" data-dropdown-value="angular" onclick="selectPortStart(this)"><span class="port_span">港口</span> <span class="Eng_span">'+res.data[i].seaport_name_EN+','+res.data[i].seaport_city_EN+','+res.data[i].seaport_nation_EN+'</span> <span style="float: right;background: none;width: auto;" class="span_name">'+res.data[i].seaport_name+','+res.data[i].seaport_city+','+res.data[i].seaport_nation+'</span></li>'
+            }
+            $('.c-dropdown__list').html(str);
+          } else {
+            layer.msg(res.msg, { shade: 0.4 })
+          }
+        }
+        , error: function (res) {
+          layer.msg('网络故障', { shade: 0.4 })
+        }
+      })
+    });
+
+    layui.use(['table', 'layer'], function () {
+      var table = layui.table,
+        layer = layui.layer,
+        $ = layui.$;
+
+      $.ajax({
+        url: "/index/freight/fullBoxFreight?page=1&limit=10",
+        data: {
+          fullBox_start_place: '',
+          fullBox_end_place: '',
+          fullBox_clause: ''
+        },
+        dataType: "json",
+        method:'POST',
+        success: function (res) {
+          // console.log(res);
+          if (res.code == 0) {
+            $('.count').html('共' + res.count + '条记录');
+            var str = "";
+            str = str
+              + '<tr>'
+              + '<th class="first">运费条款</th>'
+              + '<th>起运港/目的港</th>'
+              + '<th>20GP</th>'
+              + '<th>40GP</th>'
+              + '<th>40HC</th>'
+              + '<th>45HC</th>'
+              + '<th>船司</th>'
+              + '<th>截关/开船</th>'
+              + '<th>航程</th>'
+              + '<th>中转</th>'
+              + '<th>附加费</th>'
+              + '<th>运价备注</th>'
+              + '<th>有效期</th>'
+              + '<th class="current">下单</th>'
+              + '</tr>'
+            for (var i = 0; i < res.data.length; i++) {
+              var str1 = '<p style="color:#333;">' + showTime(res.data[i].fullBox_deadline_end) + '</p>';
+              str = str
+                + "<tr>"
+                + '<td>' + res.data[i].fullBox_clause + '</td>'
+                + '<td>' + res.data[i].fullBox_start_place + '→' + res.data[i].fullBox_end_place + '</td>'
+                + '<td>' + res.data[i].fullBox_twenty_GP + '</td>'
+                + '<td>' + res.data[i].fullBox_forty_GP + '</td>'
+                + '<td>' + res.data[i].fullBox_forty_HC + '</td>'
+                + '<td>' + res.data[i].fullBox_fortyFive_HC + '</td>'
+                + '<td>' + res.data[i].fullBox_express_Co + '</td>'
+                + '<td>' + res.data[i].fullBox_sail_end + '/' + res.data[i].fullBox_sail_start + '</td>'
+                + '<td>' + res.data[i].fullBox_sail_days + '</td>'
+                + '<td>' + res.data[i].fullBox_transfer + '</td>'
+                + '<td>' + res.data[i].fullBox_add_money + '</td>'
+                + '<td>' + res.data[i].fullBox_remark + '</td>'
+                + '<td>' + showTime(res.data[i].fullBox_deadline_start) + '' + str1 + '</td>'
+                + '<td><a href='+"orderCon.html?clause="+''+res.data[i].fullBox_clause+''+'&fullBox_id='+res.data[i].fullBox_id+''+'&fullBox_start_place='+encodeURI(res.data[i].fullBox_start_place)+''+'&fullBox_end_place='+encodeURI(res.data[i].fullBox_end_place)+''+'&fullBox_transfer='+encodeURI(res.data[i].fullBox_transfer)+'></a></td>'
+                + '</tr>'
+            }
+            $('#goodsList').html(str);
+            //将表格中的字段为null时置为/
+            $('#goodsList tr td').each(function () {
+              if ($(this).html() == 'null') {
+                $(this).html('/');
+              }
+            })
+          } else {
+            layer.msg(res.msg, { shade: 0.4 })
+          }
+        }
+        , error: function (res) {
+          layer.msg('网络故障', { shade: 0.4 })
+        }
+      })
+
+    });
+
+    //点击搜索
+    $('.seaLert').on('click',function(){
+      var start_port = $(this).siblings().children().eq(0).val();
+      var end_port = $(this).siblings().children().eq(3).val();
+      var clause = $(this).siblings().children().eq(4).val();
+      var str_start= '';
+      if (start_port != null && start_port != '') {
+        var arr = start_port.split(/[ ]+/);
+        var brr = arr[1].split(',');
+        str_start = brr[0].slice(1,brr[0].length+1)
+      }
+      var end_start= '';
+      if (end_port != null && end_port != '') {
+        var arr = end_port.split(/[ ]+/);
+        var brr = arr[1].split(',');
+        end_start = brr[0].slice(1,brr[0].length+1)
+      }
+
+      //点击搜索表格重载刷新
+      $.ajax({
+        url: "/index/freight/fullBoxFreight?page=1&limit=10",
+        data: {
+          fullBox_start_place: str_start,
+          fullBox_end_place: end_start,
+          fullBox_clause: clause
+        },
+        method:'POST',
+        dataType: "json",
+        success: function (res) {
+          // console.log(res);
+          if (res.code == 0) {
+            $('.count').html('共' + res.count + '条记录');
+            var str = "";
+            str = str
+              + '<tr>'
+              + '<th class="first">运费条款</th>'
+              + '<th>起运港/目的港</th>'
+              + '<th>20GP</th>'
+              + '<th>40GP</th>'
+              + '<th>40HC</th>'
+              + '<th>45HC</th>'
+              + '<th>船司</th>'
+              + '<th>截关/开船</th>'
+              + '<th>航程</th>'
+              + '<th>中转</th>'
+              + '<th>附加费</th>'
+              + '<th>运价备注</th>'
+              + '<th>有效期</th>'
+              + '<th class="current">下单</th>'
+              + '</tr>'
+            for (var i = 0; i < res.data.length; i++) {
+              var str1 = '<p style="color:#333;">' + showTime(res.data[i].fullBox_deadline_end) + '</p>';
+              str = str
+                + "<tr>"
+                + '<td>' + res.data[i].fullBox_clause + '</td>'
+                + '<td>' + res.data[i].fullBox_start_place + '→' + res.data[i].fullBox_end_place + '</td>'
+                + '<td>' + res.data[i].fullBox_twenty_GP + '</td>'
+                + '<td>' + res.data[i].fullBox_forty_GP + '</td>'
+                + '<td>' + res.data[i].fullBox_forty_HC + '</td>'
+                + '<td>' + res.data[i].fullBox_fortyFive_HC + '</td>'
+                + '<td>' + res.data[i].fullBox_express_Co + '</td>'
+                + '<td>' + res.data[i].fullBox_sail_end + '/' + res.data[i].fullBox_sail_start + '</td>'
+                + '<td>' + res.data[i].fullBox_sail_days + '</td>'
+                + '<td>' + res.data[i].fullBox_transfer + '</td>'
+                + '<td>' + res.data[i].fullBox_add_money + '</td>'
+                + '<td>' + res.data[i].fullBox_remark + '</td>'
+                + '<td>' + showTime(res.data[i].fullBox_deadline_start) + '' + str1 + '</td>'
+                + '<td><a href='+"orderCon.html?clause="+''+res.data[i].fullBox_clause+''+'&fullBox_id='+res.data[i].fullBox_id+''+'&fullBox_start_place='+encodeURI(res.data[i].fullBox_start_place)+''+'&fullBox_end_place='+encodeURI(res.data[i].fullBox_end_place)+''+'&fullBox_transfer='+encodeURI(res.data[i].fullBox_transfer)+'></a></td>'
+                + '</tr>'
+            }
+            $('#goodsList').html(str);
+            //将表格中的字段为null时置为/
+            $('#goodsList tr td').each(function () {
+              if ($(this).html() == 'null') {
+                $(this).html('/');
+              }
+            })
+          } else {
+            layer.msg(res.msg, { shade: 0.4 })
+          }
+        }
+        , error: function (res) {
+          layer.msg('网络故障', { shade: 0.4 })
+        }
+      })
+
+    })
+
+    function selectPortStart(res) {
+      //点击选中了则隐藏Ul
+      $(res).parent().hide();
+      if ($(res).parent().attr('data_strat') == '1') {
+        var str = $(res).children('.span_name').text();
+        $('.start_port').val('起运港 从' + str + '');
+      }
+      if ($(res).parent().attr('data_strat') == '2') {
+        var str = $(res).children('.span_name').text();
+        $('.end_port').val('目的港 到' + str + '');
+      }
+    }
+
+    function selectClause(res) {
+      $(res).parent().hide();
+      $('.clause').val($(res).text());
+    }
+
+    function showTime(res) {
+      if (res != null) {
+        var arr = res.split(/[ ]+/);
+        return arr[0];
+      }
+    }
+
+  </script>
+</body>
+
+</html>

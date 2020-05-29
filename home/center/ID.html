@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>完善个人资料</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/animations.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="../layui/css/layui.css" media="all">
+
+  <link href="http://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+	<link href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="css/bootstrap-select.min.css">
+	<link rel="stylesheet" type="text/css" href="css/demo.css">
+  <style>
+    .span_red {
+      color: red;
+      font-size: 14px;
+      font-weight: normal;
+      /* float: left; */
+      margin-left: 10px;
+    }
+    .idCenter li.current div.picture01{width:200px;display:inline-block;border: 1px solid #CCC;border-radius: 4px;}
+    .idCenter div.picture01{height:140px;background:#e1e1e1;width:140px;text-align:center;color:#fff;margin-bottom:8px;}
+
+    .idCenter li.current span.picture01{width:200px;display:inline-block;border: 1px solid #CCC;border-radius: 4px;margin-right:20px;}
+    .idCenter span.picture01{height:140px;background:#e1e1e1;width:140px;text-align:center;color:#fff;margin-bottom:8px;}
+  </style>
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+
+  <div id="topnav" class="navbar navbar-inverse" role="navigation" style="z-index:999">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+        <a class="navbar-brand" href="index.html" class="smoothscroll" style="margin-top:2%"><img src="img/logo.png" width="120"></a>
+      </div>
+      <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li class="active"><a href="index.html" class="smoothscroll">首页</a></li>
+          <li>
+          	<a  class="smoothscroll">产品服务</a>
+            <ul class="inner-dropdown">
+						<li><a href="cp1.html">集运头等舱</a></li>
+						<li><a href="cp2.html">拼箱头等舱</a></li>
+						<li><a href="cp3.html">空运头等舱</a></li>
+            <li><a href="cp4.html">拖车</a></li>
+						<li><a href="cp5.html">滴滴询价</a></li>
+						<li><a href="cp6.html">跨境物流电商</a></li>
+					</ul>
+         </li>
+          <li>
+          	<a href="#features" class="smoothscroll">查询工具</a>
+            <ul class="inner-dropdown">
+						<li><a href="cx1.html">箱货查询<span style="color:#ff6726;margin-left:2%;font-size:12px;">可查抵港</span></a></li>
+						<li><a href="cx2.html">船期查询</a></li>
+						<li><a href="cx3.html">拖车定位</a></li>
+                        <li><a href="cx4.html">船计划查询</a></li>
+						<li><a href="cx5.html">HS Code查询</a></li>
+						<li><a href="cx6.html">船舶定位</a></li>
+                        <li><a href="cx7.html">拖车费用查询</a></li>
+                        <li><a href="cx8.html">内装费用查询</a></li>
+                        <li><a href="cx9.html">报关费用查询</a></li>
+                        <li><a href="cx10.html">海运保险费用查询</a></li>
+					</ul>
+         </li>
+          <li><a href="zq.html">中远海运专区</a></li>
+           <li><a href="new.html">物流新闻</a></li>
+            <li><a href="about.html">关于我们</a></li>
+             <li><a href="wl.html">物流管家</a></li>
+             
+           <li class="dl">  <a href="#" style="background:#0A81D7;color:#fff;font-size:16px;margin:12px 0;padding:2px 15px;font-weight:bold;margin-left:30px">登录</a></li>
+        	<li class="zc"><a href="#" style="background:none;color:#0A81D7;font-size:16px;margin:12px 0;padding:2px 15px;font-weight:bold">注册</a></li>
+        </ul>
+        
+        
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+  </div>
+
+<script type="text/javascript" src="js/jquery18.js"></script>
+<script src="js/unveil-effects.js"></script>
+<script type="text/javascript">
+$(function(){
+	//查询模块-START
+	var tabOpts = {};
+		tabOpts.curIndex;	
+		tabOpts.tabs = $(".aside-lf-content");//焦点层	
+		tabOpts.contents = $(".content");//显示内容
+		
+		tabOpts.show = function(index){
+			//当前，return
+			if(tabOpts.curIndex == index) return;	
+			//隐藏上一个index
+			if(tabOpts.curIndex >= 0){
+				$(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+				$(tabOpts.contents.get(tabOpts.curIndex)).hide();
+			}
+			
+			$(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+			$(tabOpts.contents.get(index)).show();
+			//改变当前index
+			tabOpts.curIndex = index;
+		}	
+		//数字单击事件
+		tabOpts.tabs.click(function(){
+			tabOpts.show(tabOpts.tabs.index(this));
+		});		
+		//开始显示
+		tabOpts.show(0);
+	//查询模块-END
+})
+</script> 
+  
+<script src="js/Area.js"></script>
+
+<section class="main"  style="background:#f7f8fa;padding:33px 0">
+	<div class="container">
+    	<div class="cp1_lf" data-effect="slide-left" style="padding:0 0 33px 0;overflow:visible;box-shadow:none;border-radius:6px;width:100%;">
+			<h4 class="idTop">基本信息</h4>
+      <div class="idCenter">
+			<form action="#" method="">
+            	<ul>
+                <li>
+                	<label><b>*</b>认证主体</label><input class="rad radio_myself" type="radio" value="radio_myself" name="radio"><label class="current">个人</label><input class="rad radio_company" type="radio" value="radio_company" name="radio" checked><label class="current">公司</label>
+                </li>
+                <li>
+                	<label><b>*</b>客户代码</label><input type="text" value="" placeholder="W62HNT4" class="vipCode" disabled>
+                </li>
+                <li>
+                	<label>有效期</label><input type="text" class="layui-input deadline" id="searchData" placeholder="yyyy-MM-dd" /><input class="rad sustainable" type="checkbox" value=""/><label class="cu">永续</label>
+                </li>
+                <li class="company_type">
+                  <label><b>*</b>证件类别</label><input type="text" placeholder="营业执照" class="cardType" disabled value="营业执照">
+                </li>
+                <li class="company_name">
+                	<label><b>*</b>企业全称</label><input type="text" placeholder="请与证件认证名称一致" value="" class="CoName">
+                </li>
+                <li class="registered_capital">
+                	<label>注册资本</label><input type="text" value="" class="registerCost">
+                </li>
+                <li class="company_num">
+                	<label><b>*</b>证件号码</label><input type="text" placeholder="证件号码" required value="" class="cardNumber">
+                </li>
+                <li class="staff_Size">
+                	<label>员工规模</label><select name="select" class="staffSize">
+                        <option value="100人以下">100人以下</option>
+                        <option value="200人以下">200人以下</option>
+                        <option value="300人以下">300人以下</option>
+                    </select>
+                </li>
+                <li class="current Attachment">
+                  <!-- <div class="picture"></div> -->
+                	<!-- <label><b>*</b>企业证件附件</label><input class="picture" type="text" value="大小不超过100KB" onclick="pic()"> -->
+                  <label><b>*</b>企业证件附件</label>
+                  <div class="picture01 pic01" data_src="">
+                    <button type="button" class="layui-btn" id="testpic" style="width: 200px;height:140px;background-color: #e1e1e1 !important;"><p style="font-size: 14px;text-align: center;color: #fff;" class="pic_p">大小不超过100KB</p></button></div>
+                </li>
+                <!-- <li class="company_address">
+                	<label><b>*</b>企业证件地址</label><input type="text" value="请选择国家">		
+                </li> -->
+                <li>
+                	<label class="Type"><b>*</b>法人/负责人证件类型</label><select name="select" placeholder="身份证" class="principalCardType">
+                        <option value="1" >身份证</option>
+                        <option value="2">港澳通行证</option>
+                        <option value="3">准签证</option>
+                    </select>                    	
+                </li>
+                <li>
+                	<label class="Type_Number"><b>*</b>法人/负责人证件号码</label><input type="text" placeholder="证件号码" value="" class="CoPrinCardNumber"> <span
+                  class="span_red cardNumber_span"></span>             	
+                </li>
+                <li class="current current01">
+                  <label class="Type_Ps"><b>*</b>法人/负责人证件附件</label>
+                  <!-- <input class="picture" type="text" value="+附件一">  -->
+                  <div class="picture01  pic02" data_src=""><button type="button" class="layui-btn" id="test2" style="width: 200px;height:140px;background-color: #e1e1e1 !important;"><p style="color: #fff;text-align: center;font-size: 14px;z-index: 100;" class="pic_p02">+附件一</p></button></div>
+                  <div class="picture01  pic03" data_src=""><button type="button" class="layui-btn" id="test3" style="width: 200px;height:140px;background-color: #e1e1e1 !important;"><p style="color: #fff;text-align: center;font-size: 14px;z-index: 100;" class="pic_p03">+附件一</p></button></div>
+                  <!-- <input class="picture" type="text" value="+附件一"> -->
+                  <br>
+                  <a class="prompt" href="">提示：请上传本人手持身份证正反面照片</a>             	
+                </li>
+                 <li class="final">
+                  <label class="company_address"><b>*</b>企业证件地址</label>
+
+                    <select name="seachprov" id="seachprov" value="请选择省份" class="form-control"  onkeyup="showAreaID();" onChange="changeComplexProvince(this.value, sub_array, 'seachcity', 'seachdistrict');">
+                       
+                    </select>   
+                    
+                    <select name="homecity" id="seachcity" value="请选择城市" class="form-control" onChange="changeCity(this.value,'seachdistrict','seachdistrict');">
+                      
+                    </select>
+                    
+                    <select name="seachdistrict" value="请选择县城" id="seachdistrict" class="form-control" onblur="showAreaID();">
+                        
+                    </select>
+                    
+                    <input class="last" type="text" value="" id="Address" placeholder="请填写详细地址">
+                    		
+                </li>
+                <li><input class="idBottom submit" type="button" value="提交" style="margin-left:30% !important;"><input class="skip layui-btn layui-btn-warm"  type="button" value="跳过此步骤" style="width: 9% !important;font-weight: 600;" onclick="skip()"></li>               
+                </ul>
+            </form>
+            </div>           
+        </div>
+    </div>
+</section>
+ 
+  <div id="copyrights" >
+    <div class="container">
+      <p style="font-size:12px;line-height:24px;">
+        © Copyright 2012-2020 运去哪 沪ICP备12035978号-2 版权所有查看营业执照<br>上海汇航捷讯网络科技有限公司地址：上海市浦东新区灵山路958号9号楼 
+      </p>
+    </div>
+  </div> 
+
+  <script src="../js/jquery-3.2.1.min.js"></script>
+  <script src="../layui/layui.js"></script>
+  <script src="../layui/layui.all.js"></script>
+  <script src="http://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="js/AreaData_min.js"></script>
+  <script>
+    $(function(){
+      //生成客户代码
+      $.ajax({
+            type: "POST",
+            url: "/index/user/createVipCode",
+            data: {
+              
+            },
+            xhrFields: {
+              withCredentials: true
+            },
+            crossDomain: true,
+            dataType: "JSON",
+            success: function (msg) {
+              // console.log(msg)
+              if (msg.code == 200) {
+                $('.vipCode').val(msg.data)
+              } else {
+                layer.msg(msg.msg)
+              }
+            }
+            , error: function (e) {
+              layer.msg('网络故障')
+            }
+          });
+    })
+
+    var checked = $('.radio_company').prop('checked');
+    if(checked){
+      company_submit();
+    }
+
+    layui.use([ 'layer','upload','form','laydate'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        var upload = layui.upload;
+        var laydate = layui.laydate;
+
+      //时间选择器
+      laydate.render({
+          elem: '#searchData'
+          ,triangle: 'click' // 防止自动填充后时间一闪而过
+      });
+
+      //选中个人radio
+      $('.radio_myself').change(function(){
+        $('.company_name').css('display','none');
+        $('.staff_Size').css('display','none');
+        $('.Attachment').css('display','none');
+        $('.registered_capital').css('display','none');
+        $('.company_num').css('display','none');
+        $('.company_type').css('display','none');
+        $('.Type').html('<b>*</b>本人证件类型');
+        $('.Type_Number').html('<b>*</b>本人证件号码');
+        $('.Type_Ps').html('<b>*</b>本人证件附件');
+        $('.company_address').html('<b>*</b>本人证件地址');
+
+        //监听提交
+        
+        $('.submit').on('click',function(){
+          if($('.vipCode').val()==''){
+            layer.msg('客户代码不能为空')
+            return false;
+          }
+          if($('.CoPrinCardNumber').val()==''){
+            layer.msg('证件号码不能为空')
+            return false;
+          }
+          if($('.principalCardType option:selected').val()==1){
+            if($('.CoPrinCardNumber').val().length!='18'){
+              layer.msg('身份证号码正确长度应为18位')
+              return false;
+            }
+          }
+          if($('.principalCardType option:selected').val()==2){
+             if($('.CoPrinCardNumber').val().length!='9'){
+              layer.msg('港澳通行证号码正确长度应为9位')
+              return false;
+            }
+          }
+          if($('.principalCardType option:selected').val()==3){
+            //准签证
+          }
+         
+          if($('#seachprov option:selected').val()==0){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+          if($('#seachcity option:selected').val()==0){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+          // if($('#seachdistrict option:selected').val()==0){
+          //   layer.msg('必选字段不能为空')
+          //   return false;
+          // }
+          if($('#Address').val()==''){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+
+          var peopleCardPic = $('.pic02').attr('data_src');
+          var peopleCardPicBack = $('.pic03').attr('data_src');
+          if(peopleCardPic==''){
+            layer.msg('附件地址不能为空')
+            return false;
+          }
+          if(peopleCardPicBack==''){
+            layer.msg('附件地址不能为空')
+            return false;
+          }
+
+          var seachprov = $('#seachprov option:selected').text();
+          var seachcity = $('#seachcity option:selected').text();
+          var seachdistrict = $('#seachdistrict option:selected').text();
+          var address = $('#Address').val();
+          $('#seachdistrict option:selected').val()==0 ? seachdistrict="" : seachdistrict;
+          var address_str = ''+seachprov+''+seachcity+''+seachdistrict+''+address+'';
+          // console.log(address_str);
+          var sustainable = $('.sustainable').prop('checked');
+          var deadline = $('.deadline').val();
+          if(sustainable){
+            deadline = "4000-00-00";
+          }
+
+          $(function(){
+            $.ajax({
+            type: "POST",
+            url: "/index/user/personAttestation",
+            data: {
+              vipType: 1,
+              vipCode: $('.vipCode').val(),
+              CoPrinCardNumber: $('.CoPrinCardNumber').val(),
+              deadline: deadline,
+              principalCardType: $('.principalCardType').val(),
+              peopleCardPic: peopleCardPic,
+              peopleCardPicBack: peopleCardPicBack,
+              cardAddress: address_str,
+            },
+            xhrFields: {
+              withCredentials: true
+            },
+            crossDomain: true,
+            dataType: "JSON",
+            success: function (msg) {
+              // console.log(msg)
+              if (msg.code == 200) {
+                layer.msg('提交成功，请等待您的审核结果',{shade:0.4,time:2000},function(){
+                  location.href = "../../orderSch.html";
+                });
+              } else {
+                layer.msg(msg.msg)
+              }
+            }
+            , error: function (e) {
+              layer.msg('网络故障')
+            }
+          });
+          })
+        })
+      })
+
+      //选中公司radio
+      $('.radio_company').change(function(){
+        $('.company_name').show();
+        $('.staff_Size').show();
+        $('.Attachment').show();
+        $('.registered_capital').show();
+        $('.company_type').show();
+        $('.company_num').show();
+        $('.Type').html('<b>*</b>法人/负责人证件类型');
+        $('.Type_Number').html('<b>*</b>法人/负责人证件号码');
+        $('.Type_Ps').html('<b>*</b>法人/负责人证件附件');
+        $('.company_address').html('<b>*</b>法人/负责人证件地址');
+
+         //监听提交
+         $('.submit').on('click',function(){
+          if($('.vipCode').val()==''){
+            layer.msg('客户代码不能为空')
+            return false;
+          }
+          if($('.CoName').val()==''){
+            layer.msg('企业全称不能为空')
+            return false;
+          }
+          if($('.cardNumber').val()==''){
+            layer.msg('营业执照证件号码不能为空')
+            return false;
+          }
+          //企业证件号码为15位
+          if($('.cardNumber').val().length!=15){
+            layer.msg('营业执照证件号码长度应为15位')
+            return false;
+          }
+          if($('.CoPrinCardNumber').val()==''){
+            layer.msg('证件号码不能为空')
+            return false;
+          }
+
+          if($('.principalCardType option:selected').val()==1){
+            if($('.CoPrinCardNumber').val().length!='18'){
+              layer.msg('身份证号码正确长度应为18位')
+              return false;
+            }
+          }
+          if($('.principalCardType option:selected').val()==2){
+             if($('.CoPrinCardNumber').val().length!='9'){
+              layer.msg('港澳通行证号码正确长度应为9位')
+              return false;
+            }
+          }
+          if($('.principalCardType option:selected').val()==3){
+            //准签证
+          }
+
+          if($('#seachprov option:selected').val()==0){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+          if($('#seachcity option:selected').val()==0){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+          // if($('#seachdistrict option:selected').val()==0){
+          //   layer.msg('必选字段不能为空')
+          //   return false;
+          // }
+          if($('#Address').val()==''){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+
+          var peopleCardPic = $('.pic02').attr('data_src');
+          var peopleCardPicBack = $('.pic03').attr('data_src');
+          var CoCardPic = $('.pic01').attr('data_src');
+          if(peopleCardPic==''){
+            layer.msg('附件地址不能为空')
+            return false;
+          }
+          if(peopleCardPicBack==''){
+            layer.msg('附件地址不能为空')
+            return false;
+          }
+          if(CoCardPic==''){
+            layer.msg('企业证件附件不能为空')
+            return false;
+          }
+
+          var seachprov = $('#seachprov option:selected').text();
+          var seachcity = $('#seachcity option:selected').text();
+          var seachdistrict = $('#seachdistrict option:selected').text();
+          var address = $('#Address').val();
+          $('#seachdistrict option:selected').val()==0 ? seachdistrict="" : seachdistrict;
+          var address_str = ''+seachprov+''+seachcity+''+seachdistrict+''+address+'';
+          var sustainable = $('.sustainable').prop('checked');
+          var deadline = $('.deadline').val();
+          if(sustainable){
+            deadline = "4000-00-00";
+          }
+
+          $(function(){
+            company_submit();
+          })
+        })
+
+      })
+      
+      //企业证件上传
+      // 设定文件大小限制
+      layui.upload.render({
+        elem: '#testpic'
+        ,url: '/index/user/uploadCoPic' //改成您自己的上传接口
+        ,size: 100 //限制文件大小，单位 KB
+        ,before: function(obj){
+          //预读本地文件示例，不支持ie8
+          obj.preview(function(index, file, result){
+            // $('#upload_img').attr('background', result); //图片链接（base64）
+          });
+        }
+        ,done: function(res){
+          // console.log(res)
+          if(res.code==0){
+            layer.msg(res.msg); 
+            $('#testpic').css('display','none');
+            $('.pic01').attr('data_src',res.data);
+            var str = '<img src="'+res.data+'" class="img_up01" style="width:100%;height:100%;z-index:1;clear:both;"/><span class="close" style="padding:0 !important;margin-top:-138px !important;border: 1px solid #333;z-index:100 !important;" onclick="closePic(this)">X</span>'
+            $('.pic01').append(str); 
+          }else{
+            layer.msg(res.msg); 
+          }
+        }
+      });
+
+      //身份证正反面
+      layui.upload.render({
+        elem: '#test2'
+        ,url: '/index/user/uploadCoPic' //改成您自己的上传接口
+        // ,size: 100 //限制文件大小，单位 KB
+        ,before: function(obj){
+          //预读本地文件示例，不支持ie8
+          obj.preview(function(index, file, result){
+            // $('#upload_img').attr('background', result); //图片链接（base64）
+          });
+        }
+        ,done: function(res){
+          // console.log(res)
+          if(res.code==0){
+            layer.msg(res.msg); 
+            $('#test2').css('display','none');
+            $('.pic02').attr('data_src',res.data);
+            var str = '<img src="'+res.data+'" class="img_up02" data_src="'+res.data+'" style="width:100%;height:100%;z-index:1;clear:both;"/><span class="close" style="padding:0 !important;margin-top:-138px !important;border: 1px solid #333;z-index:100 !important;" onclick="closePic02(this)">X</span>'
+            $('.pic02').append(str); 
+          }else{
+            layer.msg(res.msg); 
+          }
+        }
+      });
+
+      layui.upload.render({
+        elem: '#test3'
+        ,url: '/index/user/uploadCoPic' //改成您自己的上传接口
+        ,size: 100 //限制文件大小，单位 KB
+        ,before: function(obj){
+          //预读本地文件示例，不支持ie8
+          obj.preview(function(index, file, result){
+            // $('#upload_img').attr('background', result); //图片链接（base64）
+          });
+        }
+        ,done: function(res){
+          // console.log(res)
+          if(res.code==0){
+            layer.msg(res.msg); 
+            $('#test3').css('display','none');
+            $('.pic03').attr('data_src',res.data);
+            var str = '<img src="'+res.data+'" class="img_up03" data_src="'+res.data+'" style="width:100%;height:100%;z-index:1;clear:both;"/><span class="close" style="padding:0 !important;margin-top:-138px !important;border: 1px solid #333;z-index:100 !important;" onclick="closePic03(this)">X</span>'
+            $('.pic03').append(str); 
+          }else{
+            layer.msg(res.msg); 
+          }
+        }
+      });
+
+    });
+
+    function company_submit(){
+      layui.use([ 'layer','upload','form'], function () {
+        var layer = layui.layer;
+        var form = layui.form;
+        var upload = layui.layer;
+
+        //监听提交
+        $('.submit').on('click',function(){
+          if($('.vipCode').val()==''){
+            layer.msg('客户代码不能为空')
+            return false;
+          }
+          if($('.CoName').val()==''){
+            layer.msg('企业全称不能为空')
+            return false;
+          }
+          if($('.cardNumber').val()==''){
+            layer.msg('营业执照证件号码不能为空')
+            return false;
+          }
+          //企业证件号码为15位
+          if($('.cardNumber').val().length!=15){
+            layer.msg('营业执照证件号码长度应为15位')
+            return false;
+          }
+          if($('.CoPrinCardNumber').val()==''){
+            layer.msg('证件号码不能为空')
+            return false;
+          }
+
+          if($('.principalCardType option:selected').val()==1){
+            if($('.CoPrinCardNumber').val().length!='18'){
+              layer.msg('身份证号码正确长度应为18位')
+              return false;
+            }
+          }
+          if($('.principalCardType option:selected').val()==2){
+             if($('.CoPrinCardNumber').val().length!='9'){
+              layer.msg('港澳通行证号码正确长度应为9位')
+              return false;
+            }
+          }
+          if($('.principalCardType option:selected').val()==3){
+            //准签证
+          }
+
+          if($('#seachprov option:selected').val()==0){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+          if($('#seachcity option:selected').val()==0){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+          // if($('#seachdistrict option:selected').val()==0){
+          //   layer.msg('必选字段不能为空')
+          //   return false;
+          // }
+          if($('#Address').val()==''){
+            layer.msg('证件地址不能为空')
+            return false;
+          }
+
+          var peopleCardPic = $('.pic02').attr('data_src');
+          var peopleCardPicBack = $('.pic03').attr('data_src');
+          var CoCardPic = $('.pic01').attr('data_src');
+          if(peopleCardPic==''){
+            layer.msg('附件地址不能为空')
+            return false;
+          }
+          if(peopleCardPicBack==''){
+            layer.msg('附件地址不能为空')
+            return false;
+          }
+          if(CoCardPic==''){
+            layer.msg('企业证件附件不能为空')
+            return false;
+          }
+
+          var seachprov = $('#seachprov option:selected').text();
+          var seachcity = $('#seachcity option:selected').text();
+          var seachdistrict = $('#seachdistrict option:selected').text();
+          var address = $('#Address').val();
+          $('#seachdistrict option:selected').val()==0 ? seachdistrict="" : seachdistrict;
+          var address_str = ''+seachprov+''+seachcity+''+seachdistrict+''+address+'';
+          var sustainable = $('.sustainable').prop('checked');
+          var deadline = $('.deadline').val();
+          if(sustainable){
+            deadline = "4000-00-00";
+          }
+
+          $(function(){
+            $.ajax({
+            type: "POST",
+            url: "/index/user/companyAttestation",
+            data: {
+              vipType: 2,
+              vipCode: $('.vipCode').val(),
+              cardType: 1 ,
+              CoName : $('.CoName').val(),
+              registerCost:  $('.registerCost').val(),
+              cardNumber: $('.cardNumber').val(),
+              staffSize: $('.staffSize option:selected').val(),
+              deadline: deadline,
+              CoCardPic:CoCardPic,
+              principalCardType: $('.principalCardType').val(),
+              CoPrinCardNumber:$('.CoPrinCardNumber').val(),
+              peopleCardPic: peopleCardPic,
+              peopleCardPicBack: peopleCardPicBack,
+              cardAddress: address_str,
+            },
+            xhrFields: {
+              withCredentials: true
+            },
+            crossDomain: true,
+            dataType: "JSON",
+            success: function (msg) {
+              // console.log(msg)
+              if (msg.code == 200) {
+                layer.msg('提交成功，请等待您的审核结果',{shade:0.4,time:2000},function(){
+                  // location.href = "../../orderSch.html";
+                });
+              } else {
+                layer.msg(msg.msg)
+              }
+            }
+            , error: function (e) {
+              layer.msg('网络故障')
+            }
+          });
+          })
+        })
+      })
+    }
+
+    function skip(){
+      location.href = "../admin_center/center.html";
+    }
+
+    function closePic(res){
+      $('#testpic').show();
+      $(res).hide();
+      $('.img_up01').hide();
+    }
+
+    function closePic02(res){
+      $('#test2').show();
+      $(res).hide();
+      $('.img_up02').hide();
+    }
+
+    function closePic03(res){
+      $('#test3').show();
+      $(res).hide();
+      $('.img_up03').hide();
+    }
+  </script>
+</body>
+</html>

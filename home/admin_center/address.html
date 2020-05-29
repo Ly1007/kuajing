@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>船期查询</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="" name="keywords">
+    <meta content="" name="description">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/animations.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        input[type=file] {
+            display: none;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-offset="58" data-target="#topnav">
+    <!-- //公共头部 -->
+    <script src="./head.js"></script>
+
+    <script type="text/javascript" src="js/jquery18.js"></script>
+    <script src="js/unveil-effects.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //查询模块-START
+            var tabOpts = {};
+            tabOpts.curIndex;
+            tabOpts.tabs = $(".aside-lf-content");//焦点层	
+            tabOpts.contents = $(".content");//显示内容
+
+            tabOpts.show = function (index) {
+                //当前，return
+                if (tabOpts.curIndex == index) return;
+                //隐藏上一个index
+                if (tabOpts.curIndex >= 0) {
+                    $(tabOpts.tabs.get(tabOpts.curIndex)).removeClass("I_Q_T_sel").addClass("I_Q_T_noSel");
+                    $(tabOpts.contents.get(tabOpts.curIndex)).hide();
+                }
+
+                $(tabOpts.tabs.get(index)).removeClass("I_Q_T_noSel").addClass("I_Q_T_sel");
+                $(tabOpts.contents.get(index)).show();
+                //改变当前index
+                tabOpts.curIndex = index;
+            }
+            //数字单击事件
+            tabOpts.tabs.click(function () {
+                tabOpts.show(tabOpts.tabs.index(this));
+            });
+            //开始显示
+            tabOpts.show(0);
+            //查询模块-END
+        })
+    </script>
+
+    <section class="main" style="background:#f7f8fa;padding:33px 0">
+        <div class="container">
+            <!--left------------------------------------------------------------>
+            <!-- //公共左侧栏 -->
+            <script src="./left.js"></script>
+            <!--right           =                             -->
+            <div class="cp1_lr cplLR" data-effect="slide-right">
+                <div class="orderCon">
+                    <h2>地址管理</h2>
+
+                    <div class="order_content order_content04">
+                        <div class="personCon">
+                            <h4 class="personTit">新增收货地址</h4>
+                            <form action="#" method="post">
+                                <ul class="address_content">
+                                    <li>
+                                        <label><b>*</b>类型</label><select class="linkman_vip_type">
+                                            <option value="1">个人</option>
+                                            <option value="2">公司</option>
+                                        </select>
+                                    </li>
+                                    <li><label><b>*</b>国家</label><input type="text" placeholder="40个字符以内" class="linkman_country"></li>
+                                    <li><label><b>*</b>省</label><input type="text" placeholder="40个字符以内" class="linkman_province"></li>
+                                    <li><label><b>*</b>市</label><input type="text" placeholder="" class="linkman_city"></li>
+                                    <li><label>身份证号码</label><input type="text" placeholder="请与证件号一致" class="linkman_idCard_num"></li>
+                                    <li class="current"><label>身份证正面图片</label>
+                                        <!-- <input style="background:#fff;" class="idcard" type="text" placeholder="大小不超过46KB"> -->
+                                            <div class="pic03" data_src="" style="display: inline-block;margin-left:-5px;width:220px;height:80px !important;">
+                                            <button type="button" class="layui-btn" id="test3"
+                                                style="width:220px;height:80px;background: #f7f8fa !important;border: 1px solid #c5c5c5;border-radius: 4px;">
+                                                <p style="color: #141414;text-align: center;font-size: 14px;width:auto;z-index: 100;"
+                                                    class="pic_p03">图片大小不超过46KM</p>
+                                            </button></div>
+                                        </li>
+
+                                </ul>
+                                <ul class="address_content">
+                                    <li><label class="current "><b>*</b>详细地址</label><textarea placeholder="请输入街道、门牌号，1-120个字符" class="linkman_address"></textarea>
+                                    </li>
+                                    <li><label>邮政编码</label><input type="text" placeholder="40个字符以内" class="linkman_postcode"></li>
+                                    <li><label><b>*</b>姓名</label><input type="text" placeholder="40个字符以内" class="linkman_name"></li>
+                                    <li>
+                                        <label><b>*</b>手机号码</label><input type="text" placeholder="086-" class="linkman_phone">
+                                    </li>
+                                    <li class="noradius"><input type="checkbox" style="margin-left: 10%;" class="linkman_default_address"/><label>设置为默认收货地址</label></li>
+                                </ul>
+                            </form>
+
+                        </div>
+                        <div class="books books01" onclick="ajax_address()">保存</div>
+                    </div>
+
+                    <div class="center center01 addressCon"
+                        style="overflow:hidden;border-right:none;border-radius:4px;">
+                        <table cellpadding="0" cellspacing="0" style="margin-bottom:0;width:100%;" class="tableBox">
+                            <tr class="current">
+                                <th>姓名</th>
+                                <th>所在地区</th>
+                                <th>详细地址</th>
+                                <th>邮编</th>
+                                <th>电话/手机</th>
+                                <th>操作</th>
+                                <th>选择</th>
+                            </tr>
+                            <tr>
+                                <td>红色的红色</td>
+                                <td>香川县高松市栗林町</td>
+                                <td>3丁目3-32-305号 </td>
+                                <td>000000</td>
+                                <td>86-19********23</td>
+                                <td><a href=" ">删除</a></td>
+                                <td class="cli"><a class="over" href=" ">默认地址</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+
+                    <!--right           =                             -->
+                </div>
+
+                <!--问题订单          =                             -->
+
+                <!--问题订单          =                             -->
+
+            </div>
+        </div>
+        </div>
+    </section>
+
+
+    <style>
+        .lj {
+            background: #222;
+            color: #fff;
+            padding-top: 2%
+        }
+
+        .lj ul li {
+            width: 16%;
+            float: left;
+            font-size: 12px;
+            color: #fff;
+            list-style: none;
+        }
+
+        .lj ul li h4 {
+            color: #fff;
+            font-size: 14px;
+        }
+
+        .lj ul li a {
+            display: block;
+            color: rgba(255, 255, 255, .8);
+            margin: 3% 0;
+            text-decoration: none;
+        }
+    </style>
+
+    <!-- //公共底部 -->
+    <script src="./foot.js"></script>
+    <script src="layui/layui.js"></script>
+    <script>
+        // current
+        $('li').each(function () {
+            var text = $(this).children().text();
+            if (text == '地址管理') {
+                $(this).addClass('current');
+            }
+        });
+
+        layui.use(['layer', 'upload', 'form', 'laydate'], function () {
+            var layer = layui.layer;
+            var form = layui.form;
+            var upload = layui.upload;
+            var laydate = layui.laydate;
+
+            //身份证附件
+            layui.upload.render({
+                elem: '#test3'
+                , url: '/index/user/uploadCoPic' //改成您自己的上传接口
+                , size: 46//限制文件大小，单位 KB
+                , before: function (obj) {
+                    //预读本地文件示例，不支持ie8
+                    obj.preview(function (index, file, result) {
+                        // $('#upload_img').attr('background', result); //图片链接（base64）
+                    });
+                }
+                , done: function (res) {
+                    // console.log(res)
+                    if (res.code == 0) {
+                        layer.msg(res.msg);
+                        $('#test3').css('display', 'none');
+                        $('.pic03').attr('data_src', res.data);
+                        var str = '<img src="' + res.data + '" class="img_up03" data_src="' + res.data + '" style="width:100%;height:100%;z-index:1;clear:both;"/><span class="close" style="padding:0 !important;margin-top:-80px !important;border: 1px solid black;z-index:100 !important;" onclick="closePic03(this)">X</span>'
+                        $('.pic03').append(str);
+                    } else {
+                        layer.msg(res.msg);
+                    }
+                }
+            });
+
+            $.ajax({
+                type: "POST",
+                url: "/index/Vipcenterorder/queryLinkmanAddress",
+                data: {
+                   
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    // console.log(msg)
+                    if (msg.code == 0) {
+                        var str = '';
+                        str = str
+                            + '<tr class="current">'
+                            + '<th>姓名</th>'
+                            + '<th>所在地区</th>'
+                            + '<th>详细地址</th>'
+                            + '<th>邮编</th>'
+                            + '<th>电话/手机</th>'
+                            + '<th>操作</th>'
+                            + '<th>选择</th>'
+                            + '</tr>'
+                            
+                            for (var i = 0; i < msg.data.length; i++) {
+                                str = str
+                                    + '<tr style="background:#fff;">'
+                                    + '<td>'+msg.data[i].linkman_name+'</td>'
+                                    + '<td>'+msg.data[i].linkman_country+''+msg.data[i].linkman_province+'省'+msg.data[i].linkman_city+'市</td>'
+                                    + '<td>'+msg.data[i].linkman_address+'</td>'
+                                    + '<td>'+msg.data[i].linkman_postcode+'</td>'
+                                    + '<td>'+msg.data[i].linkman_phone+'</td>'
+                                    + '<td><a href="javascript:;">删除</a></td>'
+                                    + '<td class="cli"><a class="over" href=" ">默认地址</a></td>'
+                                    + '</tr>'
+                            }
+                        $('.tableBox').html(str);
+
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+                            
+        });//layui
+
+        function closePic03(res) {
+            $('#test3').show();
+            $(res).hide();
+            $('.img_up03').hide();
+        }
+
+        function ajax_address(){
+            if($('.linkman_country').val()=='' || $('.linkman_country').val()==null || $('.linkman_country').val()==undefined){
+                layer.msg('请输入国家再提交');
+                return false;
+            }
+            if($('.linkman_province').val()=='' || $('.linkman_province').val()==null || $('.linkman_province').val()==undefined){
+                layer.msg('请输入省份再提交');
+                return false;
+            }
+            if($('.linkman_city').val()=='' || $('.linkman_city').val()==null || $('.linkman_city').val()==undefined){
+                layer.msg('请输入市级再提交');
+                return false;
+            }
+            if($('.linkman_address').val()=='' || $('.linkman_address').val()==null || $('.linkman_address').val()==undefined){
+                layer.msg('请输入详细地址再提交');
+                return false;
+            }
+            if($('.linkman_name').val()=='' || $('.linkman_name').val()==null || $('.linkman_name').val()==undefined){
+                layer.msg('请输入姓名再提交');
+                return false;
+            }
+            if($('.linkman_phone').val()=='' || $('.linkman_phone').val()==null || $('.linkman_phone').val()==undefined){
+                layer.msg('请输入手机号码再提交');
+                return false;
+            }
+            if($('.linkman_idCard_num').val()!=''){
+                if($('.linkman_idCard_num').val().length()!=18){
+                layer.msg('请输入正确的身份证号码');
+                return false;
+            }
+            }
+            
+
+            //身份证号码长度
+            var linkman_default_address = 0;
+            var checked = $('.linkman_default_address').prop('checked');
+            if(checked){
+                //true
+                linkman_default_address = 1;
+            }
+            $.ajax({
+                type: "POST",
+                url: "/index/Vipcenter/addLinkmanAddress",
+                data: {
+                    linkman_vip_type:$('.linkman_vip_type').val(),
+                    linkman_country:$('.linkman_country').val(),
+                    linkman_province:$('.linkman_province').val(),
+                    linkman_city:$('.linkman_city').val(),
+                    linkman_idCard:$('.pic03').attr('data_src'),
+                    linkman_idCard_num:$('.linkman_idCard_num').val(),
+                    linkman_address:$('.linkman_address').val(),
+                    linkman_postcode:$('.linkman_postcode').val(),
+                    linkman_name:$('.linkman_name').val(),
+                    linkman_phone:$('.linkman_phone').val(),
+                    linkman_default_address:linkman_default_address,//0否 1是
+                },
+                xhrFields: {
+                    withCredentials: true
+                },
+                crossDomain: true,
+                dataType: "JSON",
+                success: function (msg) {
+                    // console.log(msg)
+                    if (msg.code == 0) {
+                            layer.msg(msg.msg,{time:2000},function(){
+                                window.location.reload();
+                            });
+                    } else {
+                        layer.msg(msg.msg);
+                    }
+                }
+                , error: function (e) {
+                    layer.msg('网络故障')
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>
